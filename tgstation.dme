@@ -174,6 +174,7 @@
 #include "code\__DEFINES\dcs\helpers.dm"
 #include "code\__DEFINES\dcs\signals.dm"
 #include "code\__DEFINES\research\anomalies.dm"
+#include "code\__DEFINES\~R505_defines\mimic.dm"
 #include "code\__HELPERS\_lists.dm"
 #include "code\__HELPERS\_logging.dm"
 #include "code\__HELPERS\_string_lists.dm"
@@ -3904,4 +3905,5 @@
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
 #include "interface\skin.dmf"
+#include "modular_R505\code\mobs\typhon\mimic.dm"
 // END_INCLUDE
