@@ -15,6 +15,7 @@
 	removable = is_removable
 
 //Carry
+/*
 /obj/item/skillchip/connectome/quickcarry
 	name = "Ant Hauler connectome"
 	auto_traits = list(TRAIT_QUICK_CARRY)
@@ -44,3 +45,4 @@
 	slot_use = 0
 	complexity = 0
 	cooldown = -1 MINUTES
+*/
