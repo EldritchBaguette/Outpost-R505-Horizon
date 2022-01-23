@@ -45,13 +45,13 @@
 
 /obj/item/neuromod/attack_self(mob/living/carbon/user)//when the object is used //originally mob/user in autosurgeon code, but that didn't work with the skillchip code
 	if(!uses)
-		to_chat(user, span_alert("[src] has already been used; the needles aren't sterile, and its payload is spent."))
+		to_chat(user, SPAN_ALERT("[src] has already been used; the needles aren't sterile, and its payload is spent."))
 		return
 	else if(!storedconnectome)
-		to_chat(user, span_alert("[src] does not appear to have a payload; it must be a display piece."))
+		to_chat(user, SPAN_ALERT("[src] does not appear to have a payload; it must be a display piece."))
 		return
 	user.implant_skillchip(storedconnectome, FALSE)//implant skillchip into the user. organ procs don't work with skillchips
-	user.visible_message(span_notice("[user] holds the [src] to their eye for a moment."), span_notice("You feel a sharp sting as [src]'s needles plunge into your eye."))
+	user.visible_message(SPAN_NOTICE("[user] holds the [src] to their eye for a moment."), SPAN_NOTICE("You feel a sharp sting as [src]'s needles plunge into your eye."))
 	playsound(get_turf(user), 'sound/weapons/circsawhit.ogg', 50, TRUE)
 	storedconnectome = null
 	name += initial(name)
@@ -61,12 +61,13 @@
 		desc = "[initial(desc)] Looks like it's been used up."
 	update_appearance()
 
+/*
 /obj/item/neuromod/qcarry
 	starting_connectome = /obj/item/skillchip/connectome/quickcarry
 
 /obj/item/neuromod/qcarryplus
 	starting_connectome = /obj/item/skillchip/connectome/quickercarry
-
+*/
 /obj/item/neuromod/chef
 	starting_connectome = /obj/item/skillchip/connectome/job/chef
 
