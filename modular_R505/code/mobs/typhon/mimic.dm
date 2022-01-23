@@ -357,7 +357,7 @@
 	var/list/area/stationAreas = list()
 	var/list/area/eligible_areas = list()
 	for(var/area/A in world) // Get the areas in the Z level
-		if(is_station_level(A.z) == TRUE)
+		if(is_station_level(A))
 			stationAreas += A
 	for(var/area/place in stationAreas) // first we check if it's a valid area
 		if(place.outdoors)
@@ -380,7 +380,7 @@
 	var/area/pickedArea
 	while(!validFound || !eligible_areas.len)
 		pickedArea = pick_n_take(eligible_areas)
-		var/list/turf/t = get_area_turfs(pickedArea, SSmapping.station_start)
+		var/list/turf/t = get_area_turfs(pickedArea, SSmapping.station_map_zone)
 		for(var/turf/thisTurf in t) // now we check if it's a closed turf, cold turf or occupied turf and yeet it
 			if(isopenturf(thisTurf))
 				var/turf/open/tempGet = thisTurf
