@@ -65,13 +65,6 @@
 
 	var/list/filter_data //For handling persistent filters
 
-	///Price of an item in a vending machine, overriding the base vending machine price. Define in terms of paycheck defines as opposed to raw numbers.
-	var/custom_price
-	///Price of an item in a vending machine, overriding the premium vending machine price. Define in terms of paycheck defines as opposed to raw numbers.
-	var/custom_premium_price
-	///Whether spessmen with an ID with an age below AGE_MINOR (20 by default) can buy this item
-	var/age_restricted = FALSE
-
 	//List of datums orbiting this atom
 	var/datum/component/orbiter/orbiters
 
@@ -93,9 +86,6 @@
 
 	var/list/alternate_appearances
 
-
-	/// Last appearance of the atom for demo saving purposes
-	var/image/demo_last_appearance
 
 	///Light systems, both shouldn't be active at the same time.
 	var/light_system = STATIC_LIGHT
@@ -153,6 +143,8 @@
 	var/atom/orbit_target
 	///AI controller that controls this atom. type on init, then turned into an instance during runtime
 	var/datum/ai_controller/ai_controller
+	/// Ambience emitter ID this atom is emitting
+	var/ambience
 
 /**
  * Called when an atom is created in byond (built in engine proc)
@@ -1932,13 +1924,13 @@
 		return A.has_gravity
 	else
 		// See if there's a gravity generator on our map zone
-		var/datum/map_zone/mapzone = SSmapping.get_map_zone(T)
+		var/datum/map_zone/mapzone = T.get_map_zone()
 		if(mapzone.gravity_generators.len)
 			var/max_grav = 0
 			for(var/obj/machinery/gravity_generator/main/G as anything in mapzone.gravity_generators)
 				max_grav = max(G.setting,max_grav)
 			return max_grav
-	return SSmapping.sub_zone_trait(T, ZTRAIT_GRAVITY)
+	return T.virtual_level_trait(ZTRAIT_GRAVITY)
 
 /**
  * Causes effects when the atom gets hit by a rust effect from heretics

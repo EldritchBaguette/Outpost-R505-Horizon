@@ -85,19 +85,9 @@
 
 /datum/looping_sound/jackpot
 	mid_length = 11
-	mid_sounds = list('sound/machines/roulettejackpot.ogg')
+	mid_sounds = list('sound/machines/roulettejackpot.ogg' = 1)
 	volume = 85
 	vary = TRUE
-
-
-/datum/looping_sound/server
-	mid_sounds = list('sound/machines/tcomms/tcomms_mid1.ogg'=1,'sound/machines/tcomms/tcomms_mid2.ogg'=1,'sound/machines/tcomms/tcomms_mid3.ogg'=1,'sound/machines/tcomms/tcomms_mid4.ogg'=1,\
-										'sound/machines/tcomms/tcomms_mid5.ogg'=1,'sound/machines/tcomms/tcomms_mid6.ogg'=1,'sound/machines/tcomms/tcomms_mid7.ogg'=1)
-	mid_length = 1.8 SECONDS
-	extra_range = -11
-	falloff_distance = 1
-	falloff_exponent = 5
-	volume = 10
 
 /datum/looping_sound/computer
 	start_sound = 'sound/machines/computer/computer_start.ogg'
@@ -111,14 +101,6 @@
 	falloff_exponent = 5 //Ultra quiet very fast
 	extra_range = -12
 	falloff_distance = 1 //Instant falloff after initial tile
-
-/datum/looping_sound/gravgen
-	mid_sounds = list('sound/machines/gravgen/gravgen_mid1.ogg'=1,'sound/machines/gravgen/gravgen_mid2.ogg'=1,'sound/machines/gravgen/gravgen_mid3.ogg'=1,'sound/machines/gravgen/gravgen_mid4.ogg'=1,)
-	mid_length = 1.8 SECONDS
-	extra_range = 10
-	volume = 40
-	falloff_distance = 5
-	falloff_exponent = 20
 
 /datum/looping_sound/drill
 	start_sound = 'sound/machines/drill/drill_start.ogg'

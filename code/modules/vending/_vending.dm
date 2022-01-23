@@ -59,6 +59,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	payment_department = ACCOUNT_SRV
 	light_power = 0.5
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
+	powered_ambience = AMBIENCE_VENDING
 	/// Is the machine active (No sales pitches if off)!
 	var/active = 1
 	///Are we ready to vend?? Is it time??
@@ -311,7 +312,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(isnull(amount))
 			amount = 0
 
-		var/atom/temp = typepath
+		var/obj/item/temp = typepath
 		var/datum/data/vending_product/R = new /datum/data/vending_product()
 		GLOB.vending_products[typepath] = 1
 		R.name = initial(temp.name)
@@ -338,11 +339,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 	extra_price = round(initial(extra_price) * SSeconomy.inflation_value())
 	for(var/R in recordlist)
 		var/datum/data/vending_product/record = R
-		var/atom/potential_product = record.product_path
+		var/obj/item/potential_product = record.product_path
 		record.custom_price = round(initial(potential_product.custom_price) * SSeconomy.inflation_value())
 	for(var/R in premiumlist)
 		var/datum/data/vending_product/record = R
-		var/atom/potential_product = record.product_path
+		var/obj/item/potential_product = record.product_path
 		var/premium_sanity = round(initial(potential_product.custom_premium_price))
 		if(premium_sanity)
 			record.custom_premium_price = round(premium_sanity * SSeconomy.inflation_value())
@@ -1078,7 +1079,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(vending_machine_input[O] > 0)
 			var/base64
 			var/price = 0
-			for(var/obj/T in contents)
+			for(var/obj/item/T in contents)
 				if(T.name == O)
 					price = T.custom_price
 					if(!base64)
@@ -1105,7 +1106,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			if(!vend_ready)
 				return
 			var/N = params["item"]
-			var/obj/S
+			var/obj/item/S
 			vend_ready = FALSE
 			var/obj/item/card/id/C
 			if(isliving(usr))

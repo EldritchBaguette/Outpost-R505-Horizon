@@ -30,7 +30,7 @@
 	/// Some subtypes will want to shift their transform by -4,-4. This makes them do that
 	var/transform_shift = FALSE
 
-/turf/closed/mineral/Initialize()
+/turf/closed/mineral/Initialize(mapload, inherited_virtual_z)
 	. = ..()
 	if(transform_shift)
 		var/matrix/M = new
@@ -38,7 +38,7 @@
 		transform = M
 	icon = smooth_icon
 	if(!color && turn_to_level_color)
-		var/datum/map_zone/mapzone = SSmapping.get_map_zone(src)
+		var/datum/map_zone/mapzone = get_map_zone()
 		color = mapzone.rock_color
 	if(prob(3))
 		AddComponent(/datum/component/digsite)
@@ -194,8 +194,8 @@
 		//Currently, Adamantine won't spawn as it has no uses. -Durandan
 	var/mineralChance = 13
 
-/turf/closed/mineral/random/Initialize()
-	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
+/turf/closed/mineral/random/Initialize(mapload, inherited_virtual_z)
+	if(SSgamemode.holidays && SSgamemode.holidays[APRIL_FOOLS])
 		mineralSpawnChanceList[/obj/item/stack/ore/bananium] = 3
 
 	mineralSpawnChanceList = typelist("mineralSpawnChanceList", mineralSpawnChanceList)
@@ -241,7 +241,7 @@
 	defer_change = TRUE
 	mineralSpawnChanceList = list(
 		/obj/item/stack/ore/uranium = 35, /obj/item/stack/ore/diamond = 30, /obj/item/stack/ore/gold = 45, /obj/item/stack/ore/titanium = 45,
-		/obj/item/stack/ore/silver = 50, /obj/item/stack/ore/plasma = 50, /obj/item/stack/ore/bluespace_crystal)
+		/obj/item/stack/ore/silver = 50, /obj/item/stack/ore/plasma = 50, /obj/item/stack/ore/bluespace_crystal = 1)
 
 /turf/closed/mineral/random/low_chance
 	icon_state = "rock_lowchance"
@@ -536,9 +536,9 @@
 	var/activated_name = null
 	var/mutable_appearance/activated_overlay
 
-/turf/closed/mineral/gibtonite/Initialize()
-	det_time = rand(8,10) //So you don't know exactly when the hot potato will explode
+/turf/closed/mineral/gibtonite/Initialize(mapload, inherited_virtual_z)
 	. = ..()
+	det_time = rand(8,10) //So you don't know exactly when the hot potato will explode
 
 /turf/closed/mineral/gibtonite/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/mining_scanner) || istype(I, /obj/item/t_scanner/adv_mining_scanner) && stage == 1)

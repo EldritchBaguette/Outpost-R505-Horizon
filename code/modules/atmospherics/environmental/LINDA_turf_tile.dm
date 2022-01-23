@@ -23,7 +23,7 @@
 	//Set the key to the z level if it is a planetary atmos
 	. = TRUE
 	if(initial_gas_mix == PLANETARY_ATMOS)
-		var/datum/map_zone/mapzone = SSmapping.get_map_zone(src)
+		var/datum/map_zone/mapzone = get_map_zone()
 		//If our map zone does not have a mix set, default to normal atmos
 		if(!mapzone || !mapzone.planetary_gas_string)
 			initial_gas_mix = OPENTURF_DEFAULT_ATMOS
@@ -53,15 +53,16 @@
 	var/max_share = 0
 	#endif
 
-/turf/open/Initialize()
+/turf/open/Initialize(mapload, inherited_virtual_z)
+	if(inherited_virtual_z)
+		virtual_z = inherited_virtual_z
 	if(!blocks_air)
 		air = new
 		air.copy_from_turf(src)
+		/// Register the planetary atmospherics we may have that isn't a part of a mapzone
+		/// In future only have this happen on /datum/map_zone level
 		if(planetary_atmos)
-			if(!SSair.planetary[initial_gas_mix])
-				var/datum/gas_mixture/immutable/planetary/mix = new
-				mix.parse_string_immutable(initial_gas_mix)
-				SSair.planetary[initial_gas_mix] = mix
+			SSair.register_planetary_atmos(initial_gas_mix)
 	. = ..()
 
 /turf/open/Destroy()

@@ -25,16 +25,6 @@
 	use_power = NO_POWER_USE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/sprite_number = 0
-	///Audio for when the gravgen is on
-	var/datum/looping_sound/gravgen/soundloop
-
-/obj/machinery/gravity_generator/main/Initialize()
-	. = ..()
-	soundloop = new(list(src), TRUE)
-
-/obj/machinery/gravity_generator/main/Destroy()
-	. = ..()
-	QDEL_NULL(soundloop)
 
 /obj/machinery/gravity_generator/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, diagonals_first = FALSE, datum/callback/callback, force = MOVE_FORCE_STRONG, gentle = FALSE)
 	return FALSE
@@ -74,7 +64,6 @@
 	if(main_part)
 		qdel(main_part)
 	set_broken()
-	QDEL_NULL(soundloop)
 	return ..()
 
 //
@@ -131,6 +120,7 @@
 	sprite_number = 8
 	use_power = IDLE_POWER_USE
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OFFLINE
+	powered_ambience = AMBIENCE_GRAVGEN
 	var/on = TRUE
 	var/breaker = TRUE
 	var/list/parts = list()
@@ -302,13 +292,11 @@
 	var/alert = FALSE
 	if(SSticker.IsRoundInProgress())
 		if(on) // If we turned on and the game is live.
-			soundloop.start()
 			if(gravity_in_level() == FALSE)
 				alert = TRUE
 				investigate_log("was brought online and is now producing gravity for this level.", INVESTIGATE_GRAVITY)
 				message_admins("The gravity generator was brought online [ADMIN_VERBOSEJMP(src)]")
 		else
-			soundloop.stop()
 			if(gravity_in_level() == TRUE)
 				alert = TRUE
 				investigate_log("was brought offline and there is now no gravity for this level.", INVESTIGATE_GRAVITY)
@@ -373,7 +361,7 @@
 	var/sound/alert_sound = sound('sound/effects/alert.ogg')
 	for(var/i in GLOB.mob_list)
 		var/mob/M = i
-		if(M.z != z && !(SSmapping.sub_zone_trait(src, ZTRAITS_STATION) && SSmapping.sub_zone_trait(M, ZTRAITS_STATION)))
+		if(M.z != z && !(virtual_level_trait(ZTRAITS_STATION) && M.virtual_level_trait(ZTRAITS_STATION)))
 			continue
 		M.update_gravity(M.mob_has_gravity())
 		if(M.client)
@@ -388,7 +376,7 @@
 /obj/machinery/gravity_generator/main/proc/update_list()
 	var/turf/T = get_turf(src)
 
-	var/datum/map_zone/found_mapzone = SSmapping.get_map_zone(T)
+	var/datum/map_zone/found_mapzone = T.get_map_zone()
 	if(mapzone == found_mapzone)
 		return
 	if(mapzone && found_mapzone != mapzone)

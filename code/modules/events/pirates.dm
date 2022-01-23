@@ -5,17 +5,14 @@
 	max_occurrences = 1
 	min_players = 10
 	earliest_start = 30 MINUTES
-	dynamic_should_hijack = TRUE
+
+	track = EVENT_TRACK_ROLESET
+	tags = list(TAG_COMBAT, TAG_DESTRUCTIVE)
+	min_sec_crew = 1
 
 #define PIRATES_ROGUES "Rogues"
 #define PIRATES_SILVERSCALES "Silverscales"
 #define PIRATES_DUTCHMAN "Flying Dutchman"
-
-/datum/round_event_control/pirates/preRunEvent()
-	if (!SSmapping.empty_space)
-		return EVENT_CANT_RUN
-
-	return ..()
 
 /datum/round_event/pirates
 	startWhen = 60 //2 minutes to answer
@@ -94,17 +91,14 @@
 	shuffle_inplace(candidates)
 
 	var/datum/map_template/shuttle/pirate/ship = new ship_template
-	var/x = rand(TRANSITIONEDGE,world.maxx - TRANSITIONEDGE - ship.width)
-	var/y = rand(TRANSITIONEDGE,world.maxy - TRANSITIONEDGE - ship.height)
-	var/z = SSmapping.empty_space.z_value
-	var/turf/T = locate(x,y,z)
-	if(!T)
-		CRASH("Pirate event found no turf to load in")
 
-	if(!ship.load(T))
+	var/obj/docking_port/mobile/loaded_ship = SSshuttle.action_load(ship)
+	if(!loaded_ship)
 		CRASH("Loading pirate ship failed!")
 
-	for(var/turf/A in ship.get_affected_turfs(T))
+	var/list/shuttle_coords = loaded_ship.return_coords()
+
+	for(var/turf/A in block(locate(shuttle_coords[1], shuttle_coords[2], loaded_ship.z), locate(shuttle_coords[3], shuttle_coords[4], loaded_ship.z)))
 		for(var/obj/effect/mob_spawn/human/pirate/spawner in A)
 			if(candidates.len > 0)
 				var/mob/M = candidates[1]

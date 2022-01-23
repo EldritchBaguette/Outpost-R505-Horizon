@@ -836,7 +836,7 @@
 	name = "Tramstation emergency evac bay";
 	width = 32
 	},
-/turf/open/openspace/airless/planetary,
+/turf/open/space/openspace,
 /area/space)
 "acW" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
@@ -2987,7 +2987,7 @@
 	roundstart_template = /datum/map_template/shuttle/arrival/box;
 	width = 7
 	},
-/turf/open/openspace/airless/planetary,
+/turf/open/space/openspace,
 /area/space)
 "akE" = (
 /turf/closed/wall,
@@ -7833,7 +7833,7 @@
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},
-/turf/open/openspace/airless/planetary,
+/turf/open/space/openspace,
 /area/space)
 "azn" = (
 /obj/effect/turf_decal/tile/blue{
@@ -9236,7 +9236,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
+/obj/item/reagent_containers/rag,
 /turf/open/floor/iron,
 /area/service/bar)
 "aEb" = (
@@ -10992,7 +10992,6 @@
 /area/medical/virology)
 "aKt" = (
 /obj/structure/table/wood,
-/obj/item/holosign_creator/robot_seat/bar,
 /turf/open/floor/wood,
 /area/service/bar)
 "aKu" = (
@@ -12470,7 +12469,6 @@
 /obj/structure/table,
 /obj/item/clothing/suit/apron/chef,
 /obj/item/kitchen/rollingpin,
-/obj/item/holosign_creator/robot_seat/restaurant,
 /turf/open/floor/iron/white,
 /area/service/kitchen)
 "aTM" = (
@@ -13040,7 +13038,7 @@
 /turf/open/floor/iron,
 /area/security/courtroom)
 "aYr" = (
-/turf/open/openspace/airless/planetary,
+/turf/open/space/openspace,
 /area/space)
 "aYs" = (
 /obj/effect/spawner/randomsnackvend,
@@ -19986,7 +19984,7 @@
 	dir = 9;
 	network = list("aicore")
 	},
-/turf/open/openspace/airless/planetary,
+/turf/open/space/openspace,
 /area/ai_monitored/turret_protected/aisat/hallway)
 "dDP" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line{
@@ -22211,14 +22209,6 @@
 /obj/effect/loot_site_spawner,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"etq" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/machinery/restaurant_portal/bar,
-/turf/open/floor/iron,
-/area/service/bar)
 "etv" = (
 /obj/effect/landmark/blobstart,
 /turf/open/floor/engine,
@@ -22915,7 +22905,7 @@
 	dir = 2;
 	name = "SS13: Auxiliary Dock, Station-Port"
 	},
-/turf/open/openspace/airless/planetary,
+/turf/open/space/openspace,
 /area/space)
 "eJT" = (
 /obj/effect/mapping_helpers/smart_pipe/manifold4w/supply/hidden/layer4{
@@ -22999,7 +22989,7 @@
 /area/engineering/main)
 "eMA" = (
 /obj/effect/landmark/carpspawn,
-/turf/open/openspace/airless/planetary,
+/turf/open/space/openspace,
 /area/space)
 "eMU" = (
 /obj/effect/decal/cleanable/dirt,
@@ -28156,7 +28146,7 @@
 /area/science/explab)
 "gNY" = (
 /obj/structure/lattice,
-/turf/open/openspace/airless/planetary,
+/turf/open/space/openspace,
 /area/space/nearstation)
 "gNZ" = (
 /obj/machinery/nuclearbomb/selfdestruct,
@@ -41079,7 +41069,7 @@
 "lDe" = (
 /obj/structure/grille,
 /obj/structure/lattice,
-/turf/open/openspace/airless/planetary,
+/turf/open/space/openspace,
 /area/space/nearstation)
 "lDC" = (
 /obj/effect/mapping_helpers/smart_pipe/manifold4w/scrubbers/hidden/layer2{
@@ -41175,7 +41165,7 @@
 	network = list("aicore")
 	},
 /obj/structure/lattice,
-/turf/open/openspace/airless/planetary,
+/turf/open/space/openspace,
 /area/space/nearstation)
 "lHl" = (
 /obj/machinery/recharge_station,
@@ -42422,7 +42412,7 @@
 	name = "port bay 2";
 	width = 5
 	},
-/turf/open/openspace/airless/planetary,
+/turf/open/space/openspace,
 /area/space)
 "mkG" = (
 /obj/structure/table,
@@ -53300,7 +53290,7 @@
 	id = "pod_lavaland";
 	name = "lavaland"
 	},
-/turf/open/openspace/airless/planetary,
+/turf/open/space/openspace,
 /area/space)
 "qCf" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
@@ -58645,7 +58635,7 @@
 	c_tag = "Secure - External AI Upload";
 	dir = 5
 	},
-/turf/open/openspace/airless/planetary,
+/turf/open/space/openspace,
 /area/ai_monitored/turret_protected/ai_upload)
 "sHz" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/oxygen_input{
@@ -64551,10 +64541,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/security/checkpoint)
-"uTG" = (
-/obj/machinery/restaurant_portal/restaurant,
-/turf/open/floor/glass,
-/area/service/kitchen)
 "uTR" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -71460,7 +71446,7 @@
 	dir = 5;
 	network = list("aicore")
 	},
-/turf/open/openspace/airless/planetary,
+/turf/open/space/openspace,
 /area/ai_monitored/turret_protected/aisat/hallway)
 "xxS" = (
 /obj/effect/turf_decal/siding/wood/corner{
@@ -94597,7 +94583,7 @@ aOF
 nTE
 aeK
 abX
-etq
+ahV
 ahV
 ahV
 aZE
@@ -160911,7 +160897,7 @@ pco
 jya
 aUE
 gyC
-uTG
+aUE
 aUE
 aDI
 aqB

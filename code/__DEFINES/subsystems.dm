@@ -118,7 +118,7 @@
 #define INIT_ORDER_ACHIEVEMENTS 77
 #define INIT_ORDER_RESEARCH 75
 #define INIT_ORDER_STATION 74 //This is high priority because it manipulates a lot of the subsystems that will initialize after it.
-#define INIT_ORDER_EVENTS 70
+#define INIT_ORDER_GAMEMODE 70
 #define INIT_ORDER_IDACCESS 66
 #define INIT_ORDER_JOBS 65 // Must init before atoms, to set up properly the dynamic job lists.
 #define INIT_ORDER_QUIRKS 60
@@ -132,7 +132,6 @@
 #define INIT_ORDER_NETWORKS 45
 #define INIT_ORDER_ECONOMY 40
 #define INIT_ORDER_OUTPUTS 35
-#define INIT_ORDER_RESTAURANT 34
 #define INIT_ORDER_POLLUTION 32 //Needs to be above atoms
 #define INIT_ORDER_ATOMS 30
 #define INIT_ORDER_LANGUAGE 25

@@ -43,12 +43,7 @@
 
 /area/planet/shrouded
 	name = "Shrouded Planet Surface"
-	ambientsounds = list(
-		"sound/ambience/spookyspace1.ogg",
-		"sound/ambience/spookyspace2.ogg",
-	)
-	min_ambience_cooldown = 2 MINUTES
-	max_ambience_cooldown = 4 MINUTES
+	main_ambience = AMBIENCE_SHROUDED
 
 /datum/map_generator/planet_gen/shrouded
 	possible_biomes = list(
@@ -105,7 +100,7 @@
 	clawfootstep = FOOTSTEP_SAND
 	heavyfootstep = FOOTSTEP_SAND
 
-/turf/open/floor/planetary/shrouded_sand/Initialize()
+/turf/open/floor/planetary/shrouded_sand/Initialize(mapload, inherited_virtual_z)
 	. = ..()
 	if(prob(20))
 		icon_state = "[base_icon_state][rand(1,8)]"

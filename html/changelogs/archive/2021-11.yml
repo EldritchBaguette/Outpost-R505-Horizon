@@ -26,3 +26,25 @@
   - bugfix: Fixed a ton of broken worn states
   - bugfix: Fixes grilles not smoothing after being repaired
   - bugfix: Fix chat verb uses legacy alert
+2021-11-18:
+  Azarak:
+  - code_imp: cleaned up some variables in code
+  - rscadd: Catwalks can now only smooth with themselves again
+  - bugfix: Fixes throw mode putting you on click cooldown despite not throwing
+  - rscadd: Ore veins and crystals, diffuser box. Industrial mining preparations
+2021-11-19:
+  Azarak:
+  - code_imp: Removes unused list in molotov cocktails
+2021-11-22:
+  Azarak:
+  - bugfix: Properly sets species information when creating a new preference file.
+      This will fix the missing common language bug for new players.
+  - bugfix: Fixes cardboard box overlays
+  - rscadd: Mold has been rewritten and received some tweaks.
+  - bugfix: Fixes suit storage worn states
+  - bugfix: Fixes missing reinforced plasma window spawner
+  - bugfix: Fixes consistency in low wall and window smoothing
+  - bugfix: Fixes icon states and overlays for broken air alarm
+2021-11-28:
+  Azarak:
+  - bugfix: Fixes mapped in falsewalls

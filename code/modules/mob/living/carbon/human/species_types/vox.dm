@@ -16,6 +16,7 @@
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	mutantlungs = /obj/item/organ/lungs/vox
 	mutantbrain = /obj/item/organ/brain/vox
+	mutanttongue = /obj/item/organ/tongue/avian
 	breathid = "n2"
 	mutant_bodyparts = list()
 	default_mutant_bodyparts = list("tail" = "Vox Tail", "legs" = "Digitigrade Legs", "snout" = "Vox Snout", "spines" = ACC_RANDOM)
@@ -27,8 +28,10 @@
 	species_language_holder = /datum/language_holder/vox
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	bodytype = BODYTYPE_VOX
-
 	learnable_languages = list(/datum/language/common, /datum/language/vox)
+	scream_sounds = list(
+		NEUTER = 'sound/voice/voxscream.ogg'
+	)
 
 /datum/species/vox/pre_equip_species_outfit(datum/job/J, mob/living/carbon/human/H, visualsOnly = FALSE)
 	var/datum/outfit/vox/O = new /datum/outfit/vox

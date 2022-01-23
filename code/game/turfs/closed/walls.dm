@@ -56,7 +56,7 @@
 	else
 		name += "wall"
 
-/turf/closed/wall/Initialize(mapload)
+/turf/closed/wall/Initialize(mapload, inherited_virtual_z)
 	. = ..()
 	paint_wall(wall_paint) //To ensure varedit wall paint works properly
 	if(mapload)
@@ -239,7 +239,7 @@
 		new reinf_mat_ref.sheet_type(src, 2)
 
 /turf/proc/create_rubble(adjacent = FALSE)
-	var/rubble_type = prob(50) ? /obj/structure/rubble/medium : /obj/structure/rubble/large
+	var/rubble_type = prob(50) ? /obj/structure/rubble/medium/metal : /obj/structure/rubble/large/metal
 	var/turf/destination = src
 	if(adjacent)
 		ImmediateCalculateAdjacentTurfs()
