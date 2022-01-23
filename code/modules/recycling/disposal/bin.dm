@@ -20,7 +20,7 @@
 	var/flushing = 0 // true if flushing in progress
 	var/flush_every_ticks = 30 //Every 30 ticks it will look whether it is ready to flush
 	var/flush_count = 0 //this var adds 1 once per tick. When it reaches flush_every_ticks it resets and tries to flush.
-	var/last_sound = 0
+	var/next_sound = 0
 	var/obj/structure/disposalconstruct/stored
 	// create a new disposal
 	// find the attached trunk (if present) and init gas resvr.
@@ -207,9 +207,9 @@
 	flushing = TRUE
 	flushAnimation()
 	sleep(10)
-	if(last_sound < world.time + 1)
+	if(next_sound < world.time)
 		playsound(src, 'sound/machines/disposalflush.ogg', 50, FALSE, FALSE)
-		last_sound = world.time
+		next_sound = world.time + 2 SECONDS
 	sleep(5)
 	if(QDELETED(src))
 		return
@@ -453,7 +453,7 @@
 
 /obj/machinery/disposal/bin/get_remote_view_fullscreens(mob/user)
 	if(user.stat == DEAD || !(user.sight & (SEEOBJS|SEEMOBS)))
-		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 2)
+		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, HUD_IMPAIRMENT_HALF_BLIND)
 
 //Delivery Chute
 

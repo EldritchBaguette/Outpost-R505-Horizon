@@ -1912,8 +1912,6 @@
 /// Proc to append behavior to the condition of being floored. Called when the condition starts.
 /mob/living/proc/on_floored_start()
 	if(body_position == STANDING_UP) //force them on the ground
-		if(client) //If we have a client, set us to resting, so the client has to manually stand us back, but AI mobs will try to automatically stand up without that being faciliated into their AI
-			set_resting(TRUE, silent = TRUE)
 		set_lying_angle(pick(90, 270))
 		set_body_position(LYING_DOWN)
 		on_fall()
@@ -2009,3 +2007,40 @@
 		else
 			temporary_flavor_text = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 	return
+
+/mob/living/verb/toggle_hold_onto_things()
+	set category = "IC"
+	set name = "Toggle Holding in No Grav"
+	set desc = "Allows you to stop holding onto things in no gravity."
+
+	if(stat != CONSCIOUS)
+		to_chat(usr, SPAN_WARNING("You can't do that now..."))
+		return
+
+	hold_onto_things = !hold_onto_things
+	to_chat(usr, SPAN_NOTICE("You will [hold_onto_things ? "now" : "no longer"] hold onto things in no gravity."))
+
+/// Special key down handling of /living mobs, currently only used for typing indicator
+/mob/living/key_down(_key, client/user)
+	if(!typing_indicator && stat == CONSCIOUS)
+		for(var/kb_name in user.prefs.key_bindings[_key])
+			switch(kb_name)
+				if("Say")
+					set_typing_indicator(TRUE)
+					break
+				if("Me")
+					set_typing_indicator(TRUE)
+					break
+	return ..()
+
+/// Used for setting typing indicator on/off. Checking the state should be done not on the proc to avoid overhead.
+/mob/living/set_typing_indicator(state)
+	typing_indicator = state
+	if(typing_indicator)
+		var/state_of_bubble = bubble_icon? "[bubble_icon]0" : "default0"
+		typing_indicator_overlay = mutable_appearance('icons/mob/talk.dmi', state_of_bubble, layer = FLY_LAYER)
+		typing_indicator_overlay.appearance_flags = RESET_COLOR | RESET_TRANSFORM | TILE_BOUND | PIXEL_SCALE
+		add_overlay(typing_indicator_overlay)
+	else
+		cut_overlay(typing_indicator_overlay)
+		typing_indicator_overlay = null

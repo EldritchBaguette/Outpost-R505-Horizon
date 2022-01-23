@@ -136,6 +136,7 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	sheet_type = /obj/item/stack/sheet/mineral/plasma
 	ore_type = /obj/item/stack/ore/plasma
 	shard_type = /obj/item/shard/plasma
+	ore_type = /obj/item/stack/ore/plasma
 	value_per_unit = 0.1
 	beauty_modifier = 0.15
 	armor_modifiers = list(MELEE = 1.4, BULLET = 0.7, LASER = 0, ENERGY = 1.2, BOMB = 0, BIO = 1.2, RAD = 1, FIRE = 0, ACID = 0.5)

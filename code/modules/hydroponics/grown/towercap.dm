@@ -250,6 +250,7 @@
 		burning = TRUE
 		set_light(6)
 		Burn()
+		set_ambience(AMBIENCE_FIRE)
 		START_PROCESSING(SSobj, src)
 
 /obj/structure/bonfire/fire_act(exposed_temperature, exposed_volume)
@@ -291,8 +292,9 @@
 	if(!CheckOxygen())
 		extinguish()
 		return
-	var/turf/my_turf = get_turf(src)
-	my_turf.PolluteListTurf(list(/datum/pollutant/smoke = 20, /datum/pollutant/carbon_air_pollution = 5), POLLUTION_ACTIVE_EMITTER_CAP)
+	var/turf/open/my_turf = get_turf(src)
+	if(istype(my_turf) && !my_turf.planetary_atmos) //Pollute, but only when we're not on planetary atmos
+		my_turf.pollute_list_turf(list(/datum/pollutant/smoke = 15, /datum/pollutant/carbon_air_pollution = 5), POLLUTION_ACTIVE_EMITTER_CAP)
 	if(!grill)
 		Burn(delta_time)
 	else
@@ -303,6 +305,7 @@
 		icon_state = "bonfire"
 		burning = 0
 		set_light(0)
+		set_ambience(null)
 		STOP_PROCESSING(SSobj, src)
 
 /obj/structure/bonfire/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)

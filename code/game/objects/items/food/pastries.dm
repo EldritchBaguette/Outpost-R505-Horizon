@@ -348,7 +348,6 @@
 	desc = "A delicious and spongy little cake, with berries."
 	tastes = list("muffin" = 3, "berry" = 1)
 	foodtypes = GRAIN | FRUIT | SUGAR | BREAKFAST
-	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/muffin/booberry
 	name = "booberry muffin"
@@ -577,11 +576,28 @@
 	name = "fortune cookie"
 	desc = "A true prophecy in each cookie!"
 	icon_state = "fortune_cookie"
+	trash_type = /obj/item/paper
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	tastes = list("cookie" = 1)
 	foodtypes = GRAIN | SUGAR
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/food/fortunecookie/proc/get_fortune()
+	var/atom/drop_location = drop_location()
+	
+	var/obj/item/paper/fortune = locate(/obj/item/paper) in src
+	// If a fortune exists, use that.
+	if (fortune)
+		fortune.forceMove(drop_location)
+		return fortune
+	// Otherwise, make a blank page.
+	var/out_paper = new trash_type(drop_location)
+	return out_paper
+
+/obj/item/food/fortunecookie/MakeLeaveTrash()
+	if(trash_type)
+		AddElement(/datum/element/food_trash, trash_type, food_flags, /obj/item/food/fortunecookie/proc/get_fortune)
 
 /obj/item/food/poppypretzel
 	name = "poppy pretzel"
@@ -643,7 +659,7 @@
 
 /obj/item/food/cookie/sugar/Initialize()
 	. = ..()
-	if(SSevents.holidays && SSevents.holidays[FESTIVE_SEASON])
+	if(SSgamemode.holidays && SSgamemode.holidays[FESTIVE_SEASON])
 		var/shape = pick("tree", "bear", "santa", "stocking", "present", "cane")
 		desc = "A sugar cookie in the shape of a [shape]. I hope Santa likes it!"
 		icon_state = "sugarcookie_[shape]"
@@ -711,7 +727,6 @@
 	foodtypes = GRAIN | SUGAR | BREAKFAST
 	w_class = WEIGHT_CLASS_SMALL
 	burns_on_grill = TRUE
-	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/pancakes/raw
 	name = "goopy pancake"
@@ -858,8 +873,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("pastry" = 1)
 	foodtypes = GRAIN | DAIRY | SUGAR
-	w_class = WEIGHT_CLASS_TINY
-	venue_value = FOOD_PRICE_CHEAP // Pastry base, 3u of sugar and a single. fucking. unit. of. milk. really?
+	w_class = WEIGHT_CLASS_TINY // Pastry base, 3u of sugar and a single. fucking. unit. of. milk. really?
 
 /obj/item/food/icecream
 	name = "waffle cone"

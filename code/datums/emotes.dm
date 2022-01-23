@@ -63,6 +63,10 @@
 	var/can_message_change = FALSE
 	/// How long is the cooldown on the audio of the emote, if it has one?
 	var/audio_cooldown = 2 SECONDS
+	/// How far will the emote be displayed
+	var/emote_distance = DEFAULT_MESSAGE_RANGE
+	/// Whether the emote will be shown to ghosts
+	var/show_ghosts = TRUE
 
 /datum/emote/New()
 	if (ispath(mob_type_allowed_typecache))
@@ -89,11 +93,12 @@
  *
  * Returns TRUE if it was able to run the emote, FALSE otherwise.
  */
-/datum/emote/proc/run_emote(mob/user, params, type_override, intentional = FALSE)
+/datum/emote/proc/run_emote(mob/user, params, type_override, intentional = FALSE, override_message, override_emote_type)
 	. = TRUE
 	if(!can_run_emote(user, TRUE, intentional))
 		return FALSE
-	var/msg = select_message_type(user, message, intentional)
+	var/message_to_use = override_message || message
+	var/msg = select_message_type(user, message_to_use, intentional)
 	if(params && message_param)
 		msg = select_param(user, params)
 
@@ -115,17 +120,19 @@
 		TIMER_COOLDOWN_START(user, type, audio_cooldown)
 		playsound(user, tmp_sound, sound_volume, vary)
 
-	var/user_turf = get_turf(user)
-	for(var/mob/ghost in GLOB.dead_mob_list)
-		if(!ghost.client || isnewplayer(ghost))
-			continue
-		if(ghost.stat == DEAD && ghost.client && user.client && (ghost.client.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(ghost in viewers(user_turf, null)))
-			ghost.show_message(SPAN_EMOTE("[FOLLOW_LINK(ghost, user)] [dchatmsg]"))
+	if(show_ghosts)
+		var/user_turf = get_turf(user)
+		for(var/mob/ghost in GLOB.dead_mob_list)
+			if(!ghost.client || isnewplayer(ghost))
+				continue
+			if(ghost.stat == DEAD && ghost.client && user.client && (ghost.client.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(ghost in viewers(user_turf, emote_distance)))
+				ghost.show_message(SPAN_EMOTE("[FOLLOW_LINK(ghost, user)] [dchatmsg]"))
 
-	if(emote_type == EMOTE_AUDIBLE)
-		user.audible_message(msg, deaf_message = SPAN_EMOTE("You see how <b>[user]</b> [msg]"), audible_message_flags = EMOTE_MESSAGE)
+	var/emote_type_to_use = override_emote_type || emote_type
+	if(emote_type_to_use == EMOTE_AUDIBLE)
+		user.audible_message(msg, deaf_message = SPAN_EMOTE("You see how <b>[user]</b> [msg]"), audible_message_flags = EMOTE_MESSAGE, hearing_distance = emote_distance, show_ghosts = show_ghosts)
 	else
-		user.visible_message(msg, blind_message = SPAN_EMOTE("You hear how <b>[user]</b> [msg]"), visible_message_flags = EMOTE_MESSAGE)
+		user.visible_message(msg, blind_message = SPAN_EMOTE("You hear how <b>[user]</b> [msg]"), visible_message_flags = EMOTE_MESSAGE, vision_distance = emote_distance, show_ghosts = show_ghosts)
 
 /**
  * For handling emote cooldown, return true to allow the emote to happen.
@@ -143,7 +150,7 @@
 	#endif
 	if(!intentional)
 		return TRUE
-	if((user.emotes_used && user.emotes_used[src] + cooldown > world.time) || (user.nextsoundemote > world.time))
+	if((user.emotes_used && user.emotes_used[src] + cooldown > world.time) || (user.next_emote_time > world.time))
 		var/datum/emote/default_emote = /datum/emote
 		if(cooldown > initial(default_emote.cooldown)) // only worry about longer-than-normal emotes
 			to_chat(user, SPAN_DANGER("You must wait another [DisplayTimeText(user.emotes_used[src] - world.time + cooldown)] before using that emote."))
@@ -151,7 +158,7 @@
 	if(!user.emotes_used)
 		user.emotes_used = list()
 	user.emotes_used[src] = world.time
-	user.nextsoundemote = world.time + cooldown
+	user.next_emote_time = world.time + cooldown
 	return TRUE
 
 /**

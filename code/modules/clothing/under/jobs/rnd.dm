@@ -1,6 +1,7 @@
 /obj/item/clothing/under/rank/rnd
 	icon = 'icons/obj/clothing/under/rnd.dmi'
 	worn_icon = 'icons/mob/clothing/under/rnd.dmi'
+	fitted_bodytypes = BODYTYPE_DIGITIGRADE|BODYTYPE_TESHARI
 
 /obj/item/clothing/under/rank/rnd/research_director
 	desc = "It's a suit worn by those with the know-how to achieve the position of \"Research Director\". Its fabric provides minor protection from biological contaminants."
@@ -10,11 +11,6 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 10, RAD = 0, FIRE = 0, ACID = 35)
 	can_adjust = FALSE
 
-/obj/item/clothing/under/rank/rnd/research_director/doctor_hilbert
-	desc = "A Research Director jumpsuit belonging to the late and great Doctor Hilbert. The suit sensors have long since fizzled out from the stress of the Hilbert's Hotel."
-	has_sensor = NO_SENSORS
-	random_sensor = FALSE
-
 /obj/item/clothing/under/rank/rnd/research_director/skirt
 	name = "research director's vest suitskirt"
 	desc = "It's a suitskirt worn by those with the know-how to achieve the position of \"Research Director\". Its fabric provides minor protection from biological contaminants."
@@ -23,7 +19,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	fitted = FEMALE_UNIFORM_TOP
-	fitted_bodytypes = NONE
+	fitted_bodytypes = BODYTYPE_TESHARI
 
 /obj/item/clothing/under/rank/rnd/research_director/alt
 	desc = "Maybe you'll engineer your own half-man, half-pig creature some day. Its fabric provides minor protection from biological contaminants."
@@ -32,6 +28,7 @@
 	inhand_icon_state = "rdwhimsy"
 	can_adjust = TRUE
 	alt_covers_chest = TRUE
+	fitted_bodytypes = BODYTYPE_DIGITIGRADE
 
 /obj/item/clothing/under/rank/rnd/research_director/alt/skirt
 	name = "research director's tan suitskirt"
@@ -50,6 +47,7 @@
 	inhand_icon_state = "p_suit"
 	can_adjust = TRUE
 	alt_covers_chest = TRUE
+	fitted_bodytypes = BODYTYPE_DIGITIGRADE
 
 /obj/item/clothing/under/rank/rnd/research_director/turtleneck/skirt
 	name = "research director's turtleneck skirt"
@@ -76,14 +74,13 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	fitted = FEMALE_UNIFORM_TOP
-	fitted_bodytypes = NONE
+	fitted_bodytypes = BODYTYPE_TESHARI
 
 /obj/item/clothing/under/rank/rnd/roboticist
 	desc = "It's a slimming black with reinforced seams; great for industrial work."
 	name = "roboticist's jumpsuit"
 	icon_state = "robotics"
 	inhand_icon_state = "robotics"
-	resistance_flags = NONE
 
 /obj/item/clothing/under/rank/rnd/roboticist/skirt
 	name = "roboticist's jumpskirt"
@@ -93,7 +90,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	fitted = FEMALE_UNIFORM_TOP
-	fitted_bodytypes = NONE
+	fitted_bodytypes = BODYTYPE_TESHARI
 
 /obj/item/clothing/under/rank/rnd/geneticist
 	desc = "It's made of a special fiber that gives special protection against biohazards. It has a genetics rank stripe on it."
@@ -111,4 +108,4 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	fitted = FEMALE_UNIFORM_TOP
-	fitted_bodytypes = NONE
+	fitted_bodytypes = BODYTYPE_TESHARI

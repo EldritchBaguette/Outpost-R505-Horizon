@@ -20,7 +20,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/stop_sounds,
 	/client/proc/mark_datum_mapview,
 	/client/proc/debugstatpanel,
-	/client/proc/fix_air /*resets air in designated radius to its default atmos composition*/
+	/client/proc/fix_air, /*resets air in designated radius to its default atmos composition*/
+	/client/proc/jukebox_reload
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -77,6 +78,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/colorasay,
 	/client/proc/resetasaycolor,
 	/client/proc/toggleadminhelpsound,
+	/client/proc/togglehearstoryteller,
 	/client/proc/respawn_character,
 	/datum/admins/proc/open_borgopanel
 	)
@@ -94,7 +96,6 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/summon_ert,
 	/client/proc/cmd_admin_add_freeform_ai_law,
 	/client/proc/object_say,
-	/client/proc/toggle_random_events,
 	/client/proc/set_ooc,
 	/client/proc/reset_ooc,
 	/client/proc/forceEvent,
@@ -121,11 +122,9 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/datum/admins/proc/end_round,
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
-	/client/proc/everyone_random,
 	/datum/admins/proc/toggleAI,
 	/client/proc/cmd_admin_delete, /*delete an instance/object/mob/etc*/
 	/client/proc/cmd_debug_del_all,
-	/client/proc/toggle_random_events,
 	/client/proc/forcerandomrotate,
 	/client/proc/adminchangemap,
 	/client/proc/panicbunker,
@@ -167,10 +166,8 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/map_template_load,
 	/client/proc/map_template_upload,
 	/client/proc/jump_to_ruin,
-	/client/proc/clear_dynamic_transit,
 	/client/proc/toggle_medal_disable,
 	/client/proc/view_runtimes,
-	/client/proc/pump_random_event,
 	/client/proc/cmd_display_init_log,
 	/client/proc/cmd_display_overlay_log,
 	/client/proc/reload_configuration,
@@ -181,8 +178,6 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/print_cards,
 	#ifdef TESTING
 	/client/proc/check_missing_sprites,
-	/client/proc/export_dynamic_json,
-	/client/proc/run_dynamic_simulations,
 	#endif
 	#ifdef SENDMAPS_PROFILE
 	/client/proc/display_sendmaps,
@@ -237,12 +232,10 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/cmd_admin_create_centcom_report,
 	/client/proc/cmd_change_command_name,
 	/client/proc/object_say,
-	/client/proc/toggle_random_events,
 	/datum/admins/proc/startnow,
 	/datum/admins/proc/restart,
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
-	/client/proc/everyone_random,
 	/datum/admins/proc/toggleAI,
 	/client/proc/restart_controller,
 	/client/proc/cmd_admin_list_open_jobs,
@@ -267,6 +260,12 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/spawn_pollution
 	))
 GLOBAL_PROTECT(admin_verbs_hideable)
+
+GLOBAL_LIST_INIT(admin_verbs_deadmins, list(
+	/client/proc/readmin,
+	/client/proc/deadmin_asay
+	))
+GLOBAL_PROTECT(admin_verbs_deadmins)
 
 /client/proc/add_admin_verbs()
 	if(holder)
@@ -816,7 +815,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(!amount_choice)
 		return
 	var/turf/epicenter = get_turf(mob)
-	epicenter.PolluteTurf(choice, amount_choice)
+	epicenter.pollute_turf(choice, amount_choice)
 	message_admins("[ADMIN_LOOKUPFLW(usr)] spawned pollution at [epicenter.loc] ([choice] - [amount_choice]).")
 	log_admin("[key_name(usr)] spawned pollution at [epicenter.loc] ([choice] - [amount_choice]).")
 

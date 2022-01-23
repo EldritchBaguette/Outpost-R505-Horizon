@@ -29,11 +29,6 @@
 #define COMSIG_GLOB_JOB_AFTER_LATEJOIN_SPAWN "!job_after_latejoin_spawn"
 /// crewmember joined the game (mob/living, rank)
 #define COMSIG_GLOB_CREWMEMBER_JOINED "!crewmember_joined"
-/// Random event is trying to roll. (/datum/round_event_control/random_event)
-/// Called by (/datum/round_event_control/preRunEvent).
-#define COMSIG_GLOB_PRE_RANDOM_EVENT "!pre_random_event"
-	/// Do not allow this random event to continue.
-	#define CANCEL_PRE_RANDOM_EVENT (1<<0)
 /// a person somewhere has thrown something : (mob/living/carbon/carbon_thrower, target)
 #define COMSIG_GLOB_CARBON_THROW_THING	"!throw_thing"
 /// a trapdoor remote has sent out a signal to link with a trapdoor
@@ -1077,11 +1072,6 @@
 #define COMSIG_COMPONENT_NTNET_PORT_DESTROYED "ntnet_port_destroyed"
 ///called on an object by its NTNET connection component on a port distruction (port, list/data))
 #define COMSIG_COMPONENT_NTNET_PORT_UPDATED "ntnet_port_updated"
-
-///Restaurant
-
-///(customer, container) venue signal sent when a venue sells an item. source is the thing sold, which can be a datum, so we send container for location checks
-#define COMSIG_ITEM_SOLD_TO_CUSTOMER "item_sold_to_customer"
 
 //Nanites
 
