@@ -93,10 +93,9 @@
 	. = new_overlays
 	if(enable_door_overlay)
 		if(opened && has_opened_overlay)
-			. += "[icon_door_override ? icon_door : icon_state]_open"
-			var/mutable_appearance/door_blocker = mutable_appearance(icon, "[icon_door || icon_state]_open", plane = EMISSIVE_PLANE)
-			door_blocker.color = GLOB.em_block_color
-			. += door_blocker // If we don't do this the door doesn't block emissives and it looks weird.
+			var/mutable_appearance/door_overlay = mutable_appearance(icon, "[icon_door_override ? icon_door : icon_state]_open", alpha = src.alpha)
+			. += door_overlay
+			door_overlay.overlays += emissive_blocker(door_overlay.icon, door_overlay.icon_state, alpha = door_overlay.alpha) // If we don't do this the door doesn't block emissives and it looks weird.
 		else if(has_closed_overlay)
 			. += "[icon_door || icon_state]_door"
 
@@ -570,7 +569,7 @@
 
 /obj/structure/closet/get_remote_view_fullscreens(mob/user)
 	if(user.stat == DEAD || !(user.sight & (SEEOBJS|SEEMOBS)))
-		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 1)
+		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, HUD_IMPAIRMENT_HALF_BLIND)
 
 /obj/structure/closet/emp_act(severity)
 	. = ..()

@@ -14,7 +14,8 @@ SUBSYSTEM_DEF(ticker)
 	var/start_immediately = FALSE
 	var/setup_done = FALSE //All game setup done including mode post setup and
 
-	var/datum/game_mode/mode = null
+	/// Whether or not the gamemode has "began"
+	var/mode
 
 	var/login_music //music played in pregame lobby
 	var/round_end_sound //music/jingle played when the world reboots
@@ -52,6 +53,9 @@ SUBSYSTEM_DEF(ticker)
 	var/list/round_end_events
 	var/mode_result = "undefined"
 	var/end_state = "undefined"
+
+	/// Whether we have startred the vote for storytellers
+	var/storyteller_vote = FALSE
 
 	/// People who have been commended and will receive a heart
 	var/list/hearts
@@ -163,6 +167,10 @@ SUBSYSTEM_DEF(ticker)
 				if(player.ready == PLAYER_READY_TO_PLAY)
 					++totalPlayersReady
 
+			if(!storyteller_vote)
+				storyteller_vote = TRUE
+				SSvote.initiate_vote(STORYTELLER_VOTE, "the gamemode")
+
 			if(start_immediately)
 				timeLeft = 0
 
@@ -190,10 +198,9 @@ SUBSYSTEM_DEF(ticker)
 				Master.SetRunLevel(RUNLEVEL_LOBBY)
 
 		if(GAME_STATE_PLAYING)
-			mode.process(wait * 0.1)
 			check_queue()
 
-			if(!roundend_check_paused && mode.check_finished(force_ending) || force_ending)
+			if(!roundend_check_paused && SSgamemode.check_finished(force_ending) || force_ending)
 				current_state = GAME_STATE_FINISHED
 				toggle_ooc(TRUE) // Turn it on
 				toggle_dooc(TRUE)
@@ -206,12 +213,13 @@ SUBSYSTEM_DEF(ticker)
 	to_chat(world, SPAN_BOLDANNOUNCE("Starting game..."))
 	var/init_start = world.timeofday
 
-	mode = new /datum/game_mode/dynamic
+	mode = TRUE
+	SSgamemode.init_storyteller()
 
 	CHECK_TICK
 	//Configure mode and assign player to special mode stuff
 	var/can_continue = 0
-	can_continue = src.mode.pre_setup() //Choose antagonists
+	can_continue = SSgamemode.pre_setup() //Choose antagonists
 	CHECK_TICK
 	can_continue = can_continue && SSjob.DivideOccupations() //Distribute jobs
 	CHECK_TICK
@@ -219,7 +227,6 @@ SUBSYSTEM_DEF(ticker)
 	if(!GLOB.Debug2)
 		if(!can_continue)
 			log_game("Game failed pre_setup")
-			QDEL_NULL(mode)
 			to_chat(world, "<B>Error setting up game.</B> Reverting to pre-game lobby.")
 			SSjob.ResetOccupations()
 			return FALSE
@@ -263,10 +270,10 @@ SUBSYSTEM_DEF(ticker)
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
 
-	if(SSevents.holidays)
+	if(SSgamemode.holidays)
 		to_chat(world, SPAN_NOTICE("and..."))
-		for(var/holidayname in SSevents.holidays)
-			var/datum/holiday/holiday = SSevents.holidays[holidayname]
+		for(var/holidayname in SSgamemode.holidays)
+			var/datum/holiday/holiday = SSgamemode.holidays[holidayname]
 			to_chat(world, "<h4>[holiday.greet()]</h4>")
 
 	PostSetup()
@@ -275,7 +282,7 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/PostSetup()
 	set waitfor = FALSE
-	mode.post_setup()
+	SSgamemode.post_setup()
 	GLOB.start_state = new /datum/station_state()
 	GLOB.start_state.count()
 
@@ -291,7 +298,7 @@ SUBSYSTEM_DEF(ticker)
 		else
 			stack_trace("[S] [S.type] found in start landmarks list, which isn't a start landmark!")
 
-	// handle persistence stuff that requires ckeys, in this case hardcore mode and temporal scarring
+	// handle persistence stuff that requires ckeys, in this case temporal scarring
 	for(var/i in GLOB.player_list)
 		if(!ishuman(i))
 			continue
@@ -299,13 +306,6 @@ SUBSYSTEM_DEF(ticker)
 
 		iter_human.increment_scar_slot()
 		iter_human.load_persistent_scars()
-
-		if(!iter_human.hardcore_survival_score)
-			continue
-		if(iter_human.mind?.special_role)
-			to_chat(iter_human, SPAN_NOTICE("You will gain [round(iter_human.hardcore_survival_score) * 2] hardcore random points if you greentext this round!"))
-		else
-			to_chat(iter_human, SPAN_NOTICE("You will gain [round(iter_human.hardcore_survival_score)] hardcore random points if you survive this round!"))
 
 //These callbacks will fire after roundstart key transfer
 /datum/controller/subsystem/ticker/proc/OnRoundstart(datum/callback/cb)
@@ -395,8 +395,6 @@ SUBSYSTEM_DEF(ticker)
 			continue
 		var/datum/job/player_assigned_role = new_player_living.mind.assigned_role
 		if(ishuman(new_player_living) && CONFIG_GET(flag/roundstart_traits))
-			if(new_player_mob.client?.prefs?.should_be_random_hardcore(player_assigned_role, new_player_living.mind))
-				new_player_mob.client.prefs.hardcore_random_setup(new_player_living)
 			SSquirks.AssignQuirks(new_player_living, new_player_mob.client)
 		if(player_assigned_role.job_flags & JOB_EQUIP_RANK)
 			SSjob.EquipRank(new_player_living, player_assigned_role, new_player_mob.client)

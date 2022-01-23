@@ -232,4 +232,7 @@
 	/// Our dominant hand, affects delay for do_after
 	/// If ambidextrous no speedup or slowdown occurs
 	var/dominant_hand = DOMINANT_HAND_AMBI
-
+	/// Whether the typing indicator is on. Not on /living level because of verbs
+	var/typing_indicator = FALSE
+	/// Time at which the next emote can be played
+	var/next_emote_time = 1

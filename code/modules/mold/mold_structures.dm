@@ -17,15 +17,10 @@
 	playsound(src.loc, 'sound/effects/splat.ogg', 30, TRUE)
 	return ..()
 
-/datum/looping_sound/core_heartbeat
-	mid_length = 3 SECONDS
-	mid_sounds = list('hrzn/sound/effects/heart_beat_loop3.ogg'=1)
-	volume = 20
-
 /obj/structure/mold/core
 	density = TRUE
 	layer = TABLE_LAYER
-	max_integrity = 550
+	max_integrity = 800
 	/// Type of our controller to be instantiated.
 	var/controller_type = /datum/mold_controller
 	/// Whether the core can attack nearby hostiles as its processing.
@@ -42,8 +37,6 @@
 	var/retaliate_effect_cooldown = 40 SECONDS
 	/// Next retaliate effect.
 	var/next_retaliate_effect = 0
-	/// Heartbeat soundloop of the core.
-	var/datum/looping_sound/core_heartbeat/soundloop
 
 /obj/structure/mold/core/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	if(controller)
@@ -57,13 +50,10 @@
 /obj/structure/mold/core/Initialize()
 	. = ..()
 	controller = new controller_type(src)
-	soundloop = new(list(src),  TRUE)
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/mold/core/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	soundloop.stop()
-	QDEL_NULL(soundloop)
 	if(controller)
 		controller.core_death()
 	return ..()
@@ -74,21 +64,34 @@
 	var/has_attacked = FALSE
 	for(var/turf/range_turf as anything in RANGE_TURFS(1, loc))
 		for(var/thing in range_turf)
-			if(istype(thing, /mob/living))
-				var/mob/living/living_thing = thing
-				if(!(faction_type in living_thing.faction))
-					living_thing.apply_damage(attack_damage, attack_damage_type)
-					has_attacked = TRUE
-			else if(istype(thing, /obj/vehicle/sealed/mecha))
-				var/obj/vehicle/sealed/mecha/mecha_thing = thing
-				mecha_thing.take_damage(attack_damage, attack_damage_type, MELEE, 0, get_dir(mecha_thing, src))
-				has_attacked = TRUE
+			has_attacked = core_attack_atom(thing)
 			if(has_attacked)
-				playsound(loc, 'sound/effects/attackblob.ogg', 100, TRUE)
-				do_attack_animation(thing, ATTACK_EFFECT_PUNCH)
 				break
 		if(has_attacked)
 			break
+
+/obj/structure/mold/core/proc/core_attack_atom(atom/thing)
+	. = FALSE
+	var/has_attacked
+	if(istype(thing, /mob/living))
+		var/mob/living/living_thing = thing
+		if(!(faction_type in living_thing.faction))
+			switch(attack_damage_type)
+				if(BRUTE)
+					living_thing.take_bodypart_damage(brute = attack_damage, check_armor = TRUE)
+				if(BURN)
+					living_thing.take_bodypart_damage(burn = attack_damage, check_armor = TRUE)
+			has_attacked = TRUE
+	else if(istype(thing, /obj/vehicle/sealed/mecha))
+		var/obj/vehicle/sealed/mecha/mecha_thing = thing
+		mecha_thing.take_damage(attack_damage, attack_damage_type, MELEE, 0, get_dir(mecha_thing, src))
+		has_attacked = TRUE
+	if(has_attacked)
+		thing.visible_message(SPAN_WARNING("\The [src] strikes [thing]!"), SPAN_USERDANGER("\The [src] strikes you!"))
+		playsound(loc, 'sound/effects/attackblob.ogg', 100, TRUE)
+		do_attack_animation(thing, ATTACK_EFFECT_PUNCH)
+		return TRUE
+
 
 /obj/structure/mold/core/proc/retaliate_effect()
 	return

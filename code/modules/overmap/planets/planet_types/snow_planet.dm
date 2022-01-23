@@ -27,13 +27,7 @@
 
 /area/planet/snow
 	name = "Snow Planet Surface"
-	ambientsounds = list(
-		'sound/effects/wind/tundra0.ogg',
-		'sound/effects/wind/tundra1.ogg',
-		'sound/effects/wind/tundra2.ogg',
-		'sound/effects/wind/spooky0.ogg',
-		'sound/effects/wind/spooky1.ogg',
-	)
+	main_ambience = AMBIENCE_TUNDRA
 
 /datum/map_generator/planet_gen/snow
 	possible_biomes = list(
@@ -133,7 +127,7 @@
 	clawfootstep = FOOTSTEP_SAND
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 
-/turf/open/floor/planetary/snow/Initialize()
+/turf/open/floor/planetary/snow/Initialize(mapload, inherited_virtual_z)
 	. = ..()
 	if(prob(15))
 		icon_state = "[base_icon_state][rand(1,13)]"
@@ -153,7 +147,7 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 
-/turf/open/floor/planetary/ice/Initialize()
+/turf/open/floor/planetary/ice/Initialize(mapload, inherited_virtual_z)
 	. = ..()
 	MakeSlippery(TURF_WET_PERMAFROST, INFINITY, 0, INFINITY, TRUE)
 

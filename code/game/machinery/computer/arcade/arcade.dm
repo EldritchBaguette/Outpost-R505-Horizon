@@ -72,6 +72,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	icon_keyboard = null
 	icon_screen = "invaders"
 	light_color = LIGHT_COLOR_GREEN
+	powered_ambience = null
 	var/list/prize_override
 
 /obj/machinery/computer/arcade/proc/Reset()
@@ -223,17 +224,17 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	var/name_part1
 	var/name_part2
 
-	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
+	if(SSgamemode.holidays && SSgamemode.holidays[HALLOWEEN])
 		name_action = pick_list(ARCADE_FILE, "rpg_action_halloween")
 		name_part1 = pick_list(ARCADE_FILE, "rpg_adjective_halloween")
 		name_part2 = pick_list(ARCADE_FILE, "rpg_enemy_halloween")
 		weapons = strings(ARCADE_FILE, "rpg_weapon_halloween")
-	else if(SSevents.holidays && SSevents.holidays[CHRISTMAS])
+	else if(SSgamemode.holidays && SSgamemode.holidays[CHRISTMAS])
 		name_action = pick_list(ARCADE_FILE, "rpg_action_xmas")
 		name_part1 = pick_list(ARCADE_FILE, "rpg_adjective_xmas")
 		name_part2 = pick_list(ARCADE_FILE, "rpg_enemy_xmas")
 		weapons = strings(ARCADE_FILE, "rpg_weapon_xmas")
-	else if(SSevents.holidays && SSevents.holidays[VALENTINES])
+	else if(SSgamemode.holidays && SSgamemode.holidays[VALENTINES])
 		name_action = pick_list(ARCADE_FILE, "rpg_action_valentines")
 		name_part1 = pick_list(ARCADE_FILE, "rpg_adjective_valentines")
 		name_part2 = pick_list(ARCADE_FILE, "rpg_enemy_valentines")

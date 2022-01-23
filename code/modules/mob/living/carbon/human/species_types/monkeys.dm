@@ -40,6 +40,17 @@
 	gib_anim = "gibbed-m"
 
 	payday_modifier = 1.5
+	scream_sounds = list(
+		NEUTER = list(
+			'sound/creatures/monkey/monkey_screech_1.ogg',
+			'sound/creatures/monkey/monkey_screech_2.ogg',
+			'sound/creatures/monkey/monkey_screech_3.ogg',
+			'sound/creatures/monkey/monkey_screech_4.ogg',
+			'sound/creatures/monkey/monkey_screech_5.ogg',
+			'sound/creatures/monkey/monkey_screech_6.ogg',
+			'sound/creatures/monkey/monkey_screech_7.ogg',
+		)
+	)
 
 
 /datum/species/monkey/random_name(gender,unique,lastname)
@@ -103,6 +114,6 @@
 		return
 
 /datum/species/monkey/check_roundstart_eligible()
-	if(SSevents.holidays && SSevents.holidays[MONKEYDAY])
+	if(SSgamemode.holidays && SSgamemode.holidays[MONKEYDAY])
 		return TRUE
 	return ..()

@@ -103,30 +103,31 @@ There are several things that need to be remembered:
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_ICLOTHING) + 1]
 		inv.update_appearance()
 
-	if(istype(w_uniform, /obj/item/clothing/under))
-		var/obj/item/clothing/under/U = w_uniform
-		U.screen_loc = ui_iclothing
+	if(w_uniform)
+		w_uniform.screen_loc = ui_iclothing
 		if(client && hud_used?.hud_shown)
 			if(hud_used.inventory_shown)
 				client.screen += w_uniform
 		update_observer_view(w_uniform,1)
-
+	
 		if(wear_suit && (wear_suit.flags_inv & HIDEJUMPSUIT))
 			return
-
-		var/target_overlay = U.worn_icon_state
-		if(U.adjusted == ALT_STYLE)
-			target_overlay = "[target_overlay]_d"
-
+	
+		var/target_overlay = w_uniform.worn_icon_state || w_uniform.icon_state
+	
 		var/mutable_appearance/uniform_overlay
-
+	
 		var/female_alpha_mask = NO_FEMALE_UNIFORM
-
-		if(body_type == FEMALE)
-			female_alpha_mask = U.fitted
-
-		uniform_overlay = U.build_worn_icon(default_layer = UNIFORM_LAYER, override_state = target_overlay, isinhands = FALSE, femaleuniform = female_alpha_mask, wearer = src, slot = ITEM_SLOT_ICLOTHING)
-
+	
+		if(istype(w_uniform, /obj/item/clothing/under))
+			var/obj/item/clothing/under/under = w_uniform
+			if(body_type == FEMALE)
+				female_alpha_mask = under.fitted
+			if(under.adjusted == ALT_STYLE)
+				target_overlay = "[target_overlay]_d"
+	
+		uniform_overlay = w_uniform.build_worn_icon(default_layer = UNIFORM_LAYER, override_state = target_overlay, isinhands = FALSE, femaleuniform = female_alpha_mask, wearer = src, slot = ITEM_SLOT_ICLOTHING)
+	
 		overlays_standing[UNIFORM_LAYER] = uniform_overlay
 
 	apply_overlay(UNIFORM_LAYER)
@@ -319,16 +320,17 @@ There are several things that need to be remembered:
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_OCLOTHING) + 1]
 		inv.update_appearance()
 
-	if(istype(wear_suit, /obj/item/clothing/suit))
+	if(wear_suit)
 		wear_suit.screen_loc = ui_oclothing
 		if(client && hud_used?.hud_shown)
 			if(hud_used.inventory_shown)
 				client.screen += wear_suit
 		update_observer_view(wear_suit,1)
-
+	
 		overlays_standing[SUIT_LAYER] = wear_suit.build_worn_icon(default_layer = SUIT_LAYER, default_icon_file = 'icons/mob/clothing/suit.dmi', wearer = src, slot = ITEM_SLOT_OCLOTHING)
 		var/mutable_appearance/suit_overlay = overlays_standing[SUIT_LAYER]
 		overlays_standing[SUIT_LAYER] = suit_overlay
+
 	update_hair()
 	update_mutant_bodyparts()
 
@@ -368,9 +370,7 @@ There are several things that need to be remembered:
 	if(legcuffed)
 		var/mutable_appearance/legcuff_overlay = mutable_appearance('icons/mob/mob.dmi', "legcuff1", -LEGCUFF_LAYER)
 		if(legcuffed.blocks_emissive)
-			var/mutable_appearance/legcuff_blocker = mutable_appearance('icons/mob/mob.dmi', "legcuff1", plane = EMISSIVE_PLANE, appearance_flags = KEEP_APART)
-			legcuff_blocker.color = GLOB.em_block_color
-			legcuff_overlay.overlays += legcuff_blocker
+			legcuff_overlay.overlays += emissive_blocker(legcuff_overlay.icon, legcuff_overlay.icon_state, alpha = legcuff_overlay.alpha)
 
 		overlays_standing[LEGCUFF_LAYER] = legcuff_overlay
 		apply_overlay(LEGCUFF_LAYER)
@@ -462,13 +462,15 @@ generate/load female uniform sprites matching all previously decided variables
 	var/static/list/slot_translation = SLOT_TRANSLATION_LIST
 	var/static/list/bodytype_translation = BODYTYPE_TRANSLATION_LIST
 
+	var/real_bodytype = wearer ? wearer.dna.species.bodytype : BODYTYPE_HUMANOID
 	var/bodytype = wearer ? wearer.dna.species.get_bodytype(slot, src) : BODYTYPE_HUMANOID
 	var/perc_bodytype = bodytype
 	var/wear_template = FALSE
-	if(worn_template_bodytypes & bodytype)
-		wear_template = TRUE
-	else if(!(fitted_bodytypes & bodytype))
-		perc_bodytype = BODYTYPE_HUMANOID
+	if(!(fitted_bodytypes & bodytype))
+		if(worn_template_bodytypes & bodytype)
+			wear_template = TRUE
+		else
+			perc_bodytype = BODYTYPE_HUMANOID
 
 	//Find a valid icon_state from variables+arguments
 	var/t_state
@@ -478,20 +480,29 @@ generate/load female uniform sprites matching all previously decided variables
 		t_state = !isinhands ? (worn_icon_state ? worn_icon_state : icon_state) : (inhand_icon_state ? inhand_icon_state : icon_state)
 
 	var/translated_slot = slot_translation["[slot]"]
+	var/worn_prefix
 	if(!isinhands)
+		worn_prefix = "[translated_slot]_[bodytype_translation["[perc_bodytype]"]]"
 		if(wear_template)
-			t_state = "[translated_slot]_[bodytype_translation["[perc_bodytype]"]]"
+			t_state = worn_prefix
 		else
-			t_state = "[translated_slot]_[bodytype_translation["[perc_bodytype]"]]_[t_state]"
+			t_state = "[worn_prefix]_[t_state]"
 
 	var/chosen_worn_icon
 	if(wear_template)
-		chosen_worn_icon = (perc_bodytype & BODYTYPE_TAUR_ALL) ? large_worn_template_icon : worn_template_icon
+		if(perc_bodytype & BODYTYPE_TAUR_ALL)
+			if(!large_worn_template_icon)
+				large_worn_template_icon = SSgreyscale.GetColoredIconByType(greyscale_config_large_worn_template, worn_template_greyscale_color)
+			chosen_worn_icon = large_worn_template_icon
+		else
+			if(!worn_template_icon)
+				worn_template_icon = SSgreyscale.GetColoredIconByType(greyscale_config_worn_template, worn_template_greyscale_color)
+			chosen_worn_icon = worn_template_icon
 	else
 		chosen_worn_icon = (perc_bodytype & BODYTYPE_TAUR_ALL) ? large_worn_icon : worn_icon
 
 	//Find a valid icon file from variables+arguments
-	var/file2use = !isinhands ? (worn_icon ? chosen_worn_icon : default_icon_file) : default_icon_file
+	var/file2use = !isinhands ? (chosen_worn_icon ? chosen_worn_icon : default_icon_file) : default_icon_file
 
 	//Find a valid layer from variables+arguments
 	var/layer2use = alternate_worn_layer ? alternate_worn_layer : default_layer
@@ -511,7 +522,7 @@ generate/load female uniform sprites matching all previously decided variables
 
 	//Get the overlays for this item when it's being worn
 	//eg: ammo counters, primed grenade flashes, etc.
-	var/list/worn_overlays = worn_overlays(standing, isinhands, file2use, perc_bodytype)
+	var/list/worn_overlays = worn_overlays(standing, isinhands, file2use, perc_bodytype, slot, t_state, worn_prefix)
 	if(worn_overlays?.len)
 		standing.overlays.Add(worn_overlays)
 
@@ -527,16 +538,18 @@ generate/load female uniform sprites matching all previously decided variables
 	standing.pixel_y += offsets[2]
 
 	standing.alpha = alpha
-	if(wear_template && !color)
-		standing.color = worn_template_color
-	else
-		standing.color = color
+	standing.color = color
 
 	///Species offsets, only applied when the bodytype is not fitted. (using human variants instead)
-	if(bodytype != perc_bodytype && wearer && wearer.dna.species.offset_features)
-		var/list/offset_list = wearer.dna.species.offset_features[translated_slot]
-		standing.pixel_x += offset_list[1]
-		standing.pixel_y += offset_list[2]
+	if(!wear_template && wearer && wearer.dna.species.offset_features)
+		if(isinhands && wearer.dna.species.offset_features[OFFSET_INHANDS])
+			var/list/offset_list = wearer.dna.species.offset_features[OFFSET_INHANDS]
+			standing.pixel_x += offset_list[1]
+			standing.pixel_y += offset_list[2]
+		else if(real_bodytype != perc_bodytype && wearer.dna.species.offset_features[translated_slot])
+			var/list/offset_list = wearer.dna.species.offset_features[translated_slot]
+			standing.pixel_x += offset_list[1]
+			standing.pixel_y += offset_list[2]
 
 	//Large worn offsets
 	if(perc_bodytype & BODYTYPE_TAUR_ALL)

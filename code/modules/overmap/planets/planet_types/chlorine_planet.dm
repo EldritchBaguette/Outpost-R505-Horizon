@@ -40,14 +40,7 @@
 
 /area/planet/chlorine
 	name = "Chlorine Planet Surface"
-	ambientsounds = list(
-		'sound/effects/wind/desert0.ogg',
-		'sound/effects/wind/desert1.ogg',
-		'sound/effects/wind/desert2.ogg',
-		'sound/effects/wind/desert3.ogg',
-		'sound/effects/wind/desert4.ogg',
-		'sound/effects/wind/desert5.ogg',
-	)
+	main_ambience = AMBIENCE_DESERT
 
 /datum/map_generator/planet_gen/chlorine
 	possible_biomes = list(
@@ -124,7 +117,7 @@
 	clawfootstep = FOOTSTEP_SAND
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 
-/turf/open/floor/planetary/chlorine_sand/Initialize()
+/turf/open/floor/planetary/chlorine_sand/Initialize(mapload, inherited_virtual_z)
 	. = ..()
 	if(prob(20))
 		icon_state = "[base_icon_state][rand(1,11)]"

@@ -16,6 +16,10 @@
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	lace_time = 12 SECONDS
 
+/obj/item/clothing/shoes/combat/debug
+	clothing_flags = NOSLIP
+	w_class = WEIGHT_CLASS_TINY
+
 /obj/item/clothing/shoes/combat/sneakboots
 	name = "sneakboots"
 	desc = "These boots have special noise cancelling soles. Perfect for stealth, if it wasn't for the color scheme."
@@ -55,6 +59,7 @@
 	permeability_coefficient = 0.9
 	can_be_tied = FALSE
 	resistance_flags = FIRE_PROOF |  ACID_PROOF
+	fitted_bodytypes = BODYTYPE_DIGITIGRADE
 
 /obj/item/clothing/shoes/sandal/magic
 	name = "magical sandals"
@@ -75,6 +80,7 @@
 	can_be_bloody = FALSE
 	custom_price = PAYCHECK_EASY * 3
 	can_be_tied = FALSE
+	worn_template_greyscale_color = "#FFF700"
 
 /obj/item/clothing/shoes/galoshes/dry
 	name = "absorbent galoshes"
@@ -152,6 +158,7 @@
 	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	can_be_tied = FALSE
+	worn_template_greyscale_color = "#1D1D1D"
 
 /obj/item/clothing/shoes/jackboots/fast
 	slowdown = -1
@@ -168,6 +175,7 @@
 	max_heat_protection_temperature = SHOES_MAX_TEMP_PROTECT
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	lace_time = 8 SECONDS
+	worn_template_greyscale_color = "#574736"
 
 /obj/item/clothing/shoes/winterboots/ice_boots
 	name = "ice hiking boots"
@@ -189,6 +197,7 @@
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	lace_time = 8 SECONDS
 	species_exception = list(/datum/species/golem/uranium)
+	worn_template_greyscale_color = "#BD903D"
 
 /obj/item/clothing/shoes/workboots/mining
 	name = "mining boots"

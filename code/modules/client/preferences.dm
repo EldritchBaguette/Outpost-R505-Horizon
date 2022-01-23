@@ -141,9 +141,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/action_buttons_screen_locs = list()
 
-	///This var stores the amount of points the owner will get for making it out alive.
-	var/hardcore_survival_score = 0
-
 	///Someone thought we were nice! We get a little heart in OOC until we join the server past the below time (we can keep it until the end of the round otherwise)
 	var/hearted
 	///If we have a hearted commendations, we honor it every time the player loads preferences until this time has been passed
@@ -208,6 +205,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/faction_more_info = FALSE
 	//Associative list, keyed by language typepath, pointing to LANGUAGE_UNDERSTOOD, or LANGUAGE_SPOKEN, for whether we understand or speak the language
 	var/list/languages = list()
+	/// Whether this client has gotten their interview accepted at any point in time.
+	var/interview_accepted = FALSE
+	/// Jukebox pref. It's not in a flag anywhere because the flags need to be split around first and this pref is important enough to implement now
+	var/hear_jukebox = TRUE
+	/// Admin pref to hear storyteller logging, because bitfield is full lol.
+	var/hear_storyteller = TRUE
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -345,8 +348,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 					dat += "<h2>Identity</h2>"
 					dat += "<table width='100%'><tr><td width='75%' valign='top'>"
-					if(is_banned_from(user.ckey, "Appearance"))
-						dat += "<b>You are banned from using custom names and appearances. You can continue to adjust your characters, but you will be randomised once you join the game.</b><br>"
 					dat += "<a href='?_src_=prefs;preference=name;task=random'>Random Name</A> "
 					dat += "<br><b>Name:</b> "
 					dat += "<a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
@@ -397,7 +398,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "<table width='100%'><tr><td width='17%' valign='top'>"
 					dat += "<b>Species:</b><BR><a href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a><BR>"
 					dat += "<b>Species Naming:</b><BR><a href='?_src_=prefs;preference=custom_species;task=input'>[(features["custom_species"]) ? features["custom_species"] : "Default"]</a><BR>"
-					dat += "<b>Sprite body size:</b><BR><a href='?_src_=prefs;preference=body_size;task=input'>[(features["body_size"] * 100)]%</a> <a href='?_src_=prefs;preference=show_body_size;task=input'>[show_body_size ? "Hide preview" : "Show preview"]</a><BR>"
+					if(!pref_species.body_size_restricted)
+						dat += "<b>Sprite body size:</b><BR><a href='?_src_=prefs;preference=body_size;task=input'>[(features["body_size"] * 100)]%</a> <a href='?_src_=prefs;preference=show_body_size;task=input'>[show_body_size ? "Hide preview" : "Show preview"]</a><BR>"
 					dat += "<h2>Flavor Text</h2>"
 					// Carbon flavor text
 					dat += "<a href='?_src_=prefs;preference=flavor_text;task=input'><b>Set Examine Text</b></a><br>"
@@ -1113,6 +1115,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Adminhelp Sounds:</b> <a href='?_src_=prefs;preference=hear_adminhelps'>[(toggles & SOUND_ADMINHELP)?"Enabled":"Disabled"]</a><br>"
 				dat += "<b>Prayer Sounds:</b> <a href = '?_src_=prefs;preference=hear_prayers'>[(toggles & SOUND_PRAYERS)?"Enabled":"Disabled"]</a><br>"
 				dat += "<b>Announce Login:</b> <a href='?_src_=prefs;preference=announce_login'>[(toggles & ANNOUNCE_LOGIN)?"Enabled":"Disabled"]</a><br>"
+				dat += "<b>Storyteller Messages:</b> <a href='?_src_=prefs;preference=hear_storyteller'>[hear_storyteller ?"Enabled":"Disabled"]</a><br>"
 				dat += "<br>"
 				dat += "<b>Combo HUD Lighting:</b> <a href = '?_src_=prefs;preference=combohud_lighting'>[(toggles & COMBOHUD_LIGHTING)?"Full-bright":"No Change"]</a><br>"
 				dat += "<br>"
@@ -2193,6 +2196,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					show_body_size = !show_body_size
 
 				if("body_size")
+					if(pref_species.body_size_restricted)
+						return
 					needs_update = TRUE
 					var/new_body_size = input(user, "Choose your desired sprite size:\n([BODY_SIZE_MIN*100]%-[BODY_SIZE_MAX*100]%), Warning: May make your character look distorted", "Character Preference", features["body_size"]*100) as num|null
 					if(new_body_size)
@@ -2566,6 +2571,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					windowflashing = !windowflashing
 
 				//here lies the badmins
+				if("hear_storyteller")
+					user.client.togglehearstoryteller()
 				if("hear_adminhelps")
 					user.client.toggleadminhelpsound()
 				if("hear_prayers")
@@ -2708,6 +2715,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						if(PIXEL_SCALING_1_2X)
 							pixel_size = PIXEL_SCALING_2X
 						if(PIXEL_SCALING_2X)
+							pixel_size = PIXEL_SCALING_2_2X
+						if(PIXEL_SCALING_2_2X)
 							pixel_size = PIXEL_SCALING_3X
 						if(PIXEL_SCALING_3X)
 							pixel_size = PIXEL_SCALING_AUTO
@@ -2867,9 +2876,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		character.update_body()
 		character.update_hair()
 		character.update_body_parts()
-
-/datum/preferences/proc/should_be_random_hardcore(datum/job/job, datum/mind/mind)
-	return FALSE
 
 /datum/preferences/proc/get_default_name(name_id)
 	switch(name_id)

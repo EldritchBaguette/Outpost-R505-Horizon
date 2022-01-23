@@ -1,10 +1,14 @@
 /datum/round_event_control/spontaneous_appendicitis
 	name = "Spontaneous Appendicitis"
 	typepath = /datum/round_event/spontaneous_appendicitis
-	weight = 20
+	weight = 10
 	max_occurrences = 4
 	earliest_start = 10 MINUTES
 	min_players = 5 // To make your chance of getting help a bit higher.
+
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_TARGETED)
+	min_med_crew = 1
 
 /datum/round_event/spontaneous_appendicitis
 	fakeable = FALSE

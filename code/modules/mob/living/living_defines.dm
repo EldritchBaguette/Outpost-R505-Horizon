@@ -178,3 +178,7 @@
 	var/ssd_indicator = FALSE
 	///Last time our client was logged in
 	var/lastclienttime = 0
+	/// Whether the mob will hold onto things in no grav
+	var/hold_onto_things = TRUE
+	/// Overlay for the typing indicator
+	var/mutable_appearance/typing_indicator_overlay

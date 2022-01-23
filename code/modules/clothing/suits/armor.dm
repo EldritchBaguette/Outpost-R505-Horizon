@@ -24,6 +24,9 @@
 	inhand_icon_state = "armoralt"
 	blood_overlay_type = "armor"
 	dog_fashion = /datum/dog_fashion/back
+	worn_template_bodytypes = BODYTYPE_TESHARI
+	greyscale_config_worn_template = /datum/greyscale_config/worn_template_vest
+	worn_template_greyscale_color = "#444444"
 
 /obj/item/clothing/suit/armor/vest/alt
 	desc = "A Type I armored vest that provides decent protection against most types of damage."
@@ -49,6 +52,12 @@
 	desc = "A lighter plate armor used to still keep out those pesky arrows, while retaining the ability to move."
 	icon_state = "cuirass"
 	inhand_icon_state = "armor"
+
+/obj/item/clothing/suit/armor/vest/debug
+	name = "fast response emergency tech vest"
+	desc = "A sleek piece of armour designed for FRET agents."
+	armor = list("melee" = 95, "bullet" = 95, "laser" = 95, "energy" = 95, "bomb" = 95, "bio" = 95, "rad" = 100, "fire" = 98, "acid" = 98)
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/clothing/suit/armor/hos
 	name = "armored greatcoat"
