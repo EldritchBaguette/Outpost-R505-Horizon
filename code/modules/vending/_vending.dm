@@ -311,7 +311,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(isnull(amount))
 			amount = 0
 
-		var/object/item/temp = typepath
+		var/obj/item/temp = typepath
 		var/datum/data/vending_product/R = new /datum/data/vending_product()
 		GLOB.vending_products[typepath] = 1
 		R.name = initial(temp.name)
@@ -338,11 +338,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 	extra_price = round(initial(extra_price) * SSeconomy.inflation_value())
 	for(var/R in recordlist)
 		var/datum/data/vending_product/record = R
-		var/object/item/potential_product = record.product_path
+		var/obj/item/potential_product = record.product_path
 		record.custom_price = round(initial(potential_product.custom_price) * SSeconomy.inflation_value())
 	for(var/R in premiumlist)
 		var/datum/data/vending_product/record = R
-		var/object/item/potential_product = record.product_path
+		var/obj/item/potential_product = record.product_path
 		var/premium_sanity = round(initial(potential_product.custom_premium_price))
 		if(premium_sanity)
 			record.custom_premium_price = round(premium_sanity * SSeconomy.inflation_value())
