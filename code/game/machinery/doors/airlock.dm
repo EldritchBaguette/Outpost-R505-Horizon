@@ -1150,7 +1150,7 @@
 		if(obj_flags & EMAGGED)
 			return
 		use_power(50)
-		playsound(src, doorClose, 30, TRUE)
+		playsound(src, doorClose, 30, FALSE) //R505 Edit - Originally TRUE
 
 	else
 		playsound(src, 'sound/machines/airlockforced.ogg', 30, TRUE)
