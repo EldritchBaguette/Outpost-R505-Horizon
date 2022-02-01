@@ -120,6 +120,14 @@ SUBSYSTEM_DEF(vote)
 				SSmapping.map_voted = TRUE
 			if(STORYTELLER_VOTE)
 				SSgamemode.storyteller_vote_result(.)
+			//R505 Edit - Begin (Autotransfer)
+			if("transfer")
+				if(. == "Initiate Crew Transfer")
+					SSshuttle.autoEnd()
+					var/obj/machinery/computer/communications/C = locate() in GLOB.machines
+					if(C)
+						C.post_status("shuttle")
+			//R505 Edit - End
 	if(restart)
 		var/active_admins = FALSE
 		for(var/client/C in GLOB.admins + GLOB.deadmins)
@@ -200,6 +208,10 @@ SUBSYSTEM_DEF(vote)
 					if(!option || mode || !usr.client)
 						break
 					choices.Add(option)
+			//R505 Edit - Begin (Autotransfer)
+			if("transfer")
+				choices.Add("Initiate Crew Transfer","Continue Playing")
+			//R505 Edit - End (Autotransfer)
 			else
 				return FALSE
 		mode = vote_type
