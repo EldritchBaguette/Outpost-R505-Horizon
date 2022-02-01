@@ -39,10 +39,11 @@
 	cultures = list(CULTURES_EXOTIC, CULTURES_LIZARD, CULTURES_HUMAN)
 	learnable_languages = list(/datum/language/common, /datum/language/draconic)
 
+/* //R505 Edit - Needs better balancing, as lizards become
 /// Lizards are cold blooded and do not stabilize body temperature naturally
 /datum/species/lizard/body_temperature_core(mob/living/carbon/human/humi, delta_time, times_fired)
 	return
-
+*/
 /datum/species/lizard/random_name(gender,unique,lastname)
 	if(unique)
 		return random_unique_lizard_name(gender)
