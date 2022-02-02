@@ -108,6 +108,8 @@
 
 /datum/config_entry/flag/allow_vote_map // allow votes to change map
 
+/datum/config_entry/flag/allow_vote_transfer //R505 Edit // allow votes to initiate transfer
+
 /datum/config_entry/number/vote_delay // minimum time between voting sessions (deciseconds, 10 minute default)
 	config_entry_value = 6000
 	integer = FALSE

@@ -39,6 +39,7 @@ const VoteOptions = (props, context) => {
   const {
     allow_vote_restart,
     allow_vote_map,
+    allow_vote_transfer,
     lower_admin,
     upper_admin,
   } = data;
@@ -79,6 +80,21 @@ const VoteOptions = (props, context) => {
                   disabled={!allow_vote_restart}
                   onClick={() => act('restart')}>
                   Restart
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                {!!lower_admin && (
+                  <Button.Checkbox
+                    mr={!allow_vote_transfer ? 1 : 1.6}
+                    color="red"
+                    checked={!!allow_vote_transfer}
+                    disabled={!upper_admin}
+                    onClick={() => act('toggle_transfer')}>
+                    {allow_vote_transfer ? 'Enabled' : 'Disabled'}
+                  </Button.Checkbox>
+                )}
+                <Button disabled={!allow_vote_transfer} onClick={() => act('transfer')}>
+                  Transfer
                 </Button>
               </Stack.Item>
             </Stack>

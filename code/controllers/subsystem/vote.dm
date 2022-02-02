@@ -217,7 +217,9 @@ SUBSYSTEM_DEF(vote)
 		mode = vote_type
 		initiator = initiator_key
 		started_time = world.time
-		var/text = "[capitalize(mode)] vote started by [initiator || "CentCom"]."
+		var/text = "[capitalize(mode)] vote started." //R505 Edit - Original: var/text = "[capitalize(mode)] vote started by [initiator || "CentCom"]."
+		log_admin("[initiator] has started a [capitalize(mode)] vote.") //R505 Edit
+		message_admins("[initiator] has started a [capitalize(mode)] vote.") //R505 Edit
 		if(mode == "custom")
 			text += "\n[question]"
 		log_vote(text)
@@ -258,6 +260,7 @@ SUBSYSTEM_DEF(vote)
 	var/list/data = list(
 		"allow_vote_map" = CONFIG_GET(flag/allow_vote_map),
 		"allow_vote_restart" = CONFIG_GET(flag/allow_vote_restart),
+		"allow_vote_transfer" = CONFIG_GET(flag/allow_vote_transfer),
 		"choices" = list(),
 		"lower_admin" = !!user.client?.holder,
 		"mode" = mode,
@@ -301,12 +304,18 @@ SUBSYSTEM_DEF(vote)
 		if("toggle_map")
 			if(usr.client.holder && upper_admin)
 				CONFIG_SET(flag/allow_vote_map, !CONFIG_GET(flag/allow_vote_map))
+		if("toggle_transfer")
+			if(usr.client.holder && upper_admin)
+				CONFIG_SET(flag/allow_vote_transfer, !CONFIG_GET(flag/allow_vote_map))
 		if("restart")
 			if(CONFIG_GET(flag/allow_vote_restart) || usr.client.holder)
 				initiate_vote("restart",usr.key)
 		if("map")
 			if(CONFIG_GET(flag/allow_vote_map) || usr.client.holder)
 				initiate_vote("map",usr.key)
+		if("transfer")
+			if(CONFIG_GET(flag/allow_vote_map) || usr.client.holder)
+				initiate_vote("transfer",usr.key)
 		if("custom")
 			if(usr.client.holder)
 				initiate_vote("custom",usr.key)

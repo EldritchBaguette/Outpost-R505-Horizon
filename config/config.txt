@@ -187,6 +187,9 @@ ID_CONSOLE_JOBSLOT_DELAY 30
 ## allow players to initiate a map-change vote
 #ALLOW_VOTE_MAP
 
+## allow players to initiate a transfer vote //R505 Edit
+#ALLOW_VOTE_TRANSFER
+
 ## min delay (deciseconds) between voting sessions (default 10 minutes)
 VOTE_DELAY 6000
 
