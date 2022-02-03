@@ -1233,6 +1233,7 @@
 	prereq_ids = list("adv_engi")
 	design_ids = list(
 		"exwelder",
+		"arcwelder", //R505 Edit
 		"gene_shears",
 		"handdrill",
 		"jawsoflife",
