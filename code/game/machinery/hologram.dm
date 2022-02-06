@@ -408,6 +408,7 @@ Possible to do for anyone motivated enough:
 		var/obj/effect/overlay/holo_pad_hologram/Hologram = new(loc)//Spawn a blank effect at the location.
 		if(AI)
 			Hologram.icon = AI.holo_icon
+			playsound(src, 'modular_R505/sound/machines/superintendant.ogg', 100, FALSE) //R505 edit - "Keep it clean!"
 		else //make it like real life
 			Hologram.icon = user.icon
 			Hologram.icon_state = user.icon_state
