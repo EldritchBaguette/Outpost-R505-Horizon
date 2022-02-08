@@ -25,7 +25,7 @@
 	brutemod = 1.1
 	siemens_coeff = 1.2 //Not more because some shocks will outright crit you, which is very unfun
 	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
-	mutantbrain = /obj/item/organ/brain/ipc_positron
+	mutantbrain = /obj/item/organ/brain/mmi_holder/posibrain //R505 Edit - Original: /obj/item/organ/brain/ipc_positron
 	mutantstomach = /obj/item/organ/stomach/robot_ipc
 	mutantears = /obj/item/organ/ears/robot_ipc
 	mutanttongue = /obj/item/organ/tongue/robot_ipc

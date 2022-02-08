@@ -202,5 +202,11 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	icon_state = "[base_icon_state]"
 	return
 
+//R505 Edit
+/obj/item/mmi/posibrain/synth
+	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves. It has an IPC serial number engraved on the top."
+	autoping = FALSE
+//R505 Edit - End
+
 /obj/item/mmi/posibrain/add_mmi_overlay()
 	return
