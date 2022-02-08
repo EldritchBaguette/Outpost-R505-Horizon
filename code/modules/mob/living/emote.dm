@@ -882,6 +882,22 @@
 	vary = TRUE
 	sound = 'sound/voice/peep.ogg'
 
+/datum/emote/living/chirp
+    key = "chirp"
+    key_third_person = "chirps"
+    message = "chirps!"
+    emote_type = EMOTE_AUDIBLE
+    vary = TRUE
+    sound = 'sound/voice/chirp.ogg'
+
+/datum/emote/living/chirp2
+    key = "chirp2"
+    key_third_person = "chirps"
+    message = "chirps!"
+    emote_type = EMOTE_AUDIBLE
+    vary = TRUE
+    sound = 'sound/voice/chirp2.ogg'
+
 /datum/emote/living/snap
 	key = "snap"
 	key_third_person = "snaps"
