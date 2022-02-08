@@ -1,3 +1,4 @@
+/* //R505 Edit - Begin
 /obj/item/organ/brain/ipc_positron
 	name = "positronic brain carcass"
 	slot = ORGAN_SLOT_BRAIN
@@ -24,7 +25,7 @@
 		if(2)
 			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25, 150)
 			to_chat(owner, SPAN_WARNING("Alert: Posibrain damaged."))
-
+*/ //R505 Edit - End
 /obj/item/organ/stomach/robot_ipc
 	name = "IPC micro cell"
 	icon = 'icons/obj/ipc_surgery.dmi'
