@@ -310,6 +310,7 @@
 	slot = "brain"
 	zone = "chest"
 	status = ORGAN_ROBOTIC
+	decay_factor = 0
 	//remove_on_qdel = FALSE
 	var/obj/item/mmi/stored_mmi
 
