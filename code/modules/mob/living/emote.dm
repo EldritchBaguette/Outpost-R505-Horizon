@@ -882,6 +882,8 @@
 	vary = TRUE
 	sound = 'sound/voice/peep.ogg'
 
+	//R505 Edit. the first chirp is from a unused sound found in the code that had no links to anything. else so it was repurposed.
+ 
 /datum/emote/living/chirp
     key = "chirp"
     key_third_person = "chirps"
@@ -897,6 +899,8 @@
     emote_type = EMOTE_AUDIBLE
     vary = TRUE
     sound = 'sound/voice/chirp2.ogg'
+
+	//R505 Edit
 
 /datum/emote/living/snap
 	key = "snap"
