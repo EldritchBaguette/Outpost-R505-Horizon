@@ -64,7 +64,8 @@
 	repeatable = TRUE
 	implements = list(
 		/obj/item/organ = 100,
-		/obj/item/borg/apparatus/organ_storage = 100)
+		/obj/item/borg/apparatus/organ_storage = 100,
+		/obj/item/mmi = 100)
 	var/implements_extract = list(TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 55, /obj/item/kitchen/fork = 35)
 	var/current_type
 	var/obj/item/organ/target_organ
@@ -102,6 +103,40 @@
 			SPAN_NOTICE("[user] begins to insert [tool] into [target]'s [parse_zone(target_zone)]."),
 			SPAN_NOTICE("[user] begins to insert something into [target]'s [parse_zone(target_zone)]."))
 
+//R505 Edit - Begin
+
+	if(istype(tool, /obj/item/mmi))//this whole thing is only used for robotic surgery in organ_mani_robotic.dm :*
+		current_type = "posibrain"
+		var/obj/item/bodypart/affected = target.get_bodypart(check_zone(target_zone))
+		var/obj/item/mmi/target_mmi = tool
+		if(!affected)
+			return -1
+		if(affected.status != ORGAN_ROBOTIC)
+			to_chat(user, "<span class='notice'>You can't put [tool] into a meat enclosure!</span>")
+			return -1
+		if(!issynthetic(target))
+			to_chat(user, "<span class='notice'>[target] does not have the proper connectors to interface with [tool].</span>")
+			return -1
+		if(target_zone != "chest")
+			to_chat(user, "<span class='notice'>You have to install [tool] in [target]'s chest!</span>")
+			return -1
+		if(target.internal_organs_slot[ORGAN_SLOT_BRAIN])
+			to_chat(user, "<span class='notice'>[target] already has a brain! You'd rather not find out what would happen with two in there.</span>")
+			return -1
+		var/obj/item/mmi/P = tool
+		if(!istype(P))
+			return -1
+		//if(!target_mmi.brainmob || !target_mmi.brainmob.client)
+			//to_chat(user, "<span class='notice'>[tool] has no life in it, this would be pointless!</span>")
+			//return -1
+		var/obj/item/organ/meatslab = tool
+		if(!meatslab.useable)
+			to_chat(user, "<span class='warning'>[tool] seems to have been chewed on, you can't use this!</span>")
+			return -1
+
+//R505 Edit - End
+
+
 	else if(implement_type in implements_extract)
 		current_type = "extract"
 		var/list/organs = target.getorganszone(target_zone)
@@ -134,6 +169,15 @@
 /datum/surgery_step/manipulate_organs/success(mob/living/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results)
 	if (target_zone == BODY_ZONE_PRECISE_EYES)
 		target_zone = check_zone(target_zone)
+	//R505 Edit - Begin
+	if(current_type == "posibrain")
+		user.temporarilyRemoveItemFromInventory(tool, TRUE)
+		target_organ = new /obj/item/organ/brain/mmi_holder/posibrain(null, tool)
+		target_organ.Insert(target)
+		display_results(user, target, "<span class='notice'>You insert [tool] into [target]'s [parse_zone(target_zone)].</span>",
+			"<span class='notice'>[user] inserts [tool] into [target]'s [parse_zone(target_zone)]!</span>",
+			"<span class='notice'>[user] inserts something into [target]'s [parse_zone(target_zone)]!</span>")
+	//R505 Edit - End
 	if(current_type == "insert")
 		if(istype(tool, /obj/item/borg/apparatus/organ_storage))
 			target_organ = tool.contents[1]
