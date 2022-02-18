@@ -161,10 +161,10 @@
 	switch(animation)
 		if("opening")
 			flick("opening", src)
-			playsound(src, 'sound/machines/blastdoor.ogg', 30, TRUE)
+			playsound(src, 'sound/machines/blastdoor.ogg', 30, FALSE)
 		if("closing")
 			flick("closing", src)
-			playsound(src, 'sound/machines/blastdoor.ogg', 30, TRUE)
+			playsound(src, 'sound/machines/blastdoor.ogg', 30, FALSE)
 
 /obj/machinery/door/poddoor/update_icon_state()
 	. = ..()

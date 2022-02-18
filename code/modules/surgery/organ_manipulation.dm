@@ -126,9 +126,9 @@
 		var/obj/item/mmi/P = tool
 		if(!istype(P))
 			return -1
-		//if(!target_mmi.brainmob || !target_mmi.brainmob.client)
-			//to_chat(user, "<span class='notice'>[tool] has no life in it, this would be pointless!</span>")
-			//return -1
+		if(!target_mmi.brainmob || !target_mmi.brainmob.client)
+			to_chat(user, "<span class='notice'>[tool] has no life in it, this would be pointless!</span>")
+			return -1
 		var/obj/item/organ/meatslab = tool
 		if(!meatslab.useable)
 			to_chat(user, "<span class='warning'>[tool] seems to have been chewed on, you can't use this!</span>")
