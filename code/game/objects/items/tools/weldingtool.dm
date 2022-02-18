@@ -3,7 +3,7 @@
 /obj/item/weldingtool
 	name = "welding tool"
 	desc = "A standard edition welder provided by Nanotrasen."
-	icon = 'icons/obj/tools.dmi'
+	icon = 'modular_R505/icons/obj/tools.dmi' //R505 Edit - Original: 'icons/obj/tools.dmi'
 	icon_state = "welder"
 	inhand_icon_state = "welder"
 	worn_icon_state = "welder"
@@ -369,6 +369,7 @@
 /obj/item/weldingtool/experimental
 	name = "experimental welding tool"
 	desc = "An experimental welder capable of self-fuel generation and less harmful to the eyes."
+	icon = 'icons/obj/tools.dmi' //R505 Edit
 	icon_state = "exwelder"
 	inhand_icon_state = "exwelder"
 	max_fuel = 40

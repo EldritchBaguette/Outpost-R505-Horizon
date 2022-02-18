@@ -1232,7 +1232,7 @@
 	description = "Highly advanced tools."
 	prereq_ids = list("adv_engi")
 	design_ids = list(
-		"exwelder",
+		//"exwelder", //R505 Edit
 		"arcwelder", //R505 Edit
 		"gene_shears",
 		"handdrill",

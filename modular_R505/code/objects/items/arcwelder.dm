@@ -2,8 +2,8 @@
 	name = "arc welder"
 	desc = "A sophisticated electroplasma arc welder, powered by a battery."
 	icon = 'modular_R505/icons/obj/tools.dmi'
-	icon_state = "elwelder"
-	inhand_icon_state = "elwelder"
+	icon_state = "arcwelder"
+	inhand_icon_state = "arcwelder"
 	light_power = 1
 	light_color = LIGHT_COLOR_HALOGEN
 	tool_behaviour = NONE

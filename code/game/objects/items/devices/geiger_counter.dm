@@ -7,7 +7,7 @@
 /obj/item/geiger_counter //DISCLAIMER: I know nothing about how real-life Geiger counters work. This will not be realistic. ~Xhuis
 	name = "\improper Geiger counter"
 	desc = "A handheld device used for detecting and measuring radiation pulses."
-	icon = 'icons/obj/device.dmi'
+	icon = 'modular_R505/icons/obj/tools.dmi' //R505 Edit - Original: 'icons/obj/device.dmi'
 	icon_state = "geiger_off"
 	inhand_icon_state = "multitool"
 	worn_icon_state = "geiger_counter"

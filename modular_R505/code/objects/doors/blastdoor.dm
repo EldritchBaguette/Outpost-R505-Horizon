@@ -1,5 +1,5 @@
-/obj/machinery/door/poddoor
-	var/door_sound = 'sound/machines/blastdoor.ogg'
+// /obj/machinery/door/poddoor
+//  	var/door_sound = 'sound/machines/blastdoor.ogg'
 /obj/machinery/door/poddoor/shutters
 	var/door_open_sound = 'modular_R505/sound/doors/shutter.ogg'
 	var/door_close_sound = 'modular_R505/sound/doors/shutter.ogg'
