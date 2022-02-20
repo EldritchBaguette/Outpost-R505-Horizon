@@ -181,7 +181,7 @@ Temporary Items
 /dmdoc
 
 # Ignore configs
-/config/*
+/config/**/*
 
 #Linux docker
 /tools/LinuxOneShot/SetupProgram/obj/*
