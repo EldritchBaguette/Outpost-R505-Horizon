@@ -143,3 +143,15 @@
 	if(BMS)
 		markings = assemble_body_markings_from_set(BMS, passed_features, src)
 	return markings
+
+//R505 Edit - Begin
+/datum/species/robotic/synthetic_human
+	name = "Synthetic Humanoid"
+	id = "synthhuman"
+	flavor_text = "A robotic lifeform. This model looks similar to humans. Surface level damage is easy to repair, but they're sensitive to electronic disruptions."
+	species_traits = list(ROBOTIC_DNA_ORGANS,MUTCOLORS,EYECOLOR,LIPS,HAIR,ROBOTIC_LIMBS,NOTRANSSTING,REVIVES_BY_HEALING)
+	mutant_bodyparts = list()
+	default_mutant_bodyparts = list("ears" = "None", "tail" = "None", "wings" = "None")
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
+	limbs_icon = 'modular_R505/icons/mob/species/synthhuman_parts_greyscale.dmi'
+//R505 Edit - End

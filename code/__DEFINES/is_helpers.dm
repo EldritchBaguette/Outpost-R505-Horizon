@@ -81,6 +81,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define issynthliz(A) (is_species(A,/datum/species/robotic/synthliz))
 #define issynthetic(A) (is_species(A,/datum/species/robotic)) //R505 Edit
 #define isvox(A) (is_species(A,/datum/species/vox))
+#define issynthhuman(A) (is_species(A, /datum/species/robotic/synthetic_human)) //R505 Edit
 #define isipc(A) (is_species(A,/datum/species/robotic/ipc))
 #define ismammal(A) (is_species(A,/datum/species/mammal))
 #define ispodweak(A) (is_species(A,/datum/species/pod/podweak))
