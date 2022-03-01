@@ -8,17 +8,31 @@
 	light_color = LIGHT_COLOR_HALOGEN
 	tool_behaviour = NONE
 	toolspeed = 0.2
-	power_use_amount = POWER_CELL_USE_LOW
-	// We don't use fuel
+	var/obj/item/stock_parts/cell/cell
+	var/preload_cell_type = /obj/item/stock_parts/cell/high //Welder starts with this type of cell
+	var/cell_use_cost = 1000
+	var/can_remove_cell = TRUE
 	change_icons = TRUE
-	var/cell_override = /obj/item/stock_parts/cell/high
 	var/powered = FALSE
 	max_fuel = 20
 
+/obj/item/weldingtool/electric/proc/deductcharge(chrgdeductamt) //Controls power usage
+	if(cell)
+		. = cell.use(chrgdeductamt)
+		if(powered && cell.charge < cell_use_cost) //On and current cell charge is less than minimum use requirement
+			//we're below minimum, turn off
+			powered = FALSE
+			update_appearance()
+			playsound(src, 'modular_R505/sound/tools/ewelderOff.ogg', 75, TRUE, -1)
 
-/obj/item/weldingtool/electric/ComponentInitialize()
+/obj/item/weldingtool/electric/update_overlays()
 	. = ..()
-	AddComponent(/datum/component/cell, cell_override, CALLBACK(src, .proc/switched_off))
+	if(change_icons)
+		var/ratio = cell.percent()
+		ratio = CEILING(ratio*3, 1) * 33
+		. += "[initial(icon_state)][ratio]"
+	if(welding)
+		. += "[initial(icon_state)]-on"
 
 /obj/item/weldingtool/electric/attack_self(mob/user, modifiers)
 	. = ..()
