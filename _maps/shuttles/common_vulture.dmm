@@ -102,8 +102,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/effect/spawner/lootdrop/away_loot,
-/obj/machinery/light/directional/east,
 /obj/effect/mapping_helpers/smart_pipe/manifold4w/supply/hidden,
+/obj/machinery/power/apc/auto_name/east,
 /turf/open/floor/iron,
 /area/shuttle/vulture)
 "fG" = (
@@ -356,6 +356,7 @@
 /obj/structure/table,
 /obj/machinery/microwave,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron,
 /area/shuttle/vulture)
 "ES" = (
@@ -460,7 +461,6 @@
 "Pa" = (
 /obj/item/storage/toolbox/mechanical,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/apc/auto_name/west,
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/smart_pipe/manifold4w/scrubbers/hidden,
 /obj/effect/turf_decal/stripes/line,
