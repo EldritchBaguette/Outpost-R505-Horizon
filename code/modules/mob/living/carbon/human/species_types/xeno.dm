@@ -3,7 +3,6 @@
 	id = "xeno"
 	flavor_text = "While their true origin is unknown, many believe them to be a cross between humanoid and xenomorph DNA. Much less dangerous than their feral cousins. They enjoy meat, but can consume just about anything."
 	say_mod = "hisses"
-	pass_flags = PASSTABLE //Blatantly overpowered
 	default_color = "0F0"
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAS_FLESH,HAS_BONE,NOEYESPRITES) //R505 edit - why did the benos have eyes?
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
@@ -16,7 +15,8 @@
 		TRAIT_RESISTLOWPRESSURE,
 		TRAIT_RESISTCOLD,
 		TRAIT_XENO_IMMUNE,
-		TRAIT_NOFLASH
+		TRAIT_NOFLASH,
+		TRAIT_PASSTABLE
 	)
 	
 	mutant_bodyparts = list()
