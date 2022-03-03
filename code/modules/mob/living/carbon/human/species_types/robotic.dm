@@ -2,6 +2,8 @@
 	say_mod = "beeps"
 	default_color = "0F0"
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
+
+	//R505 NOTE: I have no idea if this will work - synths have the "medbot coming through" trait because medbots can't be healed by 'em.
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
 		TRAIT_CAN_STRIP,
@@ -15,15 +17,29 @@
 		TRAIT_LIMBATTACHMENT,
 		TRAIT_NO_HUSK,
 		TRAIT_OXYIMMUNE,
+		TRAIT_RESISTLOWPRESSURE,
+		TRAIT_NOSLIPWATER,
+		TRAIT_SLEEPIMMUNE,
+		TRAIT_NOFIRE,
+		TRAIT_RESISTCOLD,
+		TRAIT_XENO_IMMUNE,
+		TRAIT_WEAK_SOUL,
+		TRAIT_NOBLEED,
+		TRAIT_SUPERMATTER_MADNESS_IMMUNE,
+		TRAIT_NOFLASH,
+		TRAIT_NEVER_WOUNDED,
+		TRAIT_NOLIMBDISABLE,
+		TRAIT_MEDIBOTCOMINGTHROUGH
 	)
 	mutant_bodyparts = list()
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	reagent_flags = PROCESS_SYNTHETIC
+	armor = 25
 	coldmod = 0.5
 	burnmod = 1.1
 	heatmod = 1.2
-	brutemod = 1.1
-	siemens_coeff = 1.2 //Not more because some shocks will outright crit you, which is very unfun
+	brutemod = 0.5
+	siemens_coeff = 1.0 //Not more because some shocks will outright crit you, which is very unfun
 	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
 	mutantbrain = /obj/item/organ/brain/mmi_holder/posibrain //R505 Edit - Original: /obj/item/organ/brain/ipc_positron
 	mutantstomach = /obj/item/organ/stomach/robot_ipc
@@ -47,7 +63,7 @@
 			do_sparks(3, TRUE, H)
 
 /datum/species/robotic/spec_revival(mob/living/carbon/human/H)
-	playsound(H.loc, 'sound/machines/chime.ogg', 50, 1, -1)
+	playsound(H.loc, 'modular_R505/sound/effects/tada.ogg', 50, 1, -1)
 	H.visible_message(SPAN_NOTICE("[H]'s monitor lights up."), SPAN_NOTICE("All systems nominal. You're back online!"))
 
 /datum/species/robotic/on_species_gain(mob/living/carbon/human/C)
