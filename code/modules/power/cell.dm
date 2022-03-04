@@ -72,6 +72,9 @@
 /obj/item/stock_parts/cell/proc/percent() // return % charge of cell
 	return 100*charge/maxcharge
 
+/obj/item/stock_parts/cell/proc/total() //return charge of cell //R505 Edit
+	return charge
+
 // use power from a cell
 /obj/item/stock_parts/cell/use(amount)
 	if(rigged && amount > 0)
