@@ -871,7 +871,6 @@
 	key_third_person = "peeps"
 	message = "peeps like a bird!"
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 	sound = 'sound/voice/peep_once.ogg'
 
 /datum/emote/living/peep2
@@ -879,10 +878,9 @@
 	key_third_person = "peeps twice"
 	message = "peeps twice like a bird!"
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 	sound = 'sound/voice/peep.ogg'
 
-	//R505 Edit. the first chirp is from a unused sound found in the code that had no links to anything. else so it was repurposed.
+	//R505 Edit. the first chirp is from a unused sound found in the code that had no links to anything. else so it was repurposed. I removed the vary = true flag so my chirp 2 does not sound uncanny -Summer :cheese:
  
 /datum/emote/living/chirp
     key = "chirp"
