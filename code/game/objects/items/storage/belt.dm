@@ -129,7 +129,7 @@
 
 /obj/item/storage/belt/utility/syndicate/PopulateContents()
 	new /obj/item/screwdriver/nuke(src)
-	new /obj/item/wrench/combat(src)
+	new /obj/item/wrench/syndie(src) //R505 Edit - Syndie Wrench
 	new /obj/item/weldingtool/largetank(src)
 	new /obj/item/crowbar(src)
 	new /obj/item/wirecutters(src)

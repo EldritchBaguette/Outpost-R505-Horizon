@@ -164,7 +164,7 @@
 
 /obj/item/storage/toolbox/syndicate/PopulateContents()
 	new /obj/item/screwdriver/nuke(src)
-	new /obj/item/wrench(src)
+	new /obj/item/wrench/syndie(src) //R505 Edit - Give em the syndie wrench
 	new /obj/item/weldingtool/largetank(src)
 	new /obj/item/crowbar/red(src)
 	new /obj/item/wirecutters(src, "red")
