@@ -78,16 +78,23 @@
 	icon_state = "wrench_cyborg"
 	toolspeed = 0.5
 
+//R505 Edit - Begin
+
+/obj/item/wrench/syndie
+	name = "syndicate wrench"
+	desc = "A blood-red pipewrench with a black stripe. Feels weighty."
+	icon_state = "wrench_syndie"
+	force = 6
+	throwforce = 8
+
+/*
 /obj/item/wrench/combat
 	name = "combat wrench"
-	desc = "It's like a normal wrench but edgier. Can be found on the battlefield."
+	desc = "It's like a normal wrench but edgier."
 	icon_state = "wrench_combat"
-	inhand_icon_state = "wrench_combat"
-	attack_verb_continuous = list("devastates", "brutalizes", "commits a war crime against", "obliterates", "humiliates")
-	attack_verb_simple = list("devastate", "brutalize", "commit a war crime against", "obliterate", "humiliate")
-	tool_behaviour = null
-	toolspeed = null
-	var/on = FALSE
+	force = 6
+	throwforce = 8
+
 
 /obj/item/wrench/combat/ComponentInitialize()
 	. = ..()
@@ -122,3 +129,4 @@
 		icon_state = "[initial(icon_state)]"
 		inhand_icon_state = "[initial(inhand_icon_state)]"
 	return ..()
+*/ //R505 Edit - End
