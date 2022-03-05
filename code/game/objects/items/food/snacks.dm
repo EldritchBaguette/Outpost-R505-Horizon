@@ -123,6 +123,16 @@
 	custom_price = PAYCHECK_PRISONER
 	w_class = WEIGHT_CLASS_SMALL
 
+/obj/item/food/avianseed
+	name = "Sunflower Seeds"
+	desc = "An plastic bag that has a red cardinal as it's mascot on the front with ingredients of olive oil and starlight grown Sunflowers with a hint of a secret spice. "
+	icon_state = "avianseed"
+	trash_type = /obj/item/trash/bird_seed
+	food_reagents = list(/datum/reagent/consumable/nutriment = 3)
+	tastes = list("olives" = 1, "Nuts" = 3, "spice" = 2)
+	foodtypes = NUTS
+	w_class = WEIGHT_CLASS_SMALL
+
 /obj/item/food/candy_trash
 	name = "candy cigarette butt"
 	icon = 'icons/obj/clothing/masks.dmi'
@@ -180,7 +190,7 @@
 	foodtypes = JUNKFOOD | NUTS
 	junkiness = 10 //less junky than other options, since peanuts are a decently healthy snack option
 	w_class = WEIGHT_CLASS_SMALL
-	grind_results = list(/datum/reagent/consumable/peanut_butter = 5, /datum/reagent/consumable/cooking_oil = 2)
+	grind_results = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cooking_oil = 2)
 
 /obj/item/food/peanuts/salted
 	name = "\improper Gallery's salt reserves peanuts"

@@ -112,3 +112,7 @@
 /obj/item/trash/cnds
 	name = "\improper C&Ds packet"
 	icon_state = "cnds"
+
+/obj/item/trash/bird_seed 
+	name = "Sunflower Seeds" 
+	icon_state = "avianseedtrash" 
