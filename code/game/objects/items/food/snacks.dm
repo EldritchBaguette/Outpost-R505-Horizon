@@ -190,7 +190,7 @@
 	foodtypes = JUNKFOOD | NUTS
 	junkiness = 10 //less junky than other options, since peanuts are a decently healthy snack option
 	w_class = WEIGHT_CLASS_SMALL
-	grind_results = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cooking_oil = 2)
+	grind_results = list(/datum/reagent/consumable/peanut_butter = 5, /datum/reagent/consumable/cooking_oil = 2)
 
 /obj/item/food/peanuts/salted
 	name = "\improper Gallery's salt reserves peanuts"
