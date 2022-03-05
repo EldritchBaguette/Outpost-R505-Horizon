@@ -885,6 +885,7 @@ GLOBAL_VAR_INIT(icon_holographic_window, init_holographic_window())
 	matter = 300
 	delay_mod = 0.6
 	ranged = TRUE
+	icon = 'modular_R505/icons/obj/tools.dmi' //R505 Edit
 	icon_state = "arcd"
 	inhand_icon_state = "oldrcd"
 	has_ammobar = FALSE
