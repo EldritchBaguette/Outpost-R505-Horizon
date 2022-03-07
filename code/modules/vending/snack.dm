@@ -8,8 +8,8 @@
 	products = list(/obj/item/food/spacetwinkie = 6,
 					/obj/item/food/cheesiehonkers = 6,
 					/obj/item/food/candy = 6,
-		            /obj/item/food/chips = 6,
-		            /obj/item/food/sosjerky = 6,
+					/obj/item/food/chips = 6,
+					/obj/item/food/sosjerky = 6,
 					/obj/item/food/no_raisin = 6,
 					/obj/item/food/peanuts = 6,
 					/obj/item/food/peanuts/random = 3,
@@ -17,7 +17,8 @@
 					/obj/item/food/cnds/random = 3,
 					/obj/item/reagent_containers/food/drinks/dry_ramen = 3,
 					/obj/item/storage/box/gum = 3,
-					/obj/item/food/energybar = 6)
+					/obj/item/food/energybar = 6,
+					/obj/item/food/avianseed =6)
 	contraband = list(/obj/item/food/syndicake = 6,
 					/obj/item/food/candy/bronx = 1)
 	refill_canister = /obj/item/vending_refill/snack
