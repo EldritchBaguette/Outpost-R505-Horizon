@@ -2,8 +2,8 @@
 /obj/item/mining_scanner
 	desc = "A scanner that checks surrounding rock for useful minerals; it can also be used to stop gibtonite detonations."
 	name = "manual mining scanner"
-	icon = 'icons/obj/device.dmi'
-	icon_state = "mining1"
+	icon = 'modular_R505/icons/obj/mining/mining_tools.dmi'
+	icon_state = "scanner1"
 	inhand_icon_state = "analyzer"
 	worn_icon_state = "analyzer"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -20,6 +20,7 @@
 	if(current_cooldown <= world.time)
 		current_cooldown = world.time + cooldown
 		mineral_scan_pulse(get_turf(user))
+		playsound(src, 'modular_R505/sound/effects/scanping.ogg', 50, FALSE)
 
 //Debug item to identify all ore spread quickly
 /obj/item/mining_scanner/debug
@@ -34,7 +35,8 @@
 /obj/item/t_scanner/adv_mining_scanner
 	desc = "A scanner that automatically checks surrounding rock for useful minerals; it can also be used to stop gibtonite detonations. This one has an extended range."
 	name = "advanced automatic mining scanner"
-	icon_state = "mining0"
+	icon = 'modular_R505/icons/obj/mining/mining_tools.dmi'
+	icon_state = "scanner0"
 	inhand_icon_state = "analyzer"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
@@ -59,6 +61,7 @@
 	if(current_cooldown <= world.time)
 		current_cooldown = world.time + cooldown
 		var/turf/t = get_turf(src)
+		playsound(src, 'modular_R505/sound/effects/scanping.ogg', 50, FALSE)
 		mineral_scan_pulse(t, range)
 
 /proc/mineral_scan_pulse(turf/T, range = world.view)
