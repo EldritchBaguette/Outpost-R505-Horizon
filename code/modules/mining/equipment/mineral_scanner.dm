@@ -3,7 +3,7 @@
 	desc = "A scanner that checks surrounding rock for useful minerals; it can also be used to stop gibtonite detonations."
 	name = "manual mining scanner"
 	icon = 'modular_R505/icons/mining/mining_tools.dmi'
-	icon_state = "scanner"
+	icon_state = "scanner1"
 	inhand_icon_state = "analyzer"
 	worn_icon_state = "analyzer"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -35,7 +35,8 @@
 /obj/item/t_scanner/adv_mining_scanner
 	desc = "A scanner that automatically checks surrounding rock for useful minerals; it can also be used to stop gibtonite detonations. This one has an extended range."
 	name = "advanced automatic mining scanner"
-	icon_state = "mining0"
+	icon = 'modular_R505/icons/mining/mining_tools.dmi'
+	icon_state = "scanner0"
 	inhand_icon_state = "analyzer"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
