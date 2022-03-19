@@ -10,6 +10,7 @@
 	drop_sound = 'sound/items/handling/cloth_drop.ogg'
 	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
 	limb_integrity = 30
+	dying_key = DYE_REGISTRY_UNDER      //R505 Edit - You can now dye ALL jumpsuits.
 	fitted_bodytypes = BODYTYPE_DIGITIGRADE
 	worn_template_bodytypes = BODYTYPE_TESHARI
 	greyscale_config_worn_template = /datum/greyscale_config/worn_template_jumpsuit
@@ -306,8 +307,10 @@
 						body_parts_covered &= part
 	return adjusted
 
+/*
 /obj/item/clothing/under/rank
-	dying_key = DYE_REGISTRY_UNDER
+	dying_key = DYE_REGISTRY_UNDER    //R505 Edit - Redundant
+*/
 
 /obj/item/clothing/under/proc/dump_attachment()
 	if(!attached_accessory)

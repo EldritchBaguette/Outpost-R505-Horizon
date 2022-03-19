@@ -1,8 +1,9 @@
 /obj/item/clothing/under/misc/durathreadskirt
 	name = "durathread jumpskirt"
 	desc = "A jumpskirt made from durathread, its resilient fibres provide some protection to the wearer."
-	icon = 'modular_R505/icons/obj/clothing/duraskirt.dmi'
-	icon_state = "durathreadskirt"
+	icon = 'modular_R505/icons/obj/clothing/under/misc.dmi'
+	worn_icon =  'modular_R505/icons/mob/clothing/under/misc.dmi'
+	icon_state = "durathread_skirt"
 	can_adjust = FALSE
 	armor = list(MELEE = 10, LASER = 10, FIRE = 40, ACID = 10, BOMB = 5)
 	body_parts_covered = CHEST|GROIN|ARMS

@@ -301,8 +301,12 @@
 	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_SWEATERS
 
 /datum/loadout_item/uniform/sweater/turtleneck
-	name = "Tactitool Turtleneck"
+	name = "Tacticool Turtleneck"
 	path = /obj/item/clothing/under/syndicate/tacticool
+
+/datum/loadout_item/uniform/sweater/turtleneck/skirt
+	name = "Tacticool Skirtleneck"
+	path = /obj/item/clothing/under/syndicate/tacticool/skirt
 
 /datum/loadout_item/uniform/sweater/creamsweater
 	name = "Cream Commando Sweater"
