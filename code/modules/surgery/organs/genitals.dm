@@ -261,6 +261,39 @@
 	lactates = DNA.features["breasts_lactation"]
 	set_size(DNA.features["breasts_size"])
 
+/obj/item/organ/genital/ass
+	name = "ass"
+	desc = "Ass."
+	icon_state = "breasts"
+	icon = 'icons/obj/genitals/breasts.dmi'
+	mutantpart_key = "ass"
+	mutantpart_info = list(MUTANT_INDEX_NAME = "Ass", MUTANT_INDEX_COLOR_LIST = list("FEB"))
+	zone = BODY_ZONE_PRECISE_GROIN
+	slot = ORGAN_SLOT_ASS
+
+/obj/item/organ/genital/ass/get_sprite_size_string()
+	var/measured_size = FLOOR(genital_size,1)
+	measured_size = clamp(measured_size, 1, 5)
+	var/passed_string = "[measured_size]"
+	if(uses_skintones)
+		passed_string += "_s"
+	return passed_string
+
+/obj/item/organ/genital/ass/get_description_string(datum/sprite_accessory/genital/gas)
+	return "You see a [lowertext(ass_size_to_description(genital_size))] ass."
+
+/obj/item/organ/genital/ass/build_from_dna(datum/dna/DNA, associated_key)
+	..()
+	set_size(DNA.features["ass_size"])
+
+/obj/item/organ/genital/ass/update_genital_icon_state()
+	var/measured_size = clamp(genital_size, 1, 5)
+	var/passed_string = "ass_[measured_size]"
+	if(uses_skintones)
+		passed_string += "_s"
+	icon_state = passed_string
+
+
 /proc/breasts_size_to_cup(number)
 	if(number < 0)
 		number = 0
@@ -286,6 +319,20 @@
 /proc/balls_description_to_size(cup)
 	for(var/key in GLOB.balls_size_translation)
 		if(GLOB.balls_size_translation[key] == cup)
+			return text2num(key)
+	return 0
+
+/proc/ass_size_to_description(number)
+	if(number < 0)
+		number = 0
+	var/returned = GLOB.ass_size_translation["[number]"]
+	if(!returned)
+		returned = "beyond measurement"
+	return returned
+
+/proc/ass_description_to_size(name)
+	for(var/key in GLOB.ass_size_translation)
+		if(GLOB.ass_size_translation[key] == name)
 			return text2num(key)
 	return 0
 
