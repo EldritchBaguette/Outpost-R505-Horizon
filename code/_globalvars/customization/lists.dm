@@ -25,6 +25,14 @@ GLOBAL_LIST_INIT(balls_size_translation, list("0" = "Small",
 												"3" = "Enormous"
 												))
 
+GLOBAL_LIST_INIT(ass_size_translation, list("0" = "Nonexistant",
+												"1" = "Average",
+												"2" = "Sizable",
+												"3" = "Substantial",
+												"4" = "Hefty",
+												"5" = "Thunderous"
+												))
+
 GLOBAL_LIST_INIT(marking_zone_to_bitflag, list(BODY_ZONE_HEAD = HEAD,
 										BODY_ZONE_CHEST = CHEST,
 										BODY_ZONE_L_LEG = LEG_LEFT,

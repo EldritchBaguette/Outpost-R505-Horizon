@@ -199,25 +199,6 @@
 	icon_state = "tentacle"
 	name = "Tentacle"
 
-/datum/sprite_accessory/genital/vagina/dentata
-	icon_state = "dentata"
-	name = "Dentata"
-
-/datum/sprite_accessory/genital/vagina/hairy
-	icon_state = "hairy"
-	name = "Hairy"
-	alt_aroused = FALSE
-
-/datum/sprite_accessory/genital/vagina/spade
-	icon_state = "spade"
-	name = "Spade"
-	alt_aroused = FALSE
-
-/datum/sprite_accessory/genital/vagina/furred
-	icon_state = "furred"
-	name = "Furred"
-	alt_aroused = FALSE
-
 /datum/sprite_accessory/genital/vagina/gaping
 	icon_state = "gaping"
 	name = "Gaping"
@@ -258,3 +239,24 @@
 /datum/sprite_accessory/genital/breasts/sextuple
 	icon_state = "sextuple"
 	name = "Sextuple"
+
+/datum/sprite_accessory/genital/ass
+	icon = 'icons/mob/sprite_accessory/genitals/ass_onmob.dmi'
+	organ_type = /obj/item/organ/genital/ass
+	associated_organ_slot = ORGAN_SLOT_ASS
+	key = "ass"
+	always_color_customizable = TRUE
+	default_color = DEFAULT_SKIN_OR_PRIMARY
+	relevent_layers = list(BODY_ADJ_LAYER, UNDER_BODY_FRONT_LAYER)
+	uses_skintones = TRUE
+	genital_location = LEGS
+
+/datum/sprite_accessory/genital/ass/none
+	icon_state = "none"
+	name = "None"
+	factual = FALSE
+	color_src = null
+
+/datum/sprite_accessory/genital/ass/ass
+	icon_state = "ass"
+	name = "Ass"
