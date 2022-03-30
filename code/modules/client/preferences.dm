@@ -589,7 +589,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						dat += "<h3>Ass</h3>"
 						var/ass_name = mutant_bodyparts["ass"][MUTANT_INDEX_NAME]
 						dat += print_bodypart_change_line("ass")
-						if(ass_name != "None")
+						if(ass_name != "Lack of ass")
 							dat += "<br><b>Size: </b> <a href='?_src_=prefs;key=["ass"];preference=ass_size;task=change_genitals'>[features["ass_size"]]</a>"
 						dat += "</td>"
 						dat += "</td>"

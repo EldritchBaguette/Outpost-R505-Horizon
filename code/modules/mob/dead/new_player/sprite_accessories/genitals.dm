@@ -253,7 +253,7 @@
 
 /datum/sprite_accessory/genital/ass/none
 	icon_state = "none"
-	name = "None"
+	name = "Lack of ass"
 	factual = FALSE
 	color_src = null
 
