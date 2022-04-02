@@ -632,7 +632,7 @@
 
 /obj/item/clothing/shoes/gunboots/disabler
 	name = "disaboots"
-	projectile_type = /obj/projectile/beam/disabler
+	projectile_type = /obj/projectile/energy/disabler
 
 /obj/item/clothing/shoes/wraps
 	icon = 'icons/horizon/obj/clothing/shoes.dmi'

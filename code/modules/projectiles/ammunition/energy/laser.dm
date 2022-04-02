@@ -7,7 +7,7 @@
 	e_cost = 130
 	select_name = "maim"
 
-/obj/item/ammo_casing/energy/laser/hellfire/antique
+/obj/item/ammo_casing/energy/laser/hellfire/efficient
 	e_cost = 100
 
 /obj/item/ammo_casing/energy/lasergun
@@ -33,12 +33,6 @@
 	pellets = 5
 	variance = 25
 	select_name = "scatter"
-
-/obj/item/ammo_casing/energy/laser/scatter/disabler
-	projectile_type = /obj/projectile/beam/disabler
-	pellets = 3
-	variance = 15
-	harmful = FALSE
 
 /obj/item/ammo_casing/energy/laser/heavy
 	projectile_type = /obj/projectile/beam/laser/heavylaser
@@ -79,5 +73,5 @@
 
 /obj/item/ammo_casing/energy/laser/minigun
 	select_name = "kill"
-	projectile_type = /obj/projectile/beam/weak/penetrator
+	projectile_type = /obj/projectile/beam/laser
 	variance = 0.8

@@ -30,22 +30,23 @@
 	ammo_x_offset = 3
 
 /obj/item/gun/energy/laser/hellgun
-	name ="hellfire laser gun"
-	desc = "A relic of a weapon, built before NT began installing regulators on its laser weaponry. This pattern of laser gun became infamous for the gruesome burn wounds it caused, and was quietly discontinued once it began to affect NT's reputation."
+	name ="hellfire laser rifle"
+	desc = "An M200 \"hellfire\" laser rifle - a relic of the Great Expansion Wars, frighteningly lethal but inefficient and prone to overheating. It's in remarkably good conditions for its age."
 	icon_state = "hellgun"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/hellfire)
 
 /obj/item/gun/energy/laser/captain
-	name = "antique laser gun"
+	name = "\proper Excalibur laser carbine"
 	icon_state = "caplaser"
 	w_class = WEIGHT_CLASS_NORMAL
 	inhand_icon_state = null
-	desc = "This is an antique laser gun. All craftsmanship is of the highest quality. It is decorated with assistant leather and chrome. The object menaces with spikes of energy. On the item is an image of Space Station 13. The station is exploding."
+	desc = "A priceless custom weapon of unclear origin, this chrome-plated lasgun is built around an intact Elder Dragon Gatepoint Power Core, drawing virtually-limitless power from... somewhere."
 	force = 10
 	ammo_x_offset = 3
-	selfcharge = 1
+	selfcharge = TRUE
+	charge_delay = 4
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	ammo_type = list(/obj/item/ammo_casing/energy/laser/hellfire/antique)
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/hellfire/efficient)
 
 /obj/item/gun/energy/laser/captain/scattershot
 	name = "scatter shot laser rifle"
@@ -68,17 +69,6 @@
 	name = "scatter laser gun"
 	desc = "A laser gun equipped with a refraction kit that spreads bolts."
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/scatter, /obj/item/ammo_casing/energy/laser)
-
-/obj/item/gun/energy/laser/scatter/shotty
-	name = "energy shotgun"
-	icon = 'icons/obj/guns/ballistic.dmi'
-	icon_state = "cshotgun"
-	inhand_icon_state = "shotgun"
-	desc = "A combat shotgun gutted and refitted with an internal laser system. Can switch between taser and scattered disabler shots."
-	shaded_charge = 0
-	pin = /obj/item/firing_pin/implant/mindshield
-	ammo_type = list(/obj/item/ammo_casing/energy/laser/scatter/disabler, /obj/item/ammo_casing/energy/electrode)
-	automatic_charge_overlays = FALSE
 
 ///Laser Cannon
 

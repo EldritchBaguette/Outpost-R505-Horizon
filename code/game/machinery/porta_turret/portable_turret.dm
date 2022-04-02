@@ -848,8 +848,8 @@ DEFINE_BITFIELD(turret_flags, list(
 	integrity_failure = 0.5
 	name = "Old Laser Turret"
 	desc = "A turret built with substandard parts and run down further with age. Still capable of delivering lethal lasers to the odd space carp, but not much else."
-	stun_projectile = /obj/projectile/beam/weak/penetrator
-	lethal_projectile = /obj/projectile/beam/weak/penetrator
+	stun_projectile = /obj/projectile/beam/laser
+	lethal_projectile = /obj/projectile/beam/laser
 	faction = list("neutral","silicon","turret")
 
 ////////////////////////

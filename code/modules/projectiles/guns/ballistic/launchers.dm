@@ -50,6 +50,7 @@
 	inhand_icon_state = "rocketlauncher"
 	mag_type = /obj/item/ammo_box/magazine/internal/rocketlauncher
 	fire_sound = 'sound/weapons/gun/general/rocket_launch.ogg'
+	vary_fire_sound = FALSE
 	w_class = WEIGHT_CLASS_BULKY
 	can_suppress = FALSE
 	pin = /obj/item/firing_pin/implant/pindicate
@@ -90,7 +91,7 @@
 		SPAN_USERDANGER("You aim [src] at the ground to perform a bisnasty rocket jump..."))
 	if(can_shoot())
 		user.notransform = TRUE
-		playsound(src, 'sound/vehicles/rocketlaunch.ogg', 80, TRUE, 5)
+		playsound(src, 'sound/vehicles/rocketlaunch.ogg', 80, FALSE, 5)
 		animate(user, pixel_z = 300, time = 30, easing = LINEAR_EASING)
 		sleep(70)
 		animate(user, pixel_z = 0, time = 5, easing = LINEAR_EASING)
