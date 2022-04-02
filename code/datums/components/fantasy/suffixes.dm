@@ -144,7 +144,7 @@
 											  /obj/projectile/energy/net = 15,
 											  /obj/projectile/bullet/incendiary/c9mm = 15,
 											  /obj/projectile/temp/hot = 15,
-											  /obj/projectile/beam/disabler = 15)
+											  /obj/projectile/energy/disabler = 15)
 
 	var/obj/projectile/picked_projectiletype = pickweight(weighted_projectile_types)
 

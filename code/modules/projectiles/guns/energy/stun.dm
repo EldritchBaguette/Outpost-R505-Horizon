@@ -25,7 +25,7 @@
 
 /obj/item/gun/energy/disabler
 	name = "disabler"
-	desc = "A self-defense weapon that exhausts organic targets, weakening them until they collapse."
+	desc = "A low-yield less-than-lethal plasmacaster, tuned to cause minimal injury while exhausting and debilitating organic creatures."
 	icon_state = "disabler"
 	inhand_icon_state = null
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler)
