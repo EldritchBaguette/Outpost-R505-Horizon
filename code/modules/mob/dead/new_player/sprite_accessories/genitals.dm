@@ -73,11 +73,8 @@
 
 /datum/sprite_accessory/genital/penis/human
 	icon_state = "human"
-	name = "Human"
-	color_src = USE_ONE_COLOR
+	name = "Humanoid"
 	default_color = DEFAULT_SKIN_OR_PRIMARY
-	uses_skintones = TRUE
-	can_have_sheath = FALSE
 
 /datum/sprite_accessory/genital/penis/knotted
 	icon_state = "knotted"
@@ -95,10 +92,6 @@
 	icon_state = "tapered"
 	name = "Tapered"
 
-/datum/sprite_accessory/genital/penis/tentacle
-	icon_state = "tentacle"
-	name = "Tentacled"
-
 /datum/sprite_accessory/genital/penis/hemi
 	icon_state = "hemi"
 	name = "Hemi"
@@ -106,6 +99,10 @@
 /datum/sprite_accessory/genital/penis/hemiknot
 	icon_state = "hemiknot"
 	name = "Knotted Hemi"
+
+/datum/sprite_accessory/genital/penis/thick
+	icon_state = "thick"
+	name = "Thick"
 
 /datum/sprite_accessory/genital/testicles
 	icon = 'icons/mob/sprite_accessory/genitals/testicles_onmob.dmi'
@@ -235,10 +232,6 @@
 /datum/sprite_accessory/genital/breasts/quad
 	icon_state = "quad"
 	name = "Quad"
-
-/datum/sprite_accessory/genital/breasts/sextuple
-	icon_state = "sextuple"
-	name = "Sextuple"
 
 /datum/sprite_accessory/genital/ass
 	icon = 'icons/mob/sprite_accessory/genitals/ass_onmob.dmi'
