@@ -310,7 +310,6 @@
 		/obj/item/gps,
 		/obj/item/storage/bag/ore,
 		/obj/item/survivalcapsule,
-		/obj/item/t_scanner/adv_mining_scanner,
 		/obj/item/reagent_containers/pill,
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/ore,

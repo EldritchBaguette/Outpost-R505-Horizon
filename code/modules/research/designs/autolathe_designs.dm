@@ -617,15 +617,23 @@
 	name = "Beanbag Slug"
 	id = "beanbag_slug"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 2000)
+	materials = list(/datum/material/iron = 50, /datum/material/plastic = 50)
 	build_path = /obj/item/ammo_casing/shotgun/beanbag
+	category = list("initial", "Security")
+
+/datum/design/buckshot_shell
+	name = "Buckshot Shell"
+	id = "shotgun_dart"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 50, /datum/material/plastic = 50)
+	build_path = /obj/item/ammo_casing/shotgun/buckshot
 	category = list("initial", "Security")
 
 /datum/design/rubbershot
 	name = "Rubber Shot"
 	id = "rubber_shot"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 4000)
+	materials = list(/datum/material/iron = 50, /datum/material/plastic = 50)
 	build_path = /obj/item/ammo_casing/shotgun/rubbershot
 	category = list("initial", "Security")
 
@@ -633,7 +641,7 @@
 	name = "Speed Loader (.38)"
 	id = "c38"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 20000)
+	materials = list(/datum/material/iron = 250)
 	build_path = /obj/item/ammo_box/c38
 	category = list("initial", "Security")
 
@@ -852,7 +860,7 @@
 	name = "Shotgun Dart"
 	id = "shotgun_dart"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 4000)
+	materials = list(/datum/material/iron = 50, /datum/material/plastic = 50)
 	build_path = /obj/item/ammo_casing/shotgun/dart
 	category = list("hacked", "Security")
 
@@ -860,7 +868,7 @@
 	name = "Incendiary Slug"
 	id = "incendiary_slug"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 4000)
+	materials = list(/datum/material/iron = 50, /datum/material/plastic = 50)
 	build_path = /obj/item/ammo_casing/shotgun/incendiary
 	category = list("hacked", "Security")
 
@@ -884,7 +892,7 @@
 	name = ".357 Casing"
 	id = "a357"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 4000)
+	materials = list(/datum/material/iron = 50)
 	build_path = /obj/item/ammo_casing/a357
 	category = list("hacked", "Security")
 
@@ -892,7 +900,7 @@
 	name = "Ammo Box (10mm)"
 	id = "c10mm"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 30000)
+	materials = list(/datum/material/iron = 250)
 	build_path = /obj/item/ammo_box/c10mm
 	category = list("hacked", "Security")
 
@@ -900,7 +908,7 @@
 	name = "Ammo Box (.45)"
 	id = "c45"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 30000)
+	materials = list(/datum/material/iron = 250)
 	build_path = /obj/item/ammo_box/c45
 	category = list("hacked", "Security")
 
@@ -908,7 +916,7 @@
 	name = "Ammo Box (9mm)"
 	id = "c9mm"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 30000)
+	materials = list(/datum/material/iron = 250)
 	build_path = /obj/item/ammo_box/c9mm
 	category = list("hacked", "Security")
 

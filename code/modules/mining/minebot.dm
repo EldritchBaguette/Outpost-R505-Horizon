@@ -39,7 +39,7 @@
 	light_range = 6
 	light_on = FALSE
 	var/mode = MINEDRONE_COLLECT
-	var/obj/item/gun/energy/kinetic_accelerator/minebot/stored_gun
+	var/obj/item/gun/energy/plasmacutter/minebot/stored_gun
 
 /mob/living/simple_animal/hostile/mining_drone/Initialize()
 	. = ..()
@@ -84,10 +84,6 @@
 			. += SPAN_BOLDWARNING("[t_He] look[t_s] severely dented!")
 	. += {"<span class='notice'>Using a mining scanner on [t_him] will instruct [t_him] to drop stored ore. <b>[max(0, LAZYLEN(contents) - 1)] Stored Ore</b>\n
 	Field repairs can be done with a welder."}
-	if(stored_gun?.max_mod_capacity)
-		. += "<b>[stored_gun.get_remaining_mod_capacity()]%</b> mod capacity remaining."
-		for(var/obj/item/modkit/modkit as anything in stored_gun.modkits)
-			. += SPAN_NOTICE("There is \a [modkit] installed, using <b>[modkit.cost]%</b> capacity.")
 
 /mob/living/simple_animal/hostile/mining_drone/welder_act(mob/living/user, obj/item/welder)
 	..()
@@ -105,20 +101,14 @@
 		to_chat(user, SPAN_INFO("You repair some of the armor on [src]."))
 
 /mob/living/simple_animal/hostile/mining_drone/attackby(obj/item/item_used, mob/user, params)
-	if(istype(item_used, /obj/item/mining_scanner) || istype(item_used, /obj/item/t_scanner/adv_mining_scanner))
+	if(istype(item_used, /obj/item/mining_scanner))
 		to_chat(user, SPAN_INFO("You instruct [src] to drop any collected ore."))
 		DropOre()
-		return
-	if(item_used.tool_behaviour == TOOL_CROWBAR || istype(item_used, /obj/item/modkit))
-		item_used.melee_attack_chain(user, stored_gun, params)
 		return
 	..()
 
 /mob/living/simple_animal/hostile/mining_drone/death()
 	DropOre()
-	if(stored_gun)
-		for(var/obj/item/modkit/modkit as anything in stored_gun.modkits)
-			modkit.uninstall(stored_gun)
 	deathmessage = "blows apart!"
 	..()
 
@@ -137,11 +127,8 @@
 
 /mob/living/simple_animal/hostile/mining_drone/CanAllowThrough(atom/movable/object)
 	. = ..()
-	if(istype(object, /obj/projectile/kinetic))
-		var/obj/projectile/kinetic/projectile = object
-		if(projectile.kinetic_gun)
-			if (locate(/obj/item/modkit/minebot_passthrough) in projectile.kinetic_gun.modkits)
-				return TRUE
+	if(istype(object, /obj/projectile/plasma))
+		return TRUE
 	if(istype(object, /obj/projectile/destabilizer))
 		return TRUE
 
@@ -306,20 +293,12 @@
 	icon_state = "door_electronics"
 	icon = 'icons/obj/module.dmi'
 	sentience_type = SENTIENCE_MINEBOT
-	var/base_health_add = 5 //sentient minebots are penalized for beign sentient; they have their stats reset to normal plus these values
-	var/base_damage_add = 1 //this thus disables other minebot upgrades
-	var/base_speed_add = 1
-	var/base_cooldown_add = 10 //base cooldown isn't reset to normal, it's just added on, since it's not practical to disable the cooldown module
 
 /obj/item/slimepotion/slime/sentience/mining/after_success(mob/living/user, mob/living/simple_animal/simple_mob)
 	if(!istype(simple_mob, /mob/living/simple_animal/hostile/mining_drone))
 		return
 	var/mob/living/simple_animal/hostile/mining_drone/minebot = simple_mob
-	minebot.maxHealth = initial(minebot.maxHealth) + base_health_add
-	minebot.melee_damage_lower = initial(minebot.melee_damage_lower) + base_damage_add
-	minebot.melee_damage_upper = initial(minebot.melee_damage_upper) + base_damage_add
-	minebot.move_to_delay = initial(minebot.move_to_delay) + base_speed_add
-	minebot.stored_gun?.overheat_time += base_cooldown_add
+	//This does nothing atm because
 
 #undef MINEDRONE_COLLECT
 #undef MINEDRONE_ATTACK

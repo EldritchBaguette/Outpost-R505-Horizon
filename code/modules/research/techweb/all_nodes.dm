@@ -51,6 +51,7 @@
 		"sec_beanbag_slug",
 		"sec_dart",
 		"sec_rshot",
+		"shotgun_drum",
 		"space_heater",
 		"tech_disk",
 		"titaniumglass",
@@ -1151,6 +1152,7 @@
 		"metal_density_scanner",
 		"mining_drill",
 		"mining_equipment_vendor",
+		"mining_shotgun",
 		"ore_redemption",
 		"plasmacutter",
 		"rangemod",
@@ -1314,7 +1316,6 @@
 	prereq_ids = list("weaponry", "adv_power"  , "emp_basic")
 	design_ids = list(
 		"ioncarbine",
-		"stunrevolver",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 

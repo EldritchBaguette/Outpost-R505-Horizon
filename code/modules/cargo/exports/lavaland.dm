@@ -23,7 +23,6 @@
 						/obj/item/clothing/shoes/clown_shoes/banana_shoes,
 						/obj/item/gun/magic/staff/honk,
 						/obj/item/kitchen/knife/envy,
-						/obj/item/gun/ballistic/revolver/russian/soul,
 						/obj/item/veilrender/vealrender)
 
 /datum/export/lavaland/major //valuable chest/ruin loot and staff of storms
