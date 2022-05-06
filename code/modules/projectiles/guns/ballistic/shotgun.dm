@@ -138,9 +138,38 @@
 	internal_magazine = FALSE
 	tac_reloads = TRUE
 
-
 /obj/item/gun/ballistic/shotgun/bulldog/unrestricted
 	pin = /obj/item/firing_pin
+
+// Le miner gun
+/obj/item/gun/ballistic/shotgun/s99
+	name = "\improper S99 Jackhammer combat shotgun"
+	desc = "A robust semiautomatic combat shotgun manufactured by Krieger-Buzinsky. Popular among frontier explorers for its reliability and ease of use."
+	icon = 'modular_R505/icons/obj/weapons/kinetic.dmi'
+	icon_state = "s99"
+	inhand_icon_state = "bulldog"
+	worn_icon_state = "cshotgun"
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	inhand_x_dimension = 32
+	inhand_y_dimension = 32
+	weapon_weight = WEAPON_MEDIUM
+	mag_type = /obj/item/ammo_box/magazine/m12g
+	can_suppress = FALSE
+	burst_size = 1
+	fire_delay = 0
+	pin = /obj/item/firing_pin
+	fire_sound = 'modular_R505/sound/weapons/sg_fire.ogg'
+	actions_types = list()
+	mag_display = TRUE
+	empty_indicator = TRUE
+	special_mags = TRUE
+	mag_display_ammo = TRUE
+	semi_auto = TRUE
+	internal_magazine = FALSE
+	tac_reloads = TRUE
+
+
 /////////////////////////////
 // DOUBLE BARRELED SHOTGUN //
 /////////////////////////////

@@ -1,6 +1,6 @@
 /datum/language/draconic
 	name = "Draconic"
-	desc = "The common language of lizard-people, composed of sibilant hisses and rattles."
+	desc = "The ancient, rumbling language of the Elder Dragons, common to all draconoid species, though most commonly associated with Krell."
 	key = "o"
 	flags = TONGUELESS_SPEECH
 	space_chance = 40

@@ -32,8 +32,6 @@
 		new /datum/data/mining_equipment("Tracking Implant Kit", /obj/item/storage/box/minertracker, 600),
 		new /datum/data/mining_equipment("Jaunter", /obj/item/wormhole_jaunter, 750),
 		new /datum/data/mining_equipment("Kinetic Crusher", /obj/item/kinetic_crusher, 750),
-		new /datum/data/mining_equipment("Kinetic Accelerator", /obj/item/gun/energy/kinetic_accelerator, 750),
-		new /datum/data/mining_equipment("Advanced Scanner", /obj/item/t_scanner/adv_mining_scanner, 800),
 		new /datum/data/mining_equipment("Resonator", /obj/item/resonator, 800),
 		new /datum/data/mining_equipment("Luxury Medipen", /obj/item/reagent_containers/hypospray/medipen/survival/luxury, 1000),
 		new /datum/data/mining_equipment("Fulton Pack", /obj/item/extraction_pack, 1000),
@@ -51,16 +49,7 @@
 		new /datum/data/mining_equipment("Nanotrasen Minebot", /mob/living/simple_animal/hostile/mining_drone, 800),
 		new /datum/data/mining_equipment("Minebot Melee Upgrade", /obj/item/mine_bot_upgrade, 400),
 		new /datum/data/mining_equipment("Minebot Armor Upgrade", /obj/item/mine_bot_upgrade/health, 400),
-		new /datum/data/mining_equipment("Minebot AI Upgrade", /obj/item/slimepotion/slime/sentience/mining, 1000),
-		new /datum/data/mining_equipment("KA Minebot Passthrough", /obj/item/modkit/minebot_passthrough, 100),
-		new /datum/data/mining_equipment("KA White Tracer Rounds", /obj/item/modkit/tracer, 100),
-		new /datum/data/mining_equipment("KA Adjustable Tracer Rounds", /obj/item/modkit/tracer/adjustable, 150),
-		new /datum/data/mining_equipment("KA Super Chassis", /obj/item/modkit/chassis_mod, 250),
-		new /datum/data/mining_equipment("KA Hyper Chassis", /obj/item/modkit/chassis_mod/orange, 300),
-		new /datum/data/mining_equipment("KA Range Increase", /obj/item/modkit/range, 1000),
-		new /datum/data/mining_equipment("KA Damage Increase", /obj/item/modkit/damage, 1000),
-		new /datum/data/mining_equipment("KA Cooldown Decrease", /obj/item/modkit/cooldown, 1000),
-		new /datum/data/mining_equipment("KA AoE Damage", /obj/item/modkit/aoe/mobs, 2000)
+		new /datum/data/mining_equipment("Minebot AI Upgrade", /obj/item/slimepotion/slime/sentience/mining, 1000)
 	)
 
 /datum/data/mining_equipment
@@ -182,7 +171,6 @@
 			new /mob/living/simple_animal/hostile/mining_drone(drop_location)
 			new /obj/item/weldingtool/hugetank(drop_location)
 			new /obj/item/clothing/head/welding(drop_location)
-			new /obj/item/modkit/minebot_passthrough(drop_location)
 		if("Extraction and Rescue Kit")
 			new /obj/item/extraction_pack(drop_location)
 			new /obj/item/fulton_core(drop_location)
@@ -216,7 +204,6 @@
 		new /datum/data/mining_equipment("Toolbelt", /obj/item/storage/belt/utility, 350),
 		new /datum/data/mining_equipment("Royal Cape of the Liberator", /obj/item/bedsheet/rd/royal_cape, 500),
 		new /datum/data/mining_equipment("Grey Slime Extract", /obj/item/slime_extract/grey, 1000),
-		new /datum/data/mining_equipment("Modification Kit", /obj/item/modkit/trigger_guard, 1700),
 		new /datum/data/mining_equipment("The Liberator's Legacy", /obj/item/storage/box/rndboards, 2000)
 		)
 	return ..()
@@ -263,13 +250,13 @@
 
 /obj/item/storage/backpack/duffelbag/mining_conscript/PopulateContents()
 	new /obj/item/clothing/glasses/meson(src)
-	new /obj/item/t_scanner/adv_mining_scanner/lesser(src)
+	new /obj/item/mining_scanner(src)
 	new /obj/item/storage/bag/ore(src)
 	new /obj/item/clothing/suit/hooded/explorer(src)
 	new /obj/item/encryptionkey/headset_mining(src)
 	new /obj/item/clothing/mask/gas/explorer(src)
 	new /obj/item/card/id/advanced/mining(src)
-	new /obj/item/gun/energy/kinetic_accelerator(src)
+	new /obj/item/pickaxe(src)
 	new /obj/item/kitchen/knife/combat/survival(src)
 	new /obj/item/flashlight/seclite(src)
 

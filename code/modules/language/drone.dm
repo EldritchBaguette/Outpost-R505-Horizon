@@ -1,6 +1,6 @@
 /datum/language/drone
 	name = "Drone"
-	desc = "A heavily encoded damage control coordination stream, with special flags for hats."
+	desc = "A utilitarian, heavily-encoded electronic audio communication format. Utterly incomprehensible to organics."
 	spans = list(SPEECH_SPAN_ROBOT)
 	key = "d"
 	flags = NO_STUTTER

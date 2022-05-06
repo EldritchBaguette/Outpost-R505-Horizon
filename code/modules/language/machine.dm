@@ -1,6 +1,6 @@
 /datum/language/machine
 	name = "Encoded Audio Language"
-	desc = "An efficient language of encoded tones developed by synthetics and cyborgs."
+	desc = "An efficient language of encoded tones developed by synthetics and cyborgs. Impossible to replicate with organic vocal cords, but a trained ear can enough to understand it."
 	spans = list(SPEECH_SPAN_ROBOT)
 	key = "6"
 	flags = NO_STUTTER

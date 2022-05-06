@@ -134,6 +134,13 @@
 /obj/effect/mapping_helpers/smart_pipe/manifold4w/supply/hidden,
 /turf/open/floor/plating,
 /area/shuttle/vulture)
+"gv" = (
+/obj/effect/mapping_helpers/smart_pipe/manifold4w/scrubbers/hidden,
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/shuttle/vulture)
 "hl" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -229,10 +236,8 @@
 "nJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm/directional/west,
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
 /obj/machinery/light/directional/west,
+/obj/structure/closet/secure_closet/miner/unlocked,
 /turf/open/floor/iron,
 /area/shuttle/vulture)
 "oz" = (
@@ -296,6 +301,9 @@
 /obj/structure/cable,
 /obj/effect/mapping_helpers/smart_pipe/manifold4w/supply/hidden,
 /obj/effect/mapping_helpers/smart_pipe/manifold4w/scrubbers/hidden,
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/shuttle/vulture)
 "vF" = (
@@ -407,9 +415,7 @@
 /area/shuttle/vulture/dorm)
 "Ld" = (
 /obj/machinery/airalarm/directional/west,
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
+/obj/structure/closet/secure_closet/miner/unlocked,
 /turf/open/floor/iron,
 /area/shuttle/vulture)
 "Ll" = (
@@ -658,7 +664,7 @@ Vg
 fG
 rI
 tS
-MG
+gv
 MG
 oz
 de

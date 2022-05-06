@@ -1,6 +1,6 @@
 /datum/language/russian
 	name = "Russian"
-	desc = "The official language of the Independent Colonial Confederation of Gilgamesh, originally established in 2122 by the short-lived United Slavic Confederation on Earth."
+	desc = "An old Earth language, now mostly spoken in the spinward periphery."
 	key = "r"
 	flags = TONGUELESS_SPEECH
 	syllables = list(

@@ -1,7 +1,7 @@
 /datum/species/xeno
 	name = "Xenomorph Hybrid"
 	id = "xeno"
-	flavor_text = "While their true origin is unknown, many believe them to be a cross between humanoid and xenomorph DNA. Much less dangerous than their feral cousins. They enjoy meat, but can consume just about anything."
+	flavor_text = "Human/xenomorph hybrids born of a long-lost Nanotrasen bioweapon project. Smarter, friendlier, and less parasitic than \'pure\' xenos."
 	say_mod = "hisses"
 	default_color = "0F0"
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAS_FLESH,HAS_BONE,NOEYESPRITES) //R505 edit - why did the benos have eyes?
@@ -29,8 +29,26 @@
 	burnmod = 1.1
 	heatmod = 1.2
 	brutemod = 0.75
+
+	//mutant_organs = list(/obj/item/organ/)
+	mutantbrain = /obj/item/organ/brain/alien
+	mutanttongue = /obj/item/organ/tongue/alien
+	mutanteyes = /obj/item/organ/eyes/night_vision/alien
+	//mutantlungs = /obj/item/organ/lungs/
+	//mutantheart = /obj/item/organ/heart/
+	//mutantliver = /obj/item/organ/liver/
+	//exotic_blood = /datum/reagent/
+
 	limbs_icon = 'icons/mob/species/xeno_parts_greyscale.dmi'
 	damage_overlay_type = "xeno"
 	scream_sounds = list(
 		NEUTER = 'sound/voice/hiss6.ogg'
 	)
+
+/datum/species/xeno/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
+	. = ..()
+	passtable_on(C, ROUNDSTART_TRAIT)
+
+/datum/species/xeno/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	. = ..()
+	passtable_off(C, ROUNDSTART_TRAIT)

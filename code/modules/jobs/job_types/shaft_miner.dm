@@ -47,8 +47,6 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/explorer
 	box = /obj/item/storage/box/survival/mining
 
-	chameleon_extras = /obj/item/gun/energy/kinetic_accelerator
-
 	id_trim = /datum/id_trim/job/shaft_miner
 
 /datum/outfit/job/miner/equipped
@@ -60,10 +58,11 @@
 	internals_slot = ITEM_SLOT_SUITSTORE
 	backpack_contents = list(
 		/obj/item/flashlight/seclite=1,\
-		/obj/item/kitchen/knife/combat/survival=1,
-		/obj/item/mining_voucher=1,
-		/obj/item/t_scanner/adv_mining_scanner/lesser=1,
-		/obj/item/gun/energy/kinetic_accelerator=1,\
+		/obj/item/kitchen/knife/combat/survival=1,\
+		/obj/item/mining_voucher=1,\
+		/obj/item/mining_scanner=1,\
+		/obj/item/pickaxe/drill=1,\
+		/obj/item/gun/ballistic/shotgun/s99=1,\
 		/obj/item/stack/marker_beacon/ten=1)
 
 /datum/outfit/job/miner/equipped/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

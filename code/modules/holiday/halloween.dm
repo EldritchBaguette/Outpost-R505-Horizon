@@ -256,21 +256,3 @@
 			visible_message(SPAN_DANGER("[src] seems to be resisting the effect!"))
 		return
 	return ..()
-
-/////////////////////////
-// Spooky Uplink Items //
-/////////////////////////
-
-/datum/uplink_item/dangerous/crossbow/candy
-	name = "Candy Corn Crossbow"
-	desc = "A standard miniature energy crossbow that uses a hard-light projector to transform bolts into candy corn. Happy Halloween!"
-	category = "Holiday"
-	item = /obj/item/gun/energy/kinetic_accelerator/crossbow/halloween
-	surplus = 0
-
-/datum/uplink_item/device_tools/emag/hack_o_lantern
-	name = "Hack-o'-Lantern"
-	desc = "An emag fitted to support the Halloween season. Candle not included."
-	category = "Holiday"
-	item = /obj/item/card/emag/halloween
-	surplus = 0

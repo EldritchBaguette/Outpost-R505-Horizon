@@ -1,11 +1,11 @@
 /obj/item/ammo_box/magazine/m12g
-	name = "shotgun magazine (12g buckshot slugs)"
+	name = "shotgun magazine (12g buckshot)"
 	desc = "A drum magazine."
 	icon_state = "m12gb"
 	base_icon_state = "m12gb"
 	ammo_type = /obj/item/ammo_casing/shotgun/buckshot
 	caliber = CALIBER_SHOTGUN
-	max_ammo = 8
+	max_ammo = 12
 
 /obj/item/ammo_box/magazine/m12g/update_icon_state()
 	. = ..()

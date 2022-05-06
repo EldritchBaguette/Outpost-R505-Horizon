@@ -45,6 +45,7 @@
 			eye_color = human_owner.eye_color
 		if(HAS_TRAIT(human_owner, TRAIT_NIGHT_VISION) && !lighting_alpha)
 			lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
+			see_in_dark = 4
 	eye_owner.update_tint()
 	owner.update_sight()
 	if(eye_owner.has_dna() && ishuman(eye_owner))
@@ -108,28 +109,16 @@
 	name = "shadow eyes"
 	desc = "A spooky set of eyes that can see in the dark."
 	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	actions_types = list(/datum/action/item_action/organ_action/use)
+	lighting_alpha = LIGHTING_PLANE_ALPHA_NV
 	var/night_vision = TRUE
-
-/obj/item/organ/eyes/night_vision/ui_action_click()
-	sight_flags = initial(sight_flags)
-	switch(lighting_alpha)
-		if (LIGHTING_PLANE_ALPHA_VISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-		if (LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		if (LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-		else
-			lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
-			sight_flags &= ~SEE_BLACKNESS
-	owner.update_sight()
 
 /obj/item/organ/eyes/night_vision/alien
 	name = "alien eyes"
 	desc = "It turned out they had them after all!"
-	sight_flags = SEE_MOBS
+
+/obj/item/organ/eyes/night_vision/feline
+	name = "cat eyes"
+	desc = "Sensitive, slit-pupiled optical organs belonging to a feline humanoid capable of seeing better in the dark."
 
 /obj/item/organ/eyes/night_vision/zombie
 	name = "undead eyes"

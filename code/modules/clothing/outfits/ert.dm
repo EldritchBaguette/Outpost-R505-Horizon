@@ -321,38 +321,7 @@
 		/obj/item/storage/box/survival/engineer = 1,
 )
 	l_hand = /obj/item/reagent_containers/spray/chemsprayer/janitor
-
-/datum/outfit/centcom/ert/clown
-	name = "ERT Clown"
-
-	id = /obj/item/card/id/advanced/centcom/ert/clown
-	suit = /obj/item/clothing/suit/space/hardsuit/ert/clown
-	back = /obj/item/storage/backpack/ert/clown
-	backpack_contents = list(
-		/obj/item/gun/ballistic/revolver/reverse = 1,
-		/obj/item/melee/transforming/energy/sword/bananium = 1,
-		/obj/item/shield/energy/bananium = 1,
-		/obj/item/storage/box/survival/engineer = 1,
-)
-	belt = /obj/item/storage/belt/champion
-	glasses = /obj/item/clothing/glasses/godeye
-	mask = /obj/item/clothing/mask/gas/clown_hat
-	shoes = /obj/item/clothing/shoes/clown_shoes/combat
-	l_pocket = /obj/item/food/grown/banana
-	r_pocket = /obj/item/bikehorn/golden
-
-/datum/outfit/centcom/ert/clown/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	..()
-	if(visualsOnly)
-		return
-	var/obj/item/radio/R = H.ears
-	R.keyslot = new /obj/item/encryptionkey/headset_service
-	R.recalculateChannels()
-	ADD_TRAIT(H, TRAIT_NAIVE, INNATE_TRAIT)
-	H.dna.add_mutation(CLOWNMUT)
-	for(var/datum/mutation/human/clumsy/M in H.dna.mutations)
-		M.mutadone_proof = TRUE
-
+	
 /datum/outfit/centcom/centcom_intern
 	name = "CentCom Intern"
 
