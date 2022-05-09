@@ -32,7 +32,6 @@
 	organ_type = /obj/item/organ/genital/penis
 	associated_organ_slot = ORGAN_SLOT_PENIS
 	key = "penis"
-	color_src = USE_MATRIXED_COLORS
 	always_color_customizable = TRUE
 	center = TRUE
 	special_icon_case = TRUE
@@ -103,6 +102,27 @@
 /datum/sprite_accessory/genital/penis/thick
 	icon_state = "thick"
 	name = "Thick"
+
+/datum/sprite_accessory/genital/ass
+	icon = 'icons/mob/sprite_accessory/genitals/ass_onmob.dmi'
+	organ_type = /obj/item/organ/genital/ass
+	associated_organ_slot = ORGAN_SLOT_ASS
+	key = "ass"
+	always_color_customizable = TRUE
+	default_color = DEFAULT_SKIN_OR_PRIMARY
+	relevent_layers = list(BODY_ADJ_LAYER, UNDER_BODY_FRONT_LAYER)
+	uses_skintones = TRUE
+	genital_location = LEGS
+
+/datum/sprite_accessory/genital/ass/none
+	icon_state = "none"
+	name = "None"
+	factual = FALSE
+	color_src = null
+
+/datum/sprite_accessory/genital/ass/ass
+	icon_state = "ass"
+	name = "Ass"
 
 /datum/sprite_accessory/genital/testicles
 	icon = 'icons/mob/sprite_accessory/genitals/testicles_onmob.dmi'
@@ -232,24 +252,3 @@
 /datum/sprite_accessory/genital/breasts/quad
 	icon_state = "quad"
 	name = "Quad"
-
-/datum/sprite_accessory/genital/ass
-	icon = 'icons/mob/sprite_accessory/genitals/ass_onmob.dmi'
-	organ_type = /obj/item/organ/genital/ass
-	associated_organ_slot = ORGAN_SLOT_ASS
-	key = "ass"
-	always_color_customizable = TRUE
-	default_color = DEFAULT_SKIN_OR_PRIMARY
-	relevent_layers = list(BODY_ADJ_LAYER, UNDER_BODY_FRONT_LAYER)
-	uses_skintones = TRUE
-	genital_location = LEGS
-
-/datum/sprite_accessory/genital/ass/none
-	icon_state = "none"
-	name = "None"
-	factual = FALSE
-	color_src = null
-
-/datum/sprite_accessory/genital/ass/ass
-	icon_state = "ass"
-	name = "Ass"
