@@ -442,14 +442,18 @@
 	if(!on || status != LIGHT_OK)
 		return
 
+	var/lightbulb_power = bulb_power
 	var/area/A = get_area(src)
 	if(emergency_mode || (A?.fire))
 		. += mutable_appearance(overlayicon, "[base_state]_emergency")
-		return
-	if(nightshift_enabled)
+		lightbulb_power *= bulb_emergency_pow_mul
+	else if(nightshift_enabled)
 		. += mutable_appearance(overlayicon, "[base_state]_nightshift")
-		return
-	. += mutable_appearance(overlayicon, base_state)
+		lightbulb_power = nightshift_light_power
+	else
+		. += mutable_appearance(overlayicon, base_state)
+
+	. += emissive_appearance(overlayicon, "[base_state]_emissive", alpha = (255 * lightbulb_power))
 
 #define LIGHT_ON_DELAY_UPPER 3 SECONDS
 #define LIGHT_ON_DELAY_LOWER 1 SECONDS
@@ -816,17 +820,8 @@
 			var/obj/item/bodypart/affecting = H.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
 			if(affecting?.receive_damage( 0, 5 )) // 5 burn damage
 				H.update_damage_overlays()
-			if(HAS_TRAIT(user, TRAIT_LIGHTBULB_REMOVER))
-				to_chat(user, SPAN_NOTICE("You feel like you're burning, but you can push through."))
-				if(!do_after(user, 5 SECONDS, target = src))
-					return
-				if(affecting?.receive_damage( 0, 10 )) // 10 more burn damage
-					H.update_damage_overlays()
-				to_chat(user, SPAN_NOTICE("You manage to remove the light [fitting], shattering it in process."))
-				break_light_tube()
-			else
-				to_chat(user, SPAN_WARNING("You try to remove the light [fitting], but you burn your hand on it!"))
-				return
+			to_chat(user, SPAN_WARNING("You try to remove the light [fitting], but you burn your hand on it!"))
+			return
 	else
 		to_chat(user, SPAN_NOTICE("You remove the light [fitting]."))
 	// create a light tube/bulb item and put it in the user's hand
