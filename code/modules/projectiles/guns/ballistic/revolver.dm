@@ -1,9 +1,9 @@
 /obj/item/gun/ballistic/revolver
 	name = "\improper .357 revolver"
-	desc = "A suspicious revolver. Uses .357 ammo." //usually used by syndicates
+	desc = "A gleaming black revolver. Uses .357 rounds." //usually used by syndicates
 	icon_state = "revolver"
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder
-	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
+	fire_sound = 'sound/weapons/gun/revolver/shot.ogg'
 	load_sound = 'sound/weapons/gun/revolver/load_bullet.ogg'
 	eject_sound = 'sound/weapons/gun/revolver/empty.ogg'
 	vary_fire_sound = FALSE
@@ -39,9 +39,9 @@
 	spin()
 
 /obj/item/gun/ballistic/revolver/verb/spin()
-	set name = "Spin Chamber"
+	set name = "Spin Cylinder"
 	set category = "Object"
-	set desc = "Click to spin your revolver's chamber."
+	set desc = "Click to spin your revolver's cylinder."
 
 	var/mob/M = usr
 
@@ -54,7 +54,7 @@
 
 	if(do_spin())
 		playsound(usr, "revolver_spin", 30, FALSE)
-		usr.visible_message(SPAN_NOTICE("[usr] spins [src]'s chamber."), SPAN_NOTICE("You spin [src]'s chamber."))
+		usr.visible_message(SPAN_NOTICE("[usr] spins [src]'s cylinder."), SPAN_NOTICE("You spin [src]'s cylinder."))
 	else
 		verbs -= /obj/item/gun/ballistic/revolver/verb/spin
 
@@ -84,21 +84,15 @@
 	if(last_fire && last_fire + 15 SECONDS > world.time)
 		. = SPAN_NOTICE("[user] touches the end of [src] to \the [A], using the residual heat to ignite it in a puff of smoke. What a badass.")
 
+/obj/item/gun/ballistic/revolver/alt
+	desc = "A gleaming stainless steel revolver. Uses .357 rounds."
+
 /obj/item/gun/ballistic/revolver/detective
 	name = "\improper Colt Detective Special"
-	desc = "A classic, if not outdated, law enforcement firearm. Uses .38 Special rounds. \nSome spread rumors that if you loosen the barrel with a wrench, you can \"improve\" it."
+	desc = "A compact Old Earth .38 revolver often associated with pre-UEG human law enforcement. Uses .38 rounds, if that wasn't already clear."
 	fire_sound = 'sound/weapons/gun/revolver/shot.ogg'
 	icon_state = "detective"
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38
-	initial_caliber = CALIBER_38
-	alternative_caliber = CALIBER_357
-	initial_fire_sound = 'sound/weapons/gun/revolver/shot.ogg'
-	alternative_fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
-	can_modify_ammo = TRUE
-	alternative_ammo_misfires = TRUE
-	can_misfire = FALSE
-	misfire_probability = 0
-	misfire_percentage_increment = 25 //about 1 in 4 rounds, which increases rapidly every shot
 	obj_flags = UNIQUE_RENAME
 	unique_reskin = list("Default" = "detective",
 						"Fitz Special" = "detective_fitz",
@@ -112,13 +106,13 @@
 						)
 
 /obj/item/gun/ballistic/revolver/mateba
-	name = "\improper Unica 6 auto-revolver"
-	desc = "A retro high-powered autorevolver typically used by officers of the New Russia military. Uses .357 ammo."
-	icon_state = "mateba"
+	name = "\improper Unica 6 autorevolver"
+	desc = "Tried and tested, this centuries-old model of semiautomatic six-shooter still packs a punch. Uses .357 rounds."
+	icon_state = "unica"
 
 /obj/item/gun/ballistic/revolver/golden
 	name = "\improper Golden revolver"
-	desc = "This ain't no game, ain't never been no show, And I'll gladly gun down the oldest lady you know. Uses .357 ammo."
+	desc = "This ain't no game, ain't never been no show, And I'll gladly gun down the oldest lady you know. Uses .357 rounds."
 	icon_state = "goldrevolver"
 	fire_sound = 'sound/weapons/resonator_blast.ogg'
 	recoil = 8
@@ -126,112 +120,8 @@
 
 /obj/item/gun/ballistic/revolver/nagant
 	name = "\improper Nagant revolver"
-	desc = "An old model of revolver that originated in Russia. Able to be suppressed. Uses 7.62x38mmR ammo."
+	desc = "An ancient model of revolver that originated in Russia nearly 700 years ago, replicated with modern materials. Able to be suppressed. Uses 7.62x38mmR rounds."
 	icon_state = "nagant"
 	can_suppress = TRUE
 
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev762
-
-
-// A gun to play Russian Roulette!
-// You can spin the chamber to randomize the position of the bullet.
-
-/obj/item/gun/ballistic/revolver/russian
-	name = "\improper Russian revolver"
-	desc = "A Russian-made revolver for drinking games. Uses .357 ammo, and has a mechanism requiring you to spin the chamber before each trigger pull."
-	icon_state = "russianrevolver"
-	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rus357
-	var/spun = FALSE
-
-/obj/item/gun/ballistic/revolver/russian/do_spin()
-	. = ..()
-	if(.)
-		spun = TRUE
-
-/obj/item/gun/ballistic/revolver/russian/attackby(obj/item/A, mob/user, params)
-	..()
-	if(get_ammo() > 0)
-		spin()
-	update_appearance()
-	A.update_appearance()
-	return
-
-/obj/item/gun/ballistic/revolver/russian/attack_self(mob/user)
-	if(!spun)
-		spin()
-		spun = TRUE
-		return
-	..()
-
-/obj/item/gun/ballistic/revolver/russian/afterattack(atom/target, mob/living/user, flag, params)
-	. = ..(null, user, flag, params)
-
-	if(flag)
-		if(!(target in user.contents) && ismob(target))
-			if(user.combat_mode) // Flogging action
-				return
-
-	if(isliving(user))
-		if(!can_trigger_gun(user))
-			return
-	if(target != user)
-		if(ismob(target))
-			to_chat(user, SPAN_WARNING("A mechanism prevents you from shooting anyone but yourself!"))
-		return
-
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(!spun)
-			to_chat(user, SPAN_WARNING("You need to spin \the [src]'s chamber first!"))
-			return
-
-		spun = FALSE
-
-		if(chambered)
-			var/obj/item/ammo_casing/AC = chambered
-			if(AC.fire_casing(user, user))
-				playsound(user, fire_sound, fire_sound_volume, vary_fire_sound)
-				var/zone = check_zone(user.zone_selected)
-				var/obj/item/bodypart/affecting = H.get_bodypart(zone)
-				if(zone == BODY_ZONE_HEAD || zone == BODY_ZONE_PRECISE_EYES || zone == BODY_ZONE_PRECISE_MOUTH)
-					shoot_self(user, affecting)
-				else
-					user.visible_message(SPAN_DANGER("[user.name] cowardly fires [src] at [user.p_their()] [affecting.name]!"), SPAN_USERDANGER("You cowardly fire [src] at your [affecting.name]!"), SPAN_HEAR("You hear a gunshot!"))
-				chambered = null
-				return
-
-		user.visible_message(SPAN_DANGER("*click*"))
-		playsound(src, dry_fire_sound, 30, TRUE)
-
-/obj/item/gun/ballistic/revolver/russian/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
-	add_fingerprint(user)
-	playsound(src, dry_fire_sound, 30, TRUE)
-	user.visible_message(SPAN_DANGER("[user.name] tries to fire \the [src] at the same time, but only succeeds at looking like an idiot."), SPAN_DANGER("\The [src]'s anti-combat mechanism prevents you from firing it at the same time!"))
-
-/obj/item/gun/ballistic/revolver/russian/proc/shoot_self(mob/living/carbon/human/user, affecting = BODY_ZONE_HEAD)
-	user.apply_damage(300, BRUTE, affecting)
-	user.visible_message(SPAN_DANGER("[user.name] fires [src] at [user.p_their()] head!"), SPAN_USERDANGER("You fire [src] at your head!"), SPAN_HEAR("You hear a gunshot!"))
-
-/obj/item/gun/ballistic/revolver/russian/soul
-	name = "cursed Russian revolver"
-	desc = "To play with this revolver requires wagering your very soul."
-
-/obj/item/gun/ballistic/revolver/russian/soul/shoot_self(mob/living/user)
-	..()
-	var/obj/item/soulstone/anybody/revolver/SS = new /obj/item/soulstone/anybody/revolver(get_turf(src))
-	if(!SS.transfer_soul("FORCE", user)) //Something went wrong
-		qdel(SS)
-		return
-	user.visible_message(SPAN_DANGER("[user.name]'s soul is captured by \the [src]!"), SPAN_USERDANGER("You've lost the gamble! Your soul is forfeit!"))
-
-/obj/item/gun/ballistic/revolver/reverse //Fires directly at its user... unless the user is a clown, of course.
-	clumsy_check = FALSE
-
-/obj/item/gun/ballistic/revolver/reverse/can_trigger_gun(mob/living/user)
-	if(HAS_TRAIT(user, TRAIT_CLUMSY) || is_clown_job(user.mind?.assigned_role))
-		return ..()
-	if(process_fire(user, user, FALSE, null, BODY_ZONE_HEAD))
-		user.visible_message(SPAN_WARNING("[user] somehow manages to shoot [user.p_them()]self in the face!"), SPAN_USERDANGER("You somehow shoot yourself in the face! How the hell?!"))
-		user.emote("scream")
-		user.drop_all_held_items()
-		user.Paralyze(80)

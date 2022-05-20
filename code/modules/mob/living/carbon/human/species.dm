@@ -293,6 +293,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 		default_mutant_bodyparts["testicles"] = "None"
 		default_mutant_bodyparts["breasts"] = "None"
 		default_mutant_bodyparts["penis"] = "None"
+		default_mutant_bodyparts["ass"] = "None"
 	..()
 
 /**
@@ -905,6 +906,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 		source.remove_overlay(BODY_BEHIND_LAYER)
 		source.remove_overlay(BODY_ADJ_LAYER)
 		source.remove_overlay(BODY_FRONT_LAYER)
+		source.remove_overlay(UNDER_BODY_FRONT_LAYER)
 		return
 
 	var/list/bodyparts_to_add = list()
@@ -935,6 +937,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 	source.remove_overlay(BODY_BEHIND_LAYER)
 	source.remove_overlay(BODY_ADJ_LAYER)
 	source.remove_overlay(BODY_FRONT_LAYER)
+	source.remove_overlay(UNDER_BODY_FRONT_LAYER)
 
 	var/g = (source.body_type == FEMALE) ? "f" : "m"
 
@@ -1102,6 +1105,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 	source.apply_overlay(BODY_BEHIND_LAYER)
 	source.apply_overlay(BODY_ADJ_LAYER)
 	source.apply_overlay(BODY_FRONT_LAYER)
+	source.apply_overlay(UNDER_BODY_FRONT_LAYER)
 
 
 //This exists so sprite accessories can still be per-layer without having to include that layer's
@@ -1114,6 +1118,9 @@ GLOBAL_LIST_EMPTY(customizable_races)
 			return "ADJ"
 		if(BODY_FRONT_LAYER)
 			return "FRONT"
+		//Outpost R505 edit - I swear this is necessary! -Capn
+		if(UNDER_BODY_FRONT_LAYER)
+			return "UNDER"
 
 ///Proc that will randomise the hair, or primary appearance element (i.e. for moths wings) of a species' associated mob
 /datum/species/proc/randomize_main_appearance_element(mob/living/carbon/human/human_mob)

@@ -3,7 +3,7 @@
 	default_color = "0F0"
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 
-	//R505 NOTE: I have no idea if this will work - synths have the "medbot coming through" trait because medbots can't be healed by 'em.
+	//R505 NOTE: I have no idea if this will work - synths have the "medbot coming through" trait because they  can't be healed by 'em.
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
 		TRAIT_CAN_STRIP,
@@ -28,13 +28,11 @@
 		TRAIT_SUPERMATTER_MADNESS_IMMUNE,
 		TRAIT_NOFLASH,
 		TRAIT_NEVER_WOUNDED,
-		TRAIT_NOLIMBDISABLE,
 		TRAIT_MEDIBOTCOMINGTHROUGH
 	)
 	mutant_bodyparts = list()
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	reagent_flags = PROCESS_SYNTHETIC
-	armor = 25
 	coldmod = 0.5
 	burnmod = 1.1
 	heatmod = 1.2

@@ -293,7 +293,7 @@
 	heat_protection = HEAD
 	armor = list(MELEE = 30, BULLET = 5, LASER = 10, ENERGY = 20, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 75, WOUND = 15)
 	light_range = 7
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/pickaxe, /obj/item/gun/ballistic/shotgun/s99)
 
 /obj/item/clothing/head/helmet/space/hardsuit/mining/Initialize()
 	. = ..()

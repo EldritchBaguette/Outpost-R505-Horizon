@@ -44,7 +44,7 @@
 		A.fire()
 		if(!A.suppressed && firing_effect_type)
 			new firing_effect_type(get_turf(src), chassis.dir)
-		playsound(chassis, fire_sound, 50, TRUE)
+		playsound(chassis, fire_sound, 50, FALSE)
 
 		sleep(max(0, projectile_delay))
 
@@ -70,11 +70,11 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/disabler
 	equip_cooldown = 8
 	name = "\improper CH-DS \"Peacemaker\" disabler"
-	desc = "A weapon for combat exosuits. Shoots basic disablers."
+	desc = "A weapon for combat exosuits. Fires low-yield plasma bolts intended to incapacitate."
 	icon_state = "mecha_disabler"
 	energy_drain = 30
-	projectile = /obj/projectile/beam/disabler
-	fire_sound = 'sound/weapons/taser2.ogg'
+	projectile = /obj/projectile/energy/disabler
+	fire_sound = 'modular_R505/sound/weapons/stunner.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
 	equip_cooldown = 15
@@ -111,13 +111,13 @@
 	icon_state = "mecha_pulse"
 	energy_drain = 120
 	projectile = /obj/projectile/beam/pulse/heavy
-	fire_sound = 'sound/weapons/marauder.ogg'
+	fire_sound = 'sound/weapons/pulse.ogg'
 	harmful = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma
 	equip_cooldown = 10
 	name = "217-D Heavy Plasma Cutter"
-	desc = "A device that shoots resonant plasma bursts at extreme velocity. The blasts are capable of crushing rock and demolishing solid obstacles."
+	desc = "A massive, high-yield plasma cutting beam. Aim away from face."
 	icon_state = "mecha_plasmacutter"
 	inhand_icon_state = "plasmacutter"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'

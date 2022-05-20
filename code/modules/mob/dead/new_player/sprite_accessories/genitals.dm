@@ -32,7 +32,6 @@
 	organ_type = /obj/item/organ/genital/penis
 	associated_organ_slot = ORGAN_SLOT_PENIS
 	key = "penis"
-	color_src = USE_MATRIXED_COLORS
 	always_color_customizable = TRUE
 	center = TRUE
 	special_icon_case = TRUE
@@ -73,11 +72,8 @@
 
 /datum/sprite_accessory/genital/penis/human
 	icon_state = "human"
-	name = "Human"
-	color_src = USE_ONE_COLOR
+	name = "Humanoid"
 	default_color = DEFAULT_SKIN_OR_PRIMARY
-	uses_skintones = TRUE
-	can_have_sheath = FALSE
 
 /datum/sprite_accessory/genital/penis/knotted
 	icon_state = "knotted"
@@ -95,10 +91,6 @@
 	icon_state = "tapered"
 	name = "Tapered"
 
-/datum/sprite_accessory/genital/penis/tentacle
-	icon_state = "tentacle"
-	name = "Tentacled"
-
 /datum/sprite_accessory/genital/penis/hemi
 	icon_state = "hemi"
 	name = "Hemi"
@@ -106,6 +98,31 @@
 /datum/sprite_accessory/genital/penis/hemiknot
 	icon_state = "hemiknot"
 	name = "Knotted Hemi"
+
+/datum/sprite_accessory/genital/penis/thick
+	icon_state = "thick"
+	name = "Thick"
+
+/datum/sprite_accessory/genital/ass
+	icon = 'icons/mob/sprite_accessory/genitals/ass_onmob.dmi'
+	organ_type = /obj/item/organ/genital/ass
+	associated_organ_slot = ORGAN_SLOT_ASS
+	key = "ass"
+	always_color_customizable = TRUE
+	default_color = DEFAULT_SKIN_OR_PRIMARY
+	relevent_layers = list(BODY_ADJ_LAYER, UNDER_BODY_FRONT_LAYER)
+	uses_skintones = TRUE
+	genital_location = LEGS
+
+/datum/sprite_accessory/genital/ass/none
+	icon_state = "none"
+	name = "None"
+	factual = FALSE
+	color_src = null
+
+/datum/sprite_accessory/genital/ass/ass
+	icon_state = "ass"
+	name = "Ass"
 
 /datum/sprite_accessory/genital/testicles
 	icon = 'icons/mob/sprite_accessory/genitals/testicles_onmob.dmi'
@@ -199,25 +216,6 @@
 	icon_state = "tentacle"
 	name = "Tentacle"
 
-/datum/sprite_accessory/genital/vagina/dentata
-	icon_state = "dentata"
-	name = "Dentata"
-
-/datum/sprite_accessory/genital/vagina/hairy
-	icon_state = "hairy"
-	name = "Hairy"
-	alt_aroused = FALSE
-
-/datum/sprite_accessory/genital/vagina/spade
-	icon_state = "spade"
-	name = "Spade"
-	alt_aroused = FALSE
-
-/datum/sprite_accessory/genital/vagina/furred
-	icon_state = "furred"
-	name = "Furred"
-	alt_aroused = FALSE
-
 /datum/sprite_accessory/genital/vagina/gaping
 	icon_state = "gaping"
 	name = "Gaping"
@@ -254,7 +252,3 @@
 /datum/sprite_accessory/genital/breasts/quad
 	icon_state = "quad"
 	name = "Quad"
-
-/datum/sprite_accessory/genital/breasts/sextuple
-	icon_state = "sextuple"
-	name = "Sextuple"

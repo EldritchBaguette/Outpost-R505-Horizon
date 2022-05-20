@@ -1,6 +1,6 @@
 /obj/machinery/power/emitter
-	name = "emitter"
-	desc = "A heavy-duty industrial laser, often used in containment fields and power generation."
+	name = "industrial laser emitter"
+	desc = "A heavy-duty green laser emitter, common in a variety of industrial applications."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "emitter"
 	base_icon_state = "emitter"
@@ -39,7 +39,7 @@
 	///Used to stop interactions with the object (mainly in the wabbajack statue)
 	var/allow_switch_interact = TRUE
 	///What projectile type are we shooting?
-	var/projectile_type = /obj/projectile/beam/emitter/hitscan
+	var/projectile_type = /obj/projectile/beam/emitter
 	///What's the projectile sound?
 	var/projectile_sound = 'sound/weapons/emitter.ogg'
 	///Sparks emitted with every shot

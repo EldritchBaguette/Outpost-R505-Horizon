@@ -1,6 +1,6 @@
 /obj/item/clothing/under/color
 	desc = "A standard issue colored jumpsuit. Variety is the spice of life!"
-	dying_key = DYE_REGISTRY_UNDER
+	//dying_key = DYE_REGISTRY_UNDER    //R505 Edit - Redundant
 	greyscale_colors = "#3f3f3f"
 	greyscale_config = /datum/greyscale_config/jumpsuit
 	greyscale_config_inhand_left = /datum/greyscale_config/jumpsuit_inhand_left

@@ -354,16 +354,16 @@
 		/obj/item/weldingtool/mini,
 		/obj/item/extinguisher/mini,
 		/obj/item/storage/bag/sheetsnatcher/borg,
-		/obj/item/gun/energy/kinetic_accelerator/cyborg,
+		/obj/item/gun/energy/plasmacutter/cyborg,
 		/obj/item/gps/cyborg,
 		/obj/item/stack/marker_beacon,
-		/obj/item/kinetic_crusher/cyborg)
+		/obj/item/kinetic_crusher/cyborg,
+		/obj/item/mining_scanner/cyborg)
 	radio_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_SUPPLY)
 	emag_modules = list(/obj/item/borg/stun)
 	cyborg_base_icon = "miner"
 	model_select_icon = "miner"
 	hat_offset = 0
-	var/obj/item/t_scanner/adv_mining_scanner/cyborg/mining_scanner //built in memes.
 
 /obj/item/robot_model/miner/be_transformed_to(obj/item/robot_model/old_model)
 	var/mob/living/silicon/robot/cyborg = loc
@@ -387,11 +387,8 @@
 
 /obj/item/robot_model/miner/rebuild_modules()
 	. = ..()
-	if(!mining_scanner)
-		mining_scanner = new(src)
 
 /obj/item/robot_model/miner/Destroy()
-	QDEL_NULL(mining_scanner)
 	return ..()
 
 // --------------------- Peacekeeper

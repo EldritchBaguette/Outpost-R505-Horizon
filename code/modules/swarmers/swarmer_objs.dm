@@ -158,7 +158,7 @@
 
 /obj/structure/swarmer/blockade/CanAllowThrough(atom/movable/O)
 	. = ..()
-	if(isswarmer(O) || istype(O, /obj/projectile/beam/disabler))
+	if(isswarmer(O) || istype(O, /obj/projectile/energy/disabler))
 		return TRUE
 
 /obj/effect/temp_visual/swarmer //temporary swarmer visual feedback objects

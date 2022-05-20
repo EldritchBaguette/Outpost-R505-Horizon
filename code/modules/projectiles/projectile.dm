@@ -67,7 +67,7 @@
 	/// number of times we've pierced something. Incremented BEFORE bullet_act and on_hit proc!
 	var/pierces = 0
 
-	var/speed = 0.8 //Amount of deciseconds it takes for projectile to travel
+	var/speed = 0.5 //Amount of deciseconds it takes for projectile to travel
 	var/Angle = 0
 	var/original_angle = 0 //Angle at firing
 	var/nondirectional_sprite = FALSE //Set TRUE to prevent projectiles from having their sprites rotated based on firing angle

@@ -2,9 +2,9 @@
 	element_flags = ELEMENT_BESPOKE|ELEMENT_DETACH
 	id_arg_index = 2
 	///Time it takes to climb onto the object
-	var/climb_time = (2 SECONDS)
+	var/climb_time = (1 SECONDS)
 	///Stun duration for when you get onto the object
-	var/climb_stun = (2 SECONDS)
+	var/climb_stun = (5)
 	/// Whether you climb OVER a thing, implies it is directional and will invoke extra checks / verb changes
 	var/climb_over = FALSE
 	///Assoc list of object being climbed on - climbers.  This allows us to check who needs to be shoved off a climbable object when its clicked on.
@@ -71,8 +71,8 @@
 	if(isalien(user))
 		adjusted_climb_time *= 0.25 //aliens are terrifyingly fast
 	if(HAS_TRAIT(user, TRAIT_FREERUNNING)) //do you have any idea how fast I am???
-		adjusted_climb_time *= 0.8
-		adjusted_climb_stun *= 0.8
+		adjusted_climb_time *= 0.7
+		adjusted_climb_stun *= 0.7
 	LAZYADDASSOCLIST(current_climbers, climbed_thing, user)
 	if(do_after(user, adjusted_climb_time, climbed_thing))
 		if(QDELETED(climbed_thing)) //Checking if structure has been destroyed

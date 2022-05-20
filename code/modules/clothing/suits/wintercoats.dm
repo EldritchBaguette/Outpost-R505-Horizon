@@ -417,11 +417,9 @@
 	icon_state = "coatminer"
 	inhand_icon_state = "coatminer"
 	allowed = list(
-		/obj/item/gun/energy/kinetic_accelerator,
 		/obj/item/mining_scanner,
 		/obj/item/pickaxe,
 		/obj/item/resonator,
-		/obj/item/t_scanner/adv_mining_scanner,
 		/obj/item/tank/internals,
 	)
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)

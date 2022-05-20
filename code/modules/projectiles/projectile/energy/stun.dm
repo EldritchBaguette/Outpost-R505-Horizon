@@ -28,3 +28,18 @@
 /obj/projectile/energy/electrode/on_range() //to ensure the bolt sparks when it reaches the end of its range if it didn't hit a target yet
 	do_sparks(1, TRUE, src)
 	..()
+
+/obj/projectile/energy/disabler
+	name = "less-than-lethal plasma bolt"
+	icon = 'modular_R505/icons/effects/projectiles.dmi'
+	icon_state = "stunner"
+	light_system = MOVABLE_LIGHT
+	light_range = 1
+	light_power = 1
+	light_color = COLOR_SOFT_RED
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser/wall
+	nodamage = FALSE
+	stutter = 5
+	jitter = 20
+	stamina = 30
+	damage = 5

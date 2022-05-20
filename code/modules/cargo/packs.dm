@@ -682,6 +682,15 @@
 					/obj/item/ammo_box/magazine/wt550m9,
 					/obj/item/ammo_box/magazine/wt550m9)
 
+/datum/supply_pack/security/armory/s99
+	name = "S99 Combat Shotgun Crate"
+	desc = "A crate housing two Krieger-Buzinsky S99 Jackhammer semiautomatic combat shotguns. Requires Mining access to open."
+	access = ACCESS_MINING_STATION
+	cost = CARGO_CRATE_VALUE * 7
+	contains = list(/obj/item/gun/ballistic/shotgun/s99,
+					/obj/item/gun/ballistic/shotgun/s99)
+	crate_name = "combat shotgun crate"
+
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Engineering /////////////////////////////////////
@@ -2539,15 +2548,6 @@
 					/obj/item/clothing/under/suit/tan,
 					/obj/item/lipstick/random)
 	crate_name = "formalwear crate"
-	crate_type = /obj/structure/closet/crate/wooden
-
-/datum/supply_pack/costumes_toys/clownpin
-	name = "Hilarious Firing Pin Crate"
-	desc = "I uh... I'm not really sure what this does. Wanna buy it?"
-	cost = CARGO_CRATE_VALUE * 10
-	contraband = TRUE
-	contains = list(/obj/item/firing_pin/clown)
-	crate_name = "toy crate" // It's /technically/ a toy. For the clown, at least.
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/lasertag

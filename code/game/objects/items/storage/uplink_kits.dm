@@ -61,7 +61,6 @@
 			new /obj/item/chameleon(src) // 7 tc
 
 		if(KIT_STEALTHY)
-			new /obj/item/gun/energy/kinetic_accelerator/crossbow(src)
 			new /obj/item/pen/sleepy(src)
 			new /obj/item/healthanalyzer/rad_laser(src)
 			new /obj/item/chameleon(src)
@@ -405,13 +404,6 @@
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/syringe/bioterror(src)
 
-/obj/item/storage/box/syndie_kit/clownpins
-	name = "ultra hilarious firing pin box"
-
-/obj/item/storage/box/syndie_kit/clownpins/PopulateContents()
-	for(var/i in 1 to 7)
-		new /obj/item/firing_pin/clown/ultra(src)
-
 /obj/item/storage/box/syndie_kit/imp_storage
 	name = "storage implant box"
 
@@ -548,9 +540,6 @@
 /obj/item/storage/box/syndie_kit/ez_clean/PopulateContents()
 	for(var/i in 1 to 3)
 		new/obj/item/grenade/chem_grenade/ez_clean(src)
-
-/obj/item/storage/box/hug/reverse_revolver/PopulateContents()
-	new /obj/item/gun/ballistic/revolver/reverse(src)
 
 /obj/item/storage/box/syndie_kit/mimery/PopulateContents()
 	new /obj/item/book/granter/spell/mimery_blockade(src)

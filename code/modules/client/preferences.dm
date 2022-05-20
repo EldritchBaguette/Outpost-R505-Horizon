@@ -608,6 +608,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						dat += "<b>Uses skintones: </b> <a href='?_src_=prefs;preference=uses_skintones;task=input'>[(features["uses_skintones"]) ? "Yes" : "No"]</a>"
 						dat += "<h3>Vagina</h3>"
 						dat += print_bodypart_change_line("vagina")
+
+						//Dat ass
+						dat += "<h3>Ass</h3>"
+						var/ass_name = mutant_bodyparts["ass"][MUTANT_INDEX_NAME]
+						dat += print_bodypart_change_line("ass")
+						if(ass_name != "None")
+							dat += "<br><b>Size: </b> <a href='?_src_=prefs;key=["ass"];preference=ass_size;task=change_genitals'>[features["ass_size"]]</a>"
+						dat += "</td>"
 						dat += "</td>"
 
 						dat += APPEARANCE_CATEGORY_COLUMN
@@ -1763,6 +1771,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/new_size = input(user, "Choose your character's balls size:", "Character Preference") as null|anything in GLOB.preference_balls_sizes
 					if(new_size)
 						features["balls_size"] = balls_description_to_size(new_size)
+				if("ass_size")
+					var/new_size = input(user, "Choose your ass size:\n(1-5)", "Character Preference") as num|null
+					if(new_size)
+						features["ass_size"] = clamp(round(new_size, 1), 1, 5)
 		if("change_bodypart")
 			needs_update = TRUE
 			switch(href_list["preference"])

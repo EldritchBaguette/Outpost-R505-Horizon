@@ -171,15 +171,6 @@
 /datum/antagonist/ert/intern/leader/unarmed
 	outfit = /datum/outfit/centcom/centcom_intern/leader/unarmed
 
-/datum/antagonist/ert/clown
-	role = "Clown"
-	outfit = /datum/outfit/centcom/ert/clown
-	plasmaman_outfit = /datum/outfit/plasmaman/party_comedian
-
-/datum/antagonist/ert/clown/New()
-	. = ..()
-	name_source = GLOB.clown_names
-
 /datum/antagonist/ert/janitor/party
 	role = "Party Cleaning Service"
 	outfit = /datum/outfit/centcom/ert/janitor/party

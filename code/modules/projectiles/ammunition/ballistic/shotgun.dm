@@ -6,7 +6,7 @@
 	icon_state = "blshell"
 	worn_icon_state = "shell"
 	caliber = CALIBER_SHOTGUN
-	custom_materials = list(/datum/material/iron=4000)
+	custom_materials = list(/datum/material/iron=250)
 	projectile_type = /obj/projectile/bullet/shotgun_slug
 
 /obj/item/ammo_casing/shotgun/executioner
@@ -25,7 +25,6 @@
 	name = "beanbag slug"
 	desc = "A weak beanbag slug for riot control."
 	icon_state = "bshell"
-	custom_materials = list(/datum/material/iron=250)
 	projectile_type = /obj/projectile/bullet/shotgun_beanbag
 
 /obj/item/ammo_casing/shotgun/incendiary
@@ -40,14 +39,13 @@
 	icon_state = "ishell2"
 	projectile_type = /obj/projectile/bullet/incendiary/shotgun/dragonsbreath
 	pellets = 4
-	variance = 35
+	variance = 15
 
 /obj/item/ammo_casing/shotgun/stunslug
 	name = "taser slug"
 	desc = "A stunning taser slug."
 	icon_state = "stunshell"
 	projectile_type = /obj/projectile/bullet/shotgun_stunslug
-	custom_materials = list(/datum/material/iron=250)
 
 /obj/item/ammo_casing/shotgun/meteorslug
 	name = "meteorslug shell"
@@ -75,7 +73,7 @@
 	icon_state = "gshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot
 	pellets = 6
-	variance = 25
+	variance = 10
 
 /obj/item/ammo_casing/shotgun/rubbershot
 	name = "rubber shot"
@@ -83,8 +81,7 @@
 	icon_state = "bshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_rubbershot
 	pellets = 6
-	variance = 25
-	custom_materials = list(/datum/material/iron=4000)
+	variance = 10
 
 /obj/item/ammo_casing/shotgun/incapacitate
 	name = "custom incapacitating shot"
@@ -92,15 +89,13 @@
 	icon_state = "bountyshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_incapacitate
 	pellets = 12//double the pellets, but half the stun power of each, which makes this best for just dumping right in someone's face.
-	variance = 25
-	custom_materials = list(/datum/material/iron=4000)
+	variance = 10
 
 /obj/item/ammo_casing/shotgun/improvised
 	name = "improvised shell"
 	desc = "An extremely weak shotgun shell with multiple small pellets made out of metal shards."
 	icon_state = "improvshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_improvised
-	custom_materials = list(/datum/material/iron=250)
 	pellets = 10
 	variance = 25
 
@@ -111,15 +106,7 @@
 	icon_state = "ionshell"
 	projectile_type = /obj/projectile/ion/weak
 	pellets = 4
-	variance = 35
-
-/obj/item/ammo_casing/shotgun/laserslug
-	name = "scatter laser shell"
-	desc = "An advanced shotgun shell that uses a micro laser to replicate the effects of a scatter laser weapon in a ballistic package."
-	icon_state = "lshell"
-	projectile_type = /obj/projectile/beam/weak
-	pellets = 6
-	variance = 35
+	variance = 15
 
 /obj/item/ammo_casing/shotgun/techshell
 	name = "unloaded technological shell"

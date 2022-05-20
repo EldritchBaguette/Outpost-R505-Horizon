@@ -92,7 +92,6 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/laser)
 	weapon_weight = WEAPON_HEAVY
 	can_flashlight = FALSE
-	trigger_guard = TRIGGER_GUARD_NONE
 	ammo_x_offset = 2
 
 /obj/item/gun/energy/e_gun/nuclear

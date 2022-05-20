@@ -97,11 +97,11 @@
 			size_affix = "2"
 		if(16 to 24)
 			size_affix = "3"
-		else
+		if(24 to 36)
 			size_affix = "4"
+		else
+			size_affix = "5"
 	var/passed_string = "penis_[genital_type]_[size_affix]"
-	if(uses_skintones)
-		passed_string += "_s"
 	icon_state = passed_string
 
 /obj/item/organ/genital/penis/get_sprite_size_string()
@@ -125,11 +125,11 @@
 			size_affix = "2"
 		if(16 to 24)
 			size_affix = "3"
-		else
+		if(24 to 36)
 			size_affix = "4"
+		else
+			size_affix = "5"
 	var/passed_string = "[genital_type]_[size_affix]_[is_erect]"
-	if(uses_skintones)
-		passed_string += "_s"
 	return passed_string
 
 /obj/item/organ/genital/penis/build_from_dna(datum/dna/DNA, associated_key)
@@ -149,13 +149,11 @@
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Pair", MUTANT_INDEX_COLOR_LIST = list("FEB"))
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = ORGAN_SLOT_TESTICLES
-	aroused = AROUSAL_CANT
+	aroused = AROUSAL_CANT //No, the balls do not get hard too.
 
 /obj/item/organ/genital/testicles/update_genital_icon_state()
-	var/measured_size = clamp(genital_size, 1, 3)
-	var/passed_string = "testicles_[genital_type]_[measured_size]"
-	if(uses_skintones)
-		passed_string += "_s"
+	var/measured_size = clamp(genital_size, 1, 5)
+	var/passed_string = "testicles_[genital_type]_[measured_size]" 
 	icon_state = passed_string
 
 /obj/item/organ/genital/testicles/get_description_string(datum/sprite_accessory/genital/gas)
@@ -167,10 +165,8 @@
 
 /obj/item/organ/genital/testicles/get_sprite_size_string()
 	var/measured_size = FLOOR(genital_size,1)
-	measured_size = clamp(measured_size, 0, 3)
+	measured_size = clamp(measured_size, 0, 5)
 	var/passed_string = "[genital_type]_[measured_size]"
-	if(uses_skintones)
-		passed_string += "_s"
 	return passed_string
 
 /obj/item/organ/genital/vagina
@@ -225,7 +221,7 @@
 	returned_string += size_description
 	if(aroused == AROUSAL_FULL)
 		if(lactates)
-			returned_string += " The nipples seem hard, perky and are leaking milk."
+			returned_string += " The nipples seem hard, perky, and are leaking milk."
 		else
 			returned_string += " Their nipples look hard and perky."
 	return returned_string
@@ -261,6 +257,39 @@
 	lactates = DNA.features["breasts_lactation"]
 	set_size(DNA.features["breasts_size"])
 
+/obj/item/organ/genital/ass
+	name = "ass"
+	desc = "Ass."
+	icon_state = "breasts"
+	icon = 'icons/obj/genitals/breasts.dmi'
+	mutantpart_key = "ass"
+	mutantpart_info = list(MUTANT_INDEX_NAME = "Ass", MUTANT_INDEX_COLOR_LIST = list("FEB"))
+	zone = BODY_ZONE_PRECISE_GROIN
+	slot = ORGAN_SLOT_ASS
+
+/obj/item/organ/genital/ass/get_sprite_size_string()
+	var/measured_size = FLOOR(genital_size,1)
+	measured_size = clamp(measured_size, 1, 5)
+	var/passed_string = "[measured_size]"
+	if(uses_skintones)
+		passed_string += "_s"
+	return passed_string
+
+/obj/item/organ/genital/ass/get_description_string(datum/sprite_accessory/genital/gas)
+	return "You see a [lowertext(ass_size_to_description(genital_size))] ass."
+
+/obj/item/organ/genital/ass/build_from_dna(datum/dna/DNA, associated_key)
+	..()
+	set_size(DNA.features["ass_size"])
+
+/obj/item/organ/genital/ass/update_genital_icon_state()
+	var/measured_size = clamp(genital_size, 1, 5)
+	var/passed_string = "ass_[measured_size]"
+	if(uses_skintones)
+		passed_string += "_s"
+	icon_state = passed_string
+
+
 /proc/breasts_size_to_cup(number)
 	if(number < 0)
 		number = 0
@@ -289,13 +318,27 @@
 			return text2num(key)
 	return 0
 
+/proc/ass_size_to_description(number)
+	if(number < 0)
+		number = 0
+	var/returned = GLOB.ass_size_translation["[number]"]
+	if(!returned)
+		returned = "beyond measurement"
+	return returned
+
+/proc/ass_description_to_size(name)
+	for(var/key in GLOB.ass_size_translation)
+		if(GLOB.ass_size_translation[key] == name)
+			return text2num(key)
+	return 0
+
 /mob/living/carbon/human/verb/toggle_genitals()
 	set category = "IC"
 	set name = "Expose/Hide genitals"
 	set desc = "Allows you to toggle which genitals should show through clothes or not."
 
 	if(stat != CONSCIOUS)
-		to_chat(usr, SPAN_WARNING("You can't toggle genitals visibility right now..."))
+		to_chat(usr, SPAN_WARNING("You can't toggle genital visibility right now."))
 		return
 
 	var/list/genital_list = list()

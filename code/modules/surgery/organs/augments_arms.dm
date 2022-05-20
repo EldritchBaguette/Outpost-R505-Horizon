@@ -121,7 +121,7 @@
 
 	owner.transferItemToLoc(active_item, src, TRUE)
 	active_item = null
-	playsound(get_turf(owner), 'sound/mecha/mechmove03.ogg', 50, TRUE)
+	playsound(get_turf(owner), 'modular_R505/sound/machines/servoDown.ogg', 50, FALSE)
 
 /obj/item/organ/cyberimp/arm/proc/Extend(obj/item/augment)
 	if(!(augment in src))
@@ -157,7 +157,7 @@
 	owner.visible_message(SPAN_NOTICE("[owner] extends [active_item] from [owner.p_their()] [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
 		SPAN_NOTICE("You extend [active_item] from your [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
 		SPAN_HEAR("You hear a short mechanical noise."))
-	playsound(get_turf(owner), 'sound/mecha/mechmove03.ogg', 50, TRUE)
+	playsound(get_turf(owner), 'modular_R505/sound/machines/servoUp.ogg', 50, FALSE)
 
 /obj/item/organ/cyberimp/arm/ui_action_click()
 	if((organ_flags & ORGAN_FAILING) || (!active_item && !contents.len))

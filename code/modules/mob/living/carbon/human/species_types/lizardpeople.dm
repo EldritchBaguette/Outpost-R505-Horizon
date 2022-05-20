@@ -115,6 +115,37 @@ Lizard subspecies: ASHWALKERS
 
 	learnable_languages = list(/datum/language/draconic)
 
+//Ash dragon? Ash dragon.
+//WIP!
+/*
+/datum/species/lizard/ashwalker
+	name = "Ash Dragon"
+	id = "ashdragon"
+	limbs_id = "lizard"
+	species_traits = list(
+		MUTCOLORS,
+		EYECOLOR,
+		LIPS,
+		DIGITIGRADE,
+		HAS_FLESH,
+		HAS_BONE,
+		NO_UNDERWEAR,
+	)
+	inherent_traits = list(
+		TRAIT_ADVANCEDTOOLUSER,
+		TRAIT_CAN_STRIP,
+		TRAIT_CHUNKYFINGERS,
+		TRAIT_NOBREATH,
+		TRAIT_VIRUSIMMUNE,
+		TRAIT_RESISTHEAT,
+		TRAIT_RESISTLOWPRESSURE,
+		TRAIT_NOFIRE,
+		TRAIT_PUSHIMMUNE,
+		TRAIT_HARDLY_WOUNDED,
+		TRAIT_
+	)
+*/
+
 /*
 Lizard subspecies: SILVER SCALED
 */
