@@ -18,6 +18,8 @@
 	paycheck = PAYCHECK_HARD
 	paycheck_department = ACCOUNT_SEC
 
+		liver_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
+
 	display_order = JOB_DISPLAY_ORDER_WARDEN
 	bounty_types = CIV_JOB_SEC
 	departments_list = list(
