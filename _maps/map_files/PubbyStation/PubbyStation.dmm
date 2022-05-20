@@ -8071,6 +8071,17 @@
 	},
 /turf/open/floor/iron,
 /area/security/brig)
+"auA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/smart_pipe/simple/supply/hidden/layer4{
+	dir = 9
+	},
+/obj/effect/mapping_helpers/smart_pipe/simple/scrubbers/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/iron,
+/area/security/brig)
 "auB" = (
 /obj/machinery/light{
 	dir = 8
@@ -24185,6 +24196,9 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"bni" = (
+/turf/open/floor/engine,
+/area/science/xenobiology)
 "bnj" = (
 /turf/closed/wall,
 /area/science/xenobiology)
@@ -32750,6 +32764,9 @@
 "bMy" = (
 /turf/open/floor/iron/dark,
 /area/service/chapel/dock)
+"bMA" = (
+/turf/open/floor/engine,
+/area/maintenance/department/engine)
 "bMB" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/engine,
@@ -38422,6 +38439,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/engineering/main)
+"cda" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/engineering/main)
 "cdc" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -40216,6 +40237,10 @@
 /obj/structure/bookcase/random/reference,
 /turf/open/floor/iron/dark,
 /area/service/library/lounge)
+"ckW" = (
+/obj/machinery/skill_station,
+/turf/open/floor/iron/dark,
+/area/service/library)
 "ckX" = (
 /obj/structure/bookcase/random/fiction,
 /turf/open/floor/iron/dark,
@@ -54110,6 +54135,9 @@
 	},
 /turf/open/floor/iron/cafeteria,
 /area/hallway/secondary/exit/departure_lounge)
+"oMk" = (
+/turf/open/floor/iron/dark,
+/area/maintenance/disposal/incinerator)
 "oMH" = (
 /obj/structure/table,
 /obj/item/airlock_painter/decal,
@@ -57282,6 +57310,10 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/department/engine)
+"sWj" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/engine,
+/area/engineering/main)
 "sWM" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -57417,6 +57449,13 @@
 /obj/machinery/atmospherics/components/binary/heat_pump/freezer,
 /turf/open/floor/iron,
 /area/science/xenobiology)
+"tbC" = (
+/obj/machinery/door/poddoor/shutters/radiation/preopen{
+	id = "Supermatter";
+	name = "supermatter shielding"
+	},
+/turf/open/floor/plating,
+/area/engineering/supermatter)
 "tbS" = (
 /obj/structure/cable,
 /obj/machinery/light/small/directional/west,
@@ -76392,7 +76431,7 @@ aht
 aht
 aht
 cjp
-ckH
+ckW
 ckH
 ckH
 ckH
@@ -81487,7 +81526,7 @@ bHQ
 bJd
 bKi
 bLv
-bLv
+bMA
 bNH
 bOz
 bHQ
@@ -83722,7 +83761,7 @@ aqq
 alv
 aeP
 atA
-auy
+auA
 avw
 awI
 axG
@@ -84750,7 +84789,7 @@ aqu
 arn
 asA
 atC
-auy
+auA
 avz
 awI
 axG
@@ -92294,11 +92333,11 @@ iyJ
 iyJ
 twv
 fsA
-hCE
+sWj
 uRk
-oEN
+tbC
 nmp
-oEN
+tbC
 uRk
 tqO
 lAK
@@ -92551,7 +92590,7 @@ cfb
 cfu
 tlN
 fsA
-hCE
+sWj
 uoq
 wGm
 wGm
@@ -92560,7 +92599,7 @@ uRk
 mZR
 nMP
 hQC
-hCE
+sWj
 bXk
 abI
 aht
@@ -92817,7 +92856,7 @@ uRk
 uRk
 uRk
 slC
-hCE
+sWj
 bXk
 abI
 aaa
@@ -93074,7 +93113,7 @@ ciH
 ipH
 jOe
 dWO
-hCE
+sWj
 bXk
 abI
 aht
@@ -93315,7 +93354,7 @@ cam
 uco
 ccW
 cce
-ccZ
+cda
 cbX
 cex
 cbX
@@ -93331,7 +93370,7 @@ uRk
 uRk
 uRk
 jMt
-hCE
+sWj
 bXk
 oex
 aaa
@@ -93579,7 +93618,7 @@ kfS
 cfy
 tlN
 nQt
-hCE
+sWj
 ika
 qqa
 qqa
@@ -93588,7 +93627,7 @@ uRk
 sIq
 vRw
 cDy
-hCE
+sWj
 bXk
 aaa
 aaa
@@ -93836,9 +93875,9 @@ qFu
 qFu
 tlN
 nQt
-hCE
+sWj
 uRk
-oEN
+tbC
 lBJ
 oEN
 uRk
@@ -94102,7 +94141,7 @@ wpI
 pth
 ulY
 lWv
-hCE
+sWj
 bXk
 abI
 aht
@@ -100508,11 +100547,11 @@ bXF
 bYw
 jty
 qUH
-lRS
-lRS
+oMk
+oMk
 oGc
 usl
-lRS
+oMk
 bRA
 bYw
 aaa
@@ -100765,11 +100804,11 @@ bXG
 bYw
 fis
 bQJ
-lRS
-lRS
+oMk
+oMk
 lRS
 qHB
-lRS
+oMk
 bRA
 bYw
 aaa
@@ -101022,8 +101061,8 @@ skw
 dyc
 bYw
 bZh
-lRS
-lRS
+oMk
+oMk
 cbC
 fbC
 ccr
@@ -108179,7 +108218,7 @@ aLi
 pmR
 kSG
 bkF
-blX
+bni
 blX
 blX
 bqI
@@ -108962,7 +109001,7 @@ bxR
 bzp
 blX
 blX
-blX
+bni
 bkF
 dmP
 bFD
@@ -109721,7 +109760,7 @@ aEl
 kVk
 bfM
 bkF
-blX
+bni
 blX
 blX
 eca
@@ -110492,7 +110531,7 @@ aFi
 kVk
 kSG
 bkF
-blX
+bni
 blX
 blX
 twQ

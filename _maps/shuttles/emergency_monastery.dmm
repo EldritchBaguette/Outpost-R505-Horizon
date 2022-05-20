@@ -1166,6 +1166,10 @@
 /obj/structure/chair/wood,
 /turf/open/floor/carpet,
 /area/shuttle/escape)
+"ob" = (
+/obj/machinery/skill_station,
+/turf/open/floor/iron/dark,
+/area/shuttle/escape)
 "od" = (
 /obj/machinery/vending/wardrobe/curator_wardrobe,
 /turf/open/floor/iron/dark,
@@ -6505,7 +6509,7 @@ DS
 Kg
 PB
 nr
-jx
+ob
 jx
 jx
 jx

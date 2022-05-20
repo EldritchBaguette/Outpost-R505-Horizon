@@ -2,6 +2,11 @@
 	/// The name of the job , used for preferences, bans and more. Make sure you know what you're doing before changing this.
 	var/title = "NOPE"
 
+	/// Innate skill levels unlocked at roundstart. Based on config.jobs_have_minimal_access config setting, for example with a skeleton crew. Format is list(/datum/skill/foo = SKILL_EXP_NOVICE) with exp as an integer or as per code/_DEFINES/skills.dm
+	var/list/skills
+	/// Innate skill levels unlocked at roundstart. Based on config.jobs_have_minimal_access config setting, for example with a full crew. Format is list(/datum/skill/foo = SKILL_EXP_NOVICE) with exp as an integer or as per code/_DEFINES/skills.dm
+	var/list/minimal_skills
+
 	/// Determines who can demote this position
 	var/department_head = list()
 
@@ -134,6 +139,24 @@
 /datum/job/proc/after_spawn(mob/living/spawned, client/player_client)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JOB_AFTER_SPAWN, src, spawned, player_client)
+
+	if(!ishuman(spawned))
+		return
+
+	var/list/roundstart_experience
+
+	if(!config) //Needed for robots.
+		roundstart_experience = minimal_skills
+
+	if(CONFIG_GET(flag/jobs_have_minimal_access))
+		roundstart_experience = minimal_skills
+	else
+		roundstart_experience = skills
+
+	if(roundstart_experience)
+		var/mob/living/carbon/human/experiencer = spawned
+		for(var/i in roundstart_experience)
+			experiencer.mind.adjust_experience(i, roundstart_experience[i], TRUE)
 
 
 /datum/job/proc/announce_job(mob/living/joining_mob)
@@ -285,6 +308,9 @@
 		PDA.owner = H.real_name
 		PDA.ownjob = J.title
 		PDA.update_label()
+
+	if(H.client?.prefs.playtime_reward_cloak)
+		neck = /obj/item/clothing/neck/cloak/skill_reward/playing
 
 
 /datum/outfit/job/get_chameleon_disguise_info()
