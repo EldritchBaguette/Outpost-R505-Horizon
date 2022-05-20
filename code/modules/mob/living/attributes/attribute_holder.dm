@@ -43,7 +43,7 @@
 
 	// Handle affinities
 	for(var/skill_type in GLOB.skills)
-		var/datum/skill/skill = GLOB.skills[skill_type]
+		var/datum/skillHRZNTL/skill = GLOB.skills[skill_type] //R505 Edit - Tempfix "skill" >"skillHRZNTL"
 		if(!skill.affinities)
 			continue
 		for(var/affinity_type in skill.affinities)
@@ -135,7 +135,7 @@
 		dat += "[attribute.name] - <a href='?src=[REF(src)];edit=attributes;type=[attribute_type]'>[raw]</a> | [attribute.get_common_modifier_string(raw)] | [attribute.desc]<BR>"
 	dat += "<h3>Raw Skills Editing:</h3>"
 	for(var/skill_type in GLOB.skills)
-		var/datum/skill/skill = GLOB.skills[skill_type]
+		var/datum/skillHRZNTL/skill = GLOB.skills[skill_type] //R505 Edit - Tempfix "skill" >"skillHRZNTL"
 		var/raw = skills_raw[skill_type]
 		dat += "[skill.name] - <a href='?src=[REF(src)];edit=skills;type=[skill_type]'>[raw]</a>| [skill.get_capability_description(raw)] | [skill.desc]<BR>"
 	winshow(user, "attribute_edit_window", TRUE)

@@ -1,4 +1,4 @@
-/datum/skill
+/datum/skillHRZNTL //R505 Edit - Tempfix "skill" >"skillHRZNTL"
 	/// Name of the skill
 	var/name = "Skill"
 	/// Description of the skill
@@ -6,7 +6,7 @@
 	/// Contribution to the skill value from attributes (counted from base value)
 	var/list/affinities
 
-/datum/skill/proc/get_capability_description(value)
+/datum/skillHRZNTL/proc/get_capability_description(value) //R505 Edit - Tempfix "skill" >"skillHRZNTL"
 	switch(value)
 		if(-INFINITY to -3)
 			return "Catastrophic"
@@ -27,27 +27,27 @@
 		if(5 to INFINITY)
 			return "Proficient"
 
-/datum/skill/first_aid
+/datum/skillHRZNTL/first_aid //R505 Edit - Tempfix "skill" >"skillHRZNTL"
 	name = "First Aid"
 	desc = "The ability to effectively perform first aid, applying ointments, sutures, gauze or splints aswell as performing CPR and setting limbs."
 	affinities = list(/datum/attribute/intelligence = 0.5)
 
-/datum/skill/surgery
+/datum/skillHRZNTL/surgery //R505 Edit - Tempfix "skill" >"skillHRZNTL"
 	name = "Surgery"
 	desc = "Precision, hand coordination and the anatomical knowledge required to perform surgery."
 	affinities = list(/datum/attribute/intelligence = 0.5)
 
-/datum/skill/electrical
+/datum/skillHRZNTL/electrical //R505 Edit - Tempfix "skill" >"skillHRZNTL"
 	name = "Electrical"
 	desc = "Knowledge of electrical components and systems, helps with hacking and figuring out which wires do what."
 	affinities = list(/datum/attribute/intelligence = 0.5)
 
-/datum/skill/mechanical
+/datum/skillHRZNTL/mechanical //R505 Edit - Tempfix "skill" >"skillHRZNTL"
 	name = "Mechanical"
 	desc = "Proficiency with machinery, tools and it's usage. Increases the speed at which you use tools."
 	affinities = list(/datum/attribute/intelligence = 0.5)
 
-/datum/skill/eva
+/datum/skillHRZNTL/eva //R505 Edit - Tempfix "skill" >"skillHRZNTL"
 	name = "Extra-Vehicular Activity"
 	desc = "The ability to gracefully perform tasks in no gravity environments and adjusting yourself to changes in gravity or air pressure."
 	affinities = list(/datum/attribute/dexterity = 0.5)

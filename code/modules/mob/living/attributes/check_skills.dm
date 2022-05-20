@@ -82,7 +82,7 @@
 	for(var/skill_type in GLOB.skills)
 		even = !even
 		background_cl = even ? "#17191C" : "#23273C"
-		var/datum/skill/skill = GLOB.skills[skill_type]
+		var/datum/skillHRZNTL/skill = GLOB.skills[skill_type] //R505 Edit - Tempfix "skill" >"skillHRZNTL"
 		var/value = attributes.skills_final[skill_type]
 		dat += "<tr style='background-color: [background_cl]'>"
 		dat += "<td>[skill.name]</td>" //Name

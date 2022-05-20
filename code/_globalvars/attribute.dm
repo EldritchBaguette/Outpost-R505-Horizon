@@ -13,7 +13,7 @@ GLOBAL_LIST_INIT(attribute_sheets, build_attribute_sheet_list())
 
 /proc/build_skill_list()
 	var/list/skill_list = list()
-	for(var/type in subtypesof(/datum/skill))
+	for(var/type in subtypesof(/datum/skillHRZNTL)) //R505 Edit - Tempfix "skill" >"skillHRZNTL"
 		skill_list[type] = new type()
 	return skill_list
 

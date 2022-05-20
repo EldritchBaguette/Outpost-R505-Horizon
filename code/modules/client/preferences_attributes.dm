@@ -48,7 +48,7 @@
 	// Apply any expected sheets (currently none)
 	// Calculate affinities (very similar code to what /datum/attribute_holder does, im not a fan but it is what it is)
 	for(var/skill_type in GLOB.skills)
-		var/datum/skill/skill = GLOB.skills[skill_type]
+		var/datum/skillHRZNTL/skill = GLOB.skills[skill_type] //R505 Edit - Tempfix "skill" >"skillHRZNTL"
 		if(!skill.affinities)
 			continue
 		for(var/affinity_type in skill.affinities)
@@ -130,6 +130,7 @@
 	update_perceived_attributes()
 	var/list/dat = list()
 	dat += "<center><i>Here you can customize your character's attributes and skills by pressing the +1 and -1 buttons.</i></center>"
+	dat += "<center><i>Does not presently do anytthing, but will in the future.</i></center>" //R505 Edit
 	dat += "<table width='100%'>"
 	dat += "<center><h2>Attributes:</h2></center>"
 	dat += "<center><i>Attributes define your character's strengths and weaknesses, aswell as impact your skills.<BR>Stimulants, drugs, moods, and other things may affect them.</i></center>"
@@ -178,13 +179,13 @@
 	for(var/skill_type in GLOB.skills)
 		even = !even
 		background_cl = even ? "#17191C" : "#23273C"
-		var/datum/skill/skill = GLOB.skills[skill_type]
+		var/datum/skillHRZNTL/skill = GLOB.skills[skill_type] //R505 Edit - Tempfix "skill" >"skillHRZNTL"
 		var/base_value = skills[skill_type] + SKILL_BASE
 		var/perceived_value = perceived_skills[skill_type]
 		var/add_link = can_modify_skill(skill_type, 1) ? "href='?_src_=prefs;task=attributes;attribute_task=set_skill;type=[skill_type];amount=1'" : "class='linkOff'"
 		var/sub_link = can_modify_skill(skill_type, -1) ? "href='?_src_=prefs;task=attributes;attribute_task=set_skill;type=[skill_type];amount=-1'" : "class='linkOff'"
 		dat += "<tr style='background-color: [background_cl]'>"
-		dat += "<td>[skill.name]</td>" //Name
+		dat += "<td>[skill.name]</td>"
 		dat += "<td><a [sub_link]>-1</a></td>" //Minus
 		dat += "<td><a [add_link]>+1</a></td>" //Plus
 		dat += "<td><center><b>[perceived_value]</b> ([base_value])</center></td>" //Value

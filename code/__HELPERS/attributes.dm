@@ -14,9 +14,9 @@
 	var/string = ""
 	var/first = TRUE
 	for(var/skill_type in skill_list)
-		var/datum/skill/skill = GLOB.skills[skill_type]
+		var/datum/skillHRZNTL/skill = GLOB.skills[skill_type] //R505 Edit - Tempfix "skill" >"skillHRZNTL"
 		if(!first)
 			string += "<br>"
-		string += "[skill.name]: [skill_list[skill_type]]"
+		string += "[skill.name]: [skill_list[skill_type]]" //R505 Edit - Tempfix > "skillHRZNTL"
 		first = FALSE
 	return string

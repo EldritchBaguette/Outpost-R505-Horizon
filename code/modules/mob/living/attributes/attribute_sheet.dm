@@ -10,14 +10,14 @@
 /datum/attribute_sheet/engineer
 	name = "Engineer"
 	skills = list(
-		/datum/skill/electrical = 4,
-		/datum/skill/mechanical = 4,
-		/datum/skill/eva = 2,
+		/datum/skillHRZNTL/electrical = 4, //R505 Edit - Tempfix "skill" >"skillHRZNTL"
+		/datum/skillHRZNTL/mechanical = 4, //R505 Edit - Tempfix "skill" >"skillHRZNTL"
+		/datum/skillHRZNTL/eva = 2, //R505 Edit - Tempfix "skill" >"skillHRZNTL"
 		)
 
 /datum/attribute_sheet/doctor
 	name = "Doctor"
 	skills = list(
-		/datum/skill/first_aid = 5,
-		/datum/skill/surgery = 5
+		/datum/skillHRZNTL/first_aid = 5, //R505 Edit - Tempfix "skill" >"skillHRZNTL"
+		/datum/skillHRZNTL/surgery = 5 //R505 Edit - Tempfix "skill" >"skillHRZNTL"
 		)
