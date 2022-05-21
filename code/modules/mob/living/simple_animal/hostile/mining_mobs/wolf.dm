@@ -12,9 +12,9 @@
 	speak_emote = list("howls")
 	speed = 5
 	move_to_delay = 5
-	maxHealth = 130
-	health = 130
-	obj_damage = 15
+	maxHealth = 80
+	health = 80
+	obj_damage = 5
 	melee_damage_lower = 7.5
 	melee_damage_upper = 7.5
 	rapid_melee = 2 // every second attack

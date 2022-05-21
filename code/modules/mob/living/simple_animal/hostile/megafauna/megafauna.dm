@@ -15,7 +15,7 @@
 	ranged_ignores_vision = TRUE
 	stat_attack = DEAD
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	damage_coeff = list(BRUTE = 1, BURN = 0.5, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
+	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
 	minbodytemp = 0
 	maxbodytemp = INFINITY
 	vision_range = 5
@@ -103,6 +103,10 @@
 /mob/living/simple_animal/hostile/megafauna/proc/spawn_crusher_loot()
 	loot = crusher_loot
 
+/mob/living/simple_animal/hostile/megafauna/bsa_act(obj/machinery/bsa/full/B)
+	health = 0
+	gib()
+
 /mob/living/simple_animal/hostile/megafauna/gib()
 	if(health > 0)
 		return
@@ -142,16 +146,10 @@
 	L.gib()
 	return TRUE
 
+
+//Gonna put some kind of stagger mechanic here, NYI
 /mob/living/simple_animal/hostile/megafauna/ex_act(severity, target)
-	switch (severity)
-		if (EXPLODE_DEVASTATE)
-			adjustBruteLoss(250)
-
-		if (EXPLODE_HEAVY)
-			adjustBruteLoss(100)
-
-		if (EXPLODE_LIGHT)
-			adjustBruteLoss(50)
+	. = ..()
 
 /// Sets the next time the megafauna can use a melee or ranged attack, in deciseconds
 /mob/living/simple_animal/hostile/megafauna/proc/SetRecoveryTime(buffer_time, ranged_buffer_time)

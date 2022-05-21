@@ -1190,6 +1190,15 @@
 		G.Recall()
 		to_chat(G, SPAN_HOLOPARASITE("Your summoner has changed form!"))
 
+//bsa_act
+/mob/living/bsa_act(obj/machinery/bsa/full/B)
+	. = ..()
+	if(isliving(src))
+		new /obj/effect/temp_visual/bsa_annihilation(get_turf(src), src)
+		var/mob/living/victim = src
+		victim.dust(TRUE, FALSE)
+
+
 /mob/living/rad_act(amount)
 	. = ..()
 

@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/asteroid/ice_demon
-	name = "demonic watcher"
-	desc = "A creature formed entirely out of ice, bluespace energy emanates from inside of it."
+	name = "ice demon"
+	desc = "A creature formed from ice given life by demonic will, flickering with bluespace energy."
 	icon = 'icons/mob/icemoon/icemoon_monsters.dmi'
 	icon_state = "ice_demon"
 	icon_living = "ice_demon"
@@ -18,8 +18,8 @@
 	ranged_cooldown_time = 1.5 SECONDS
 	minimum_distance = 3
 	retreat_distance = 3
-	maxHealth = 150
-	health = 150
+	maxHealth = 100
+	health = 100
 	obj_damage = 40
 	melee_damage_lower = 15
 	melee_damage_upper = 15
