@@ -794,6 +794,40 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_FIRE_ACT, exposed_temperature, exposed_volume)
 	return
 
+
+/**
+ * React to being direct-hit by the beam of a BSA (technically anything in the devastation radius).
+ * 
+ * For most objects and mobs this means instant disintegration.
+ * The argument B is a reference to the BSA that fired the beam in question.
+ * Dunno why you'd need that but I threw it in to future-proof.
+ * For atoms in general this does jackshit rn.
+ */
+/atom/proc/bsa_act(obj/machinery/bsa/full/B)
+	return
+			
+
+//temp_visual for BSA disintegrations
+/obj/effect/temp_visual/bsa_annihilation
+	duration = 10
+
+/obj/effect/temp_visual/bsa_annihilation/Initialize(mapload, atom/thing)
+	. = ..()
+	if(thing)
+		duration = rand(8,12)
+		appearance = thing.appearance
+		setDir(thing.dir)
+		color = list("#2eb3ff", "#2eb3ff", "#2eb3ff", list(0,0,0))
+		set_light(1.4, 1, "#2eb3ff")
+		mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+		var/matrix/new_transform = transform
+		new_transform *= 1.2
+		animate(src, alpha = 0, transform = new_transform, time = duration)
+	else
+		return INITIALIZE_HINT_QDEL
+
+
+
 /**
  * React to being hit by a thrown object
  *

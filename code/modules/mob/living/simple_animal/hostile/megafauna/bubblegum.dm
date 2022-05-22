@@ -30,8 +30,8 @@ Difficulty: Hard
 /mob/living/simple_animal/hostile/megafauna/bubblegum
 	name = "bubblegum"
 	desc = "In what passes for a hierarchy among slaughter demons, this one is king."
-	health = 2500
-	maxHealth = 2500
+	health = 2000
+	maxHealth = 2000
 	attack_verb_continuous = "rends"
 	attack_verb_simple = "rend"
 	attack_sound = 'sound/magic/demon_attack1.ogg'
@@ -43,7 +43,7 @@ Difficulty: Hard
 	friendly_verb_simple = "stare down"
 	icon = 'icons/mob/lavaland/96x96megafauna.dmi'
 	speak_emote = list("gurgles")
-	armour_penetration = 40
+	armour_penetration = 20
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	speed = 5
@@ -430,18 +430,10 @@ Difficulty: Hard
 		if(.)
 			recovery_time = world.time + 20 // can only attack melee once every 2 seconds but rapid_melee gives higher priority
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/bullet_act(obj/projectile/P)
-	if(BUBBLEGUM_IS_ENRAGED)
-		visible_message(SPAN_DANGER("[src] deflects the projectile; [p_they()] can't be hit with ranged weapons while enraged!"), SPAN_USERDANGER("You deflect the projectile!"))
-		playsound(src, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 300, TRUE)
-		return BULLET_ACT_BLOCK
-	return ..()
-
 /mob/living/simple_animal/hostile/megafauna/bubblegum/ex_act(severity, target)
-	if(severity <= EXPLODE_LIGHT)
-		return FALSE
-
-	severity = EXPLODE_LIGHT // puny mortals
+	if(BUBBLEGUM_IS_ENRAGED)
+		visible_message(SPAN_DANGER("[src] shrugs off the blast in [p_their()] rage!"), SPAN_USERDANGER("You shrug off the explosion!"))
+		severity = EXPLODE_LIGHT
 	return ..()
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/CanAllowThrough(atom/movable/mover, turf/target)

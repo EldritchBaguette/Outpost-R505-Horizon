@@ -9,8 +9,8 @@ Difficulty: Extremely Hard
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner
 	name = "demonic-frost miner"
 	desc = "An extremely well-geared miner, driven crazy or possessed by the demonic forces here, either way a terrifying enemy."
-	health = 1500
-	maxHealth = 1500
+	health = 700
+	maxHealth = 700
 	icon_state = "demonic_miner"
 	icon_living = "demonic_miner"
 	icon = 'icons/mob/icemoon/icemoon_monsters.dmi'
@@ -22,7 +22,7 @@ Difficulty: Extremely Hard
 	movement_type = GROUND
 	weather_immunities = list("snow")
 	speak_emote = list("roars")
-	armour_penetration = 100
+	armour_penetration = 30
 	melee_damage_lower = 10
 	melee_damage_upper = 10
 	vision_range = 18 // large vision range so combat doesn't abruptly end when someone runs a bit away
@@ -205,7 +205,7 @@ Difficulty: Extremely Hard
 	qdel(src)
 
 /// Shoots out snowballs with a random spread
-/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/proc/snowball_machine_gun(shots = 60, spread = 45)
+/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/proc/snowball_machine_gun(shots = 30, spread = 10)
 	for(var/i in 1 to shots)
 		var/turf/startloc = get_turf(src)
 		var/turf/endloc = get_turf(target)

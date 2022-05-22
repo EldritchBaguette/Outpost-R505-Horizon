@@ -15,8 +15,8 @@ Difficulty: Hard
 /mob/living/simple_animal/hostile/megafauna/wendigo
 	name = "wendigo"
 	desc = "A mythological man-eating legendary creature, you probably aren't going to survive this."
-	health = 2500
-	maxHealth = 2500
+	health = 1000
+	maxHealth = 1000
 	icon_state = "wendigo"
 	icon_living = "wendigo"
 	icon_dead = "wendigo_dead"
@@ -275,7 +275,7 @@ Difficulty: Hard
 	name ="wendigo shockwave"
 	icon_state= "chronobolt"
 	damage = 25
-	armour_penetration = 100
+	armour_penetration = 10
 	speed = 2
 	eyeblur = 5
 	damage_type = BRUTE

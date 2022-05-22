@@ -128,6 +128,7 @@
 	var/ex_power = 3
 	var/power_used_per_shot = 2000000 //enough to kil standard apc - todo : make this use wires instead and scale explosion power with it
 	var/ready
+	var/firing_sound = 'modular_R505/sound/weapons/bsa_fire.ogg'
 	pixel_y = -32
 	pixel_x = -192
 	bound_width = 352
@@ -180,6 +181,7 @@
 
 /obj/machinery/bsa/full/proc/fire(mob/user, turf/bullseye)
 	reload()
+	playsound(src, firing_sound, 90, FALSE)
 
 	var/turf/point = get_front_turf()
 	var/turf/target = get_target_turf()
@@ -206,6 +208,8 @@
 		message_admins("[ADMIN_LOOKUPFLW(user)] has launched an artillery strike targeting [ADMIN_VERBOSEJMP(bullseye)].")
 		log_game("[key_name(user)] has launched an artillery strike targeting [AREACOORD(bullseye)].")
 		explosion(bullseye, devastation_range = ex_power, heavy_impact_range = ex_power*2, light_impact_range = ex_power*4)
+		for(var/atom/thing in range(ex_power, bullseye))
+			thing.bsa_act(src)
 	else
 		message_admins("[ADMIN_LOOKUPFLW(user)] has launched an artillery strike targeting [ADMIN_VERBOSEJMP(bullseye)] but it was blocked by [blocker] at [ADMIN_VERBOSEJMP(target)].")
 		log_game("[key_name(user)] has launched an artillery strike targeting [AREACOORD(bullseye)] but it was blocked by [blocker] at [AREACOORD(target)].")
