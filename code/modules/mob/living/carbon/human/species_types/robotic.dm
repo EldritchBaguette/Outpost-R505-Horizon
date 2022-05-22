@@ -51,6 +51,9 @@
 	scream_sounds = list(
 		NEUTER = 'sound/voice/scream_silicon.ogg'
 	)
+	species_descriptors = list(
+		/datum/descriptor/age/robot
+	)
 
 /datum/species/robotic/spec_life(mob/living/carbon/human/H)
 	if(H.stat == SOFT_CRIT || H.stat == HARD_CRIT)

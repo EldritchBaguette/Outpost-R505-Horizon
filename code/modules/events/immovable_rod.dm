@@ -284,7 +284,6 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 		wizard.apply_damage(25, BRUTE)
 		qdel(src)
 	else
-		user.client.give_award(/datum/award/achievement/misc/feat_of_strength, user) //rod-form wizards would probably make this a lot easier to get so keep it to regular rods only
 		user.visible_message(SPAN_BOLDWARNING("[user] suplexes [src] into the ground!"), SPAN_WARNING("You suplex [src] into the ground!"))
 		new /obj/structure/festivus/anchored(drop_location())
 		new /obj/effect/anomaly/flux(drop_location())
@@ -315,9 +314,6 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 		return
 
 	complete_trajectory()
-
-/obj/effect/immovablerod/deadchat_plays(mode = DEMOCRACY_MODE, cooldown = 6 SECONDS)
-	return AddComponent(/datum/component/deadchat_control/immovable_rod, mode, list(), cooldown)
 
 /**
  * Rod will walk towards edge turf in the specified direction.

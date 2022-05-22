@@ -425,6 +425,7 @@
 	activate_message = SPAN_NOTICE("You feel your mind automatically verifying long serial numbers on disk shaped objects.")
 	deactivate_message = SPAN_NOTICE("The innate recognition of absurdly long disk-related serial numbers fades from your mind.")
 
+/*
 /obj/item/skillchip/entrails_reader
 	name = "3NTR41LS skillchip"
 	auto_traits = list(TRAIT_ENTRAILS_READER)
@@ -433,3 +434,4 @@
 	skill_icon = "lungs"
 	activate_message = SPAN_NOTICE("You feel that you know a lot about interpreting organs.")
 	deactivate_message = SPAN_NOTICE("Knowledge of liver damage, heart strain and lung scars fades from your mind.")
+*/
