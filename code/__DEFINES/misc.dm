@@ -39,8 +39,8 @@
 #define FACEMASK_LAYER 8
 #define HEAD_LAYER 7
 #define HANDCUFF_LAYER 6
-#define LEGCUFF_LAYER 5
-#define HANDS_LAYER 4
+#define HANDS_LAYER 5
+#define LEGCUFF_LAYER 4
 #define BODY_FRONT_LAYER 3
 #define HALO_LAYER 2 //blood cult ascended halo, because there's currently no better solution for adding/removing
 #define FIRE_LAYER 1 //If you're on fire
