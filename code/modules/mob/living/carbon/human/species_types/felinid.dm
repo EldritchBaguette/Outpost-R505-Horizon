@@ -10,10 +10,11 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/felinid
 	inherent_traits = list(
+		TRAIT_ADVANCEDTOOLUSER,
+		TRAIT_CAN_STRIP,
 		TRAIT_FREERUNNING,
 		TRAIT_SKITTISH,
-		TRAIT_LIGHT_STEP
-		
+		TRAIT_LIGHT_STEP	
 	)
 
 	mutanteyes = /obj/item/organ/eyes/night_vision/feline
