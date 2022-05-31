@@ -153,7 +153,7 @@
 
 /obj/item/organ/genital/testicles/update_genital_icon_state()
 	var/measured_size = clamp(genital_size, 1, 5)
-	var/passed_string = "testicles_[genital_type]_[measured_size]" 
+	var/passed_string = "testicles_[genital_type]_[measured_size]"
 	icon_state = passed_string
 
 /obj/item/organ/genital/testicles/get_description_string(datum/sprite_accessory/genital/gas)
@@ -269,7 +269,7 @@
 
 /obj/item/organ/genital/ass/get_sprite_size_string()
 	var/measured_size = FLOOR(genital_size,1)
-	measured_size = clamp(measured_size, 1, 5)
+	measured_size = clamp(measured_size, 1, 8)
 	var/passed_string = "[measured_size]"
 	if(uses_skintones)
 		passed_string += "_s"
@@ -283,7 +283,7 @@
 	set_size(DNA.features["ass_size"])
 
 /obj/item/organ/genital/ass/update_genital_icon_state()
-	var/measured_size = clamp(genital_size, 1, 5)
+	var/measured_size = clamp(genital_size, 1, 8)
 	var/passed_string = "ass_[measured_size]"
 	if(uses_skintones)
 		passed_string += "_s"
