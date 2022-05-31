@@ -1776,9 +1776,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_size)
 						features["balls_size"] = balls_description_to_size(new_size)
 				if("ass_size")
-					var/new_size = input(user, "Choose your ass size:\n(1-5)", "Character Preference") as num|null
+					var/new_size = input(user, "Choose your ass size:\n(1-8)", "Character Preference") as num|null
 					if(new_size)
-						features["ass_size"] = clamp(round(new_size, 1), 1, 5)
+						features["ass_size"] = clamp(round(new_size, 1), 1, 8)
 		if("change_bodypart")
 			needs_update = TRUE
 			switch(href_list["preference"])

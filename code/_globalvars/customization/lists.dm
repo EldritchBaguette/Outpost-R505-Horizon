@@ -35,7 +35,10 @@ GLOBAL_LIST_INIT(ass_size_translation, list("0" = "Nonexistant",
 												"2" = "Sizable",
 												"3" = "Substantial",
 												"4" = "Hefty",
-												"5" = "Thunderous"
+												"5" = "Thunderous",
+												"6" = "Gigantic",
+												"7" = "Titanic",
+												"8" = "Room-quaking"
 												))
 
 GLOBAL_LIST_INIT(marking_zone_to_bitflag, list(BODY_ZONE_HEAD = HEAD,
