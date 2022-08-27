@@ -297,7 +297,7 @@
 /obj/item/slimepotion/slime/sentience/mining/after_success(mob/living/user, mob/living/simple_animal/simple_mob)
 	if(!istype(simple_mob, /mob/living/simple_animal/hostile/mining_drone))
 		return
-	var/mob/living/simple_animal/hostile/mining_drone/minebot = simple_mob
+	//var/mob/living/simple_animal/hostile/mining_drone/minebot = simple_mob //R505 Edit - Kindly stop yelling at me
 	//This does nothing atm because
 
 #undef MINEDRONE_COLLECT

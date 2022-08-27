@@ -731,13 +731,8 @@
 	base_icon_state = "window"
 	color = "#A6A2A9"
 	greyscale_config = /datum/greyscale_config/fulltile_window
-<<<<<<< HEAD
 	greyscale_colors = "#A6A2A9"
 	alpha = 150
-=======
-	greyscale_colors = "#D0CBD4"
-	alpha = 180
->>>>>>> parent of b7db0d50238 (New windows sprites (#937))
 	max_integrity = 150
 	wtype = "shuttle"
 	fulltile = TRUE
