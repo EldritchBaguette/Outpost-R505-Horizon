@@ -1,3 +1,4 @@
+#define LOBBYMUSIC_VOLUME 30
 
 ///Default override for echo
 /sound
@@ -197,12 +198,12 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 	S.status = SOUND_UPDATE
 	SEND_SOUND(src, S)
 
-/client/proc/playtitlemusic(vol = 30)
+/client/proc/playtitlemusic(vol = LOBBYMUSIC_VOLUME)
 	set waitfor = FALSE
 	UNTIL(SSticker.login_music) //wait for SSticker init to set the login music
 
 	if(prefs && (prefs.toggles & SOUND_LOBBY))
-		SEND_SOUND(src, sound(SSticker.login_music, repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC)) // MAD JAMS
+		SEND_SOUND(src, sound(SSticker.login_music, repeat = 0, wait = 0, volume = LOG_AUDIOVOLUME(vol), channel = CHANNEL_LOBBYMUSIC)) // MAD JAMS
 
 /proc/get_rand_frequency()
 	return rand(32000, 55000) //Frequency stuff only works with 45kbps oggs.
@@ -271,3 +272,5 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 			if("water_wade") //R505 Edit - Pool
 				soundin = pick('modular_R505/sound/pool/water_wade1.ogg', 'modular_R505/sound/pool/water_wade2.ogg', 'modular_R505/sound/pool/water_wade3.ogg', 'modular_R505/sound/pool/water_wade4.ogg')
 	return soundin
+
+#undef LOBBYMUSIC_VOLUME

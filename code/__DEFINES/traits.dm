@@ -232,7 +232,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_QUICK_BUILD "quick-build"
 /// We can handle 'dangerous' plants in botany safely
 #define TRAIT_PLANT_SAFE "plant_safe"
-#define TRAIT_UNINTELLIGIBLE_SPEECH "unintelligible-speech"
 #define TRAIT_UNSTABLE "unstable"
 #define TRAIT_OIL_FRIED "oil_fried"
 #define TRAIT_MEDICAL_HUD "med_hud"
@@ -269,8 +268,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_PERMANENTLY_ONFIRE "permanently_onfire"
 /// Galactic Common Sign Language
 #define TRAIT_SIGN_LANG "sign_language"
-/// The mob's nanites are sending a monitoring signal visible on diag HUD
-#define TRAIT_NANITE_MONITORING "nanite_monitoring"
 /// nobody can use martial arts on this mob
 #define TRAIT_MARTIAL_ARTS_IMMUNE "martial_arts_immune"
 /// You've been cursed with a living duffelbag, and can't have more added
@@ -425,6 +422,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_INTROVERT "introvert"
 #define TRAIT_ANXIOUS "anxious"
 #define TRAIT_INSANITY "insanity"
+#define TRAIT_HARD_SOLES "hard_soles"
+#define TRAIT_EXCITABLE "excitable"
 
 ///Trait for dryable items
 #define TRAIT_DRYABLE "trait_dryable"
@@ -446,6 +445,17 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 ///Trait applied to turfs when an atmos holosign is placed on them. It will stop firedoors from closing.
 #define TRAIT_FIREDOOR_STOP "firedoor_stop"
+
+/// Trait applied when the MMI component is added to an [/obj/item/integrated_circuit]
+#define TRAIT_COMPONENT_MMI "component_mmi"
+/// Trait applied when the MMI component is added to an [/obj/item/integrated_circuit]
+#define TRAIT_COMPONENT_PRINTER "component_printer"
+
+/// Trait applied when an integrated circuit/module becomes undupable
+#define TRAIT_CIRCUIT_UNDUPABLE "circuit_undupable"
+
+/// Hearing trait that is from the hearing component
+#define CIRCUIT_HEAR_TRAIT "circuit_hear"
 
 //Medical Categories for quirks
 #define CAT_QUIRK_ALL 0
@@ -532,7 +542,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define GENETICS_SPELL "genetics_spell"
 #define EYES_COVERED "eyes_covered"
 #define HYPNOCHAIR_TRAIT "hypnochair"
-#define NANITES_TRAIT "nanites"
 #define FLASHLIGHT_EYES "flashlight_eyes"
 #define IMPURE_OCULINE "impure_oculine"
 #define BLINDFOLD_TRAIT "blindfolded"
@@ -609,6 +618,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define DRONE_SHY_TRAIT "drone_shy"
 /// Pacifism trait given by stabilized light pink extracts.
 #define STABILIZED_LIGHT_PINK_TRAIT "stabilized_light_pink"
+/// Trait given to an atom/movable when entering orbit
+#define ORBITING_TRAIT "orbiting"
 
 /**
 * Trait granted by [/mob/living/carbon/Initialize] and
@@ -628,9 +639,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define AI_ANCHOR_TRAIT "ai_anchor"
 /// Trait from [/datum/antagonist/nukeop/clownop]
 #define CLOWNOP_TRAIT "clownop"
-
-/// Trait from emote module
-#define TRAIT_EXCITABLE	"wagwag"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"
